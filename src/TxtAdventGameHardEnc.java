@@ -1,20 +1,20 @@
-import java.util.*;
-public class TxtAdventGameEasyEnc {
+import java.util.InputMismatchException;
+public class TxtAdventGameHardEnc {
 	TxtAdventUserInput newScan = new TxtAdventUserInput();
 	TxtAdventRandNum newRand = new TxtAdventRandNum();
-	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
+	TxtAdventUpperFloor newRoom = new TxtAdventUpperFloor();
 
-	  public void randEncounterEasy(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	  public void randEncounterHard(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 			
 		  
-		  int enemyStats[] = {15, 7, 3, newRand.randEasyEnemySpd()};
+		  int enemyStats[] = {40, 15, 10, newRand.randHardEnemySpd()};
 		  
 		  
-		 while (myStats[0] > 0 || enemyStats[0] > 0) {
-		 System.out.println("Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3]);
-		 System.out.println(" ");
-		 System.out.println("Dark Knight Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3]);
-		 System.out.println(" ");  
+		while (myStats[0] > 0 || enemyStats[0] > 0) {
+		System.out.println("Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3]);
+		System.out.println(" ");
+		System.out.println("Drake Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3]);
+		System.out.println(" ");
 		  if (myStats[0] <= 0 || enemyStats[0] <= 0) {
 			  if (myStats[0] <= 0) {
 				  System.out.println("You lost..Good luck next time!");
@@ -24,46 +24,46 @@ public class TxtAdventGameEasyEnc {
 				  System.out.println("You Won!");
 				  System.out.println(" ");
 
-				  if (newRand.randBattleReward() <= 4) {
+				  if (newRand.randBattleReward() <= 1) {
 					  System.out.println("You received an Attack boost potion!");
 					  System.out.println(" "); 
 					  invo[1] += 1;
 
-					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					  break;
 					 
 				  }
-				  else if (newRand.randBattleReward() > 4 && newRand.randBattleReward() <= 8) {
+				  else if (newRand.randBattleReward() > 1 && newRand.randBattleReward() <= 3) {
 					  System.out.println("You received a Defense boost potion!");
 					  System.out.println(" "); 
 					  invo[3] += 1;
 	
-					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					  break;
 					 
 				  }
-				  else if (newRand.randBattleReward() > 8 && newRand.randBattleReward()<= 12) {
+				  else if (newRand.randBattleReward() > 3 && newRand.randBattleReward()<= 6) {
 					  System.out.println("You received a Speed boost potion!");
 					  System.out.println(" "); 
 					  invo[2] += 1;
 
-					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					  break;
 					 
 				  }
-				  else if (newRand.randBattleReward() > 12 && newRand.randBattleReward() <= 18) {
+				  else if (newRand.randBattleReward() > 6 && newRand.randBattleReward() <= 18) {
 					  System.out.println("You received a Health boost potion!");
 					  System.out.println(" "); 
 					  invo[0] += 1;
 
-					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					  break;
 					 
 				  }
 				  else {
 				  System.out.println("You didn't receive anything this time.");
 				  System.out.println(" ");
-				  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				  break;
 				  }
 				 
@@ -96,12 +96,12 @@ public class TxtAdventGameEasyEnc {
 		  if (combatChoice == 1) {
 		  if (newRand.randAttkSuccess() > 1) {
 			  hpChangeAttk = enemyStats[0] - attk;
-			  if (hpChangeAttk > 0) {
-					 enemyStats[0] = hpChangeAttk;
-					 }
-					 else {
-					enemyStats[0] = 0;
-					 }
+			 if (hpChangeAttk > 0) {
+			 enemyStats[0] = hpChangeAttk;
+			 }
+			 else {
+			enemyStats[0] = 0;
+			 }
 			  System.out.println("The attack is successful! You deal " + attk + " damage!");
 			  System.out.println(" ");
 			  
@@ -213,7 +213,7 @@ public class TxtAdventGameEasyEnc {
 		  int hpChange = 0;
 		  int attk = enemyStats[1] - myStats[2];
 		  
-		  if (newRand.randEnemySuccess() > 4) {
+		  if (newRand.randEnemySuccess() > 8) {
 			  if(enemyStats[1] < myStats[2]) {
 				  hpChange = myStats[0];
 				  System.out.println("The enemy's attack is unsuccessful!");
@@ -221,8 +221,8 @@ public class TxtAdventGameEasyEnc {
 			
 			  }
 			  else {
-				  if(newRand.randEnemyUsePotion() > 16) {
-					  int enAttkIncrease = 4;
+				  if(newRand.randEnemyUsePotion() > 10) {
+					  int enAttkIncrease = 5;
 					  enemyStats[1] += enAttkIncrease;
 					  System.out.println("The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
 					  System.out.println(" ");
@@ -269,7 +269,7 @@ public class TxtAdventGameEasyEnc {
 								
 								  System.out.println("You got away safely!");
 								  System.out.println(" ");
-								  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+								  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 								  break;
 								  }
 								  else {
