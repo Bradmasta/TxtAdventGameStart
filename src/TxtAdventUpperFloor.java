@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 
 public class TxtAdventUpperFloor {
 
@@ -6,15 +7,12 @@ public class TxtAdventUpperFloor {
 	
 	public void UpperRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
-		TxtAdventUserInput newScan = new TxtAdventUserInput();
 		TxtAdventMainFloor mainRoom = new TxtAdventMainFloor();
 
 		
 		String directChoice;
 		
-		Script(room, roomName, whereToGo, directions, myStats, invo, flags);
-		
-		directChoice = newScan.Scanner();
+		directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags);
 		
 		directChoice = directChoice.substring(0, 1).toLowerCase();
 		
@@ -26,41 +24,99 @@ public class TxtAdventUpperFloor {
 			playerChooses.invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "c":
-			if (room == 34) {
-			if (flags[6] == 0) {
-				System.out.println("You receive a key! Keep exploring to find out what it goes to!");
-				System.out.println(" ");
-				System.out.println("You exit the room.");
-				System.out.println(" ");
-				invo[6] += 1;
-				flags[6] += 1;
-				room = whereToGo[34][1];	
-				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-			}
-				else {
-				System.out.println("You've already opened this chest.");
-				System.out.println(" ");
-				System.out.println("You exit the room.");
-				System.out.println(" ");
-				room = whereToGo[34][1];	
-				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-				
+			switch (room) {
+			
+			case 31:
+				if (flags[10] == 0) {
+					JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room.");
+					invo[6] += 1;
+					flags[10] += 1;
+					room = whereToGo[31][1];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
-			}
-			else {
-				
-				System.out.println("There isn't a chest here!");
-				System.out.println(" ");
-				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-			}
+					else {
+					JOptionPane.showMessageDialog(null, "You've already opened this chest. \nYou exit the room.");
+					room = whereToGo[31][1];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					
+					}
 			break;
+			
+			case 32:
+				if (flags[11] == 0) {
+					JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room.");
+					invo[0] += 2;
+					invo[1] += 1;
+					invo[2] += 1;
+					flags[11] += 1;
+					room = whereToGo[32][0];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+					else {
+					JOptionPane.showMessageDialog(null, "You've already opened this chest. \nYou exit the room.");
+					room = whereToGo[32][0];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					
+					}
+			break;
+			
+			case 34:
+				if (flags[12] == 0) {
+					JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room.");
+					invo[0] += 1;
+					invo[1] += 2;
+					invo[2] += 1;
+					room = whereToGo[34][1];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+					else {
+					System.out.println("You've already opened this chest.");
+					System.out.println(" ");
+					System.out.println("You exit the room.");
+					System.out.println(" ");
+					room = whereToGo[34][1];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					
+					}
+			break;
+			
+			case 35:
+				if (flags[13] == 0) {
+					System.out.println("You receive a key! Keep exploring to find out what it goes to!");
+					System.out.println(" ");
+					System.out.println("You exit the room.");
+					System.out.println(" ");
+					invo[0] += 1;
+					invo[1] += 1;
+					invo[2] += 2;
+					flags[13] += 1;
+					room = whereToGo[35][0];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+					else {
+					System.out.println("You've already opened this chest.");
+					System.out.println(" ");
+					System.out.println("You exit the room.");
+					System.out.println(" ");
+					room = whereToGo[35][0];	
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					
+					}
+			break;
+			
+			default:
+			System.out.println("There isn't a chest here!");
+			System.out.println(" ");
+			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+			}
 		case "k":
 			if (room == 29) {
-			if (flags[7] == 0) {
+			if (flags[14] == 0) {
 				if (invo[6] == 1) {
 				System.out.println("You unlocked the Final door! Good luck proceeding; you're going to need it!");
 				System.out.println(" ");
-				flags[7] += 1;
+				flags[14] += 1;
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 				else {
@@ -244,110 +300,171 @@ public class TxtAdventUpperFloor {
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags); 
 		}
 	}			
-	public void Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		
 		System.out.println("You are in the " + roomName[room]);
 		System.out.println(" ");
-		switch (room) {
-		case 32:
-		break;
-		
-		default:
-		break;
-		
-		
-		}
-		 if(room == 32 || room == 35) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-		}
-		 else if(room == 13) {
-				System.out.println("You can go the following directions: ");
-				System.out.println(" ");
-				System.out.println(directions[0]);
-				System.out.println(" ");
-				System.out.println("Where do you want to go?");
-				System.out.println(" ");
-			}
-		 else if (room == 31 || room == 34) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[1]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-		}
-		else if(room == 9) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			int flagCheck = flags[0];
-			switch(flagCheck) {
-			case 0:
-			System.out.println("You see a chest! Wonder what's inside..");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[2]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
-			System.out.println(" ");
-			break;
-			case 1:
-			System.out.println("You see an already opened chest!");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[2]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-			default:
-			break;
+			switch (room) {
 			
-			}
+				case 31:
+				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+				int flagCheck = flags[10];
+					switch(flagCheck) {
+					case 0:
+					System.out.println("You see a chest! Wonder what's inside..");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
+					System.out.println(" ");
+					break;
+					case 1:
+					System.out.println("You see an already opened chest!");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+					break;
+					}
+				break;
+				
+				case 32:
+				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+				flagCheck = flags[11];
+					switch(flagCheck) {
+					case 0:
+					System.out.println("You see a chest! Wonder what's inside..");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
+					System.out.println(" ");
+					break;
+					case 1:
+					System.out.println("You see an already opened chest!");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+					break;
+					}
+				break;
+				
+				case 34:
+				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+				flagCheck = flags[11];
+					switch(flagCheck) {
+					case 0:
+					System.out.println("You see a chest! Wonder what's inside..");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
+					System.out.println(" ");
+					break;
+					case 1:
+					System.out.println("You see an already opened chest!");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+					break;
+					}
+				break;
+				
+				case 35:
+				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+				flagCheck = flags[11];
+					switch(flagCheck) {
+					case 0:
+					System.out.println("You see a chest! Wonder what's inside..");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
+					System.out.println(" ");
+					break;
+					case 1:
+					System.out.println("You see an already opened chest!");
+					System.out.println(" ");
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+					break;
+					}
+				break;
+				
+				case 13:
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+				break;
+				
+				case 29:
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[3]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+				break;
+				
+				case 30:
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+				break;
+				
+				case 33:
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0] + ", " + directions[1] + ", " + directions[3]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+				break;
+				
+				case 36:
+					System.out.println("You can go the following directions: ");
+					System.out.println(" ");
+					System.out.println(directions[0] + ", " + directions[1]);
+					System.out.println(" ");
+					System.out.println("Where do you want to go?");
+					System.out.println(" ");
+				break;
+				
+				default:
+					System.out.println("If this message is shown, I did something wrong. Terminating program now.");
+					System.exit(0);
+				break;
+				
 		}
-		else if(room == 36) {
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[1]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-		}
-		else if(room == 30) {
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-		}
-		else if(room == 33) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[1] + ", " + directions[3]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-			
-		}
-		else if(room == 29) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[3]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-			
-		}
-	
 	}
 	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 

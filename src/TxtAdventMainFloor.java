@@ -1,20 +1,18 @@
-
+import javax.swing.*;
 public class TxtAdventMainFloor {
 
 
 
 	
 	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
-		TxtAdventUserInput newScan = new TxtAdventUserInput();
 		TxtAdventDungeon dunRoom = new TxtAdventDungeon();
 
 		
 		String directChoice;
 		
-		Script(room, roomName, whereToGo, directions, myStats, invo, flags);
-		
-		directChoice = newScan.Scanner();
+		directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags);
 		
 		directChoice = directChoice.substring(0, 1).toLowerCase();
 		
@@ -28,29 +26,21 @@ public class TxtAdventMainFloor {
 		case "c":
 			if (room == 9) {
 			if (flags[0] == 0) {
-				System.out.println("You receive a key! Keep exploring to find out what it goes to!");
-				System.out.println(" ");
-				System.out.println("You exit the room.");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room. \n");
 				invo[4] += 1;
 				flags[0] += 1;
 				room = whereToGo[9][2];	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 				else {
-				System.out.println("You've already opened this chest.");
-				System.out.println(" ");
-				System.out.println("You exit the room.");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You've already opened this chest. \nYou exit the room. \n");
 				room = whereToGo[9][2];	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				
 				}
 			}
 			else {
-				
-				System.out.println("There isn't a chest here!");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "There isn't a chest here! \n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -58,20 +48,17 @@ public class TxtAdventMainFloor {
 			if (room == 2) {
 			if (flags[2] == 0) {
 				if (invo[4] == 1) {
-				System.out.println("You unlocked the Trapdoor! This will take you to the dungeon!");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You unlocked the Trapdoor! This will take you to the dungeon! \n");
 				flags[2] += 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 				else {
-				System.out.println("You don't have the correct key for this trapdoor yet!");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You don't have the correct key for this trapdoor yet! \n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 			}
 				else {
-				System.out.println("You've already unlocked the trapdoor!");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You've already unlocked the trapdoor! \n");	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				
 				}
@@ -79,31 +66,26 @@ public class TxtAdventMainFloor {
 			else if (room == 3) {
 				if (flags[5] == 0) {
 					if (invo[5] == 1) {
-						System.out.println("You unlocked the door to the Upstairs! Head through when you're ready.");
-						System.out.println(" ");
+						JOptionPane.showMessageDialog(null, "You unlocked the door to the Upstairs! Head through when you're ready. \n");
 						flags[5] += 1;
 						Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					}
 				else {
-					System.out.println("You don't have the correct key for this door yet!");
-					System.out.println(" ");
+					JOptionPane.showMessageDialog(null, "You don't have the correct key for this door yet! \n");		
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
 				}
 					
 				}
 				else {
-					System.out.println("You've already unlocked the Upstairs door.");
-					System.out.println(" ");
+					JOptionPane.showMessageDialog(null, "You've already unlocked the Upstairs door. \n");		
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
 				}
 				
 			}
 			else {
-				
-				System.out.println("You can't use a key here!");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't use a key here! \n");			
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -132,12 +114,12 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+				break;
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[0]);
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[0] + "\n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -167,13 +149,13 @@ public class TxtAdventMainFloor {
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					default:
-					System.out.println("If this message if shown, I coded something incorrectly.");
+					JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+					break;
 				
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[1]);
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[1] + "\n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -208,12 +190,12 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+				break;
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[2]);
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[2] + "\n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -248,12 +230,12 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+				break;
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[3]);
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[3] + "\n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -265,8 +247,7 @@ public class TxtAdventMainFloor {
 				case 3:
 					int flagCheck = flags[5];
 					if (flagCheck == 0) {
-					System.out.println("You can't go " + directions[4] + " yet! The Door needs unlocked!");
-					System.out.println(" ");
+					JOptionPane.showMessageDialog(null, "You can't go " + directions[4] + " yet! The Door needs unlocked! \n");
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					}
 					else {
@@ -279,13 +260,12 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
 				break;
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[4]);
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[4] + "\n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -297,8 +277,7 @@ public class TxtAdventMainFloor {
 				case 2:
 				int flagCheck = flags[2];
 				if (flagCheck == 0) {
-				System.out.println("You can't go " + directions[5] + " yet! The trapdoor needs unlocked!");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[5] + " yet! The trapdoor needs unlocked! \n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 				else {
@@ -311,139 +290,106 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
 				break;
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[5]);
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[5] + "\n");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
 		
 			default:
-			System.out.println("Unrecognized input.");	
-			System.out.println(" ");
+			JOptionPane.showMessageDialog(null, "Unrecognized input. \n");	
 			Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			 
 		}
 	}			
-	public void Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		
-		System.out.println("You are in the " + roomName[room]);
+	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
+		String retString = null;
+		String roomIn = "You are in the " + roomName[room];
 		System.out.println(" ");
 		 if(room == 12 || room == 10) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou can go the following directions: \n" + directions[0] + "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
 		 else if (room == 8 || room == 11) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[1]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[1] + "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
 		else if(room == 9) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			int flagCheck = flags[0];
 			switch(flagCheck) {
 			case 0:
-			System.out.println("You see a chest! Wonder what's inside..");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[2]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
-			System.out.println(" ");
-			break;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside..\nYou can go the following directions: \n" + directions[2] + "\nWhere do you want to go? \n"
+					+ "Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!) \n"));
+				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				return retString;
+
 			case 1:
-			System.out.println("You see an already opened chest!");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[2]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!\nYou can go the following directions: \n" + directions[2] + "\nWhere do you want to go? \n"
+			+ "Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!) \n"));
+				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				return retString;
 			default:
-			break;
-			
+	    	emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+		    return retString;
 			}
+
 		}
 		else if(room == 5 || room == 6) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[3]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[3] + "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
 		else if(room == 13) {
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[5]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[5] + "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
 		else if(room == 4) {
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[4]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[4] + "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
 		else if(room == 0) {
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[2] + ", " + directions[3]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[0] + ", " + directions[2] + ", " + directions[3]
+			+ "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
 		else if(room == 1) {
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[1] + ", " + directions[2] + ", " + directions[3]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[1] + ", " + directions[2] + ", " + directions[3]
+					+ "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
 		else if(room == 2) {
 			int flagCheck = flags[2];
 			switch(flagCheck) {
 			case 0:
-			System.out.println("You see a locked trapdoor");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[2] + ", " + directions[3] + ", " + directions[5]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-			break;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked trapdoor \nYou can go the following directions: \n" 
+				+ directions[2] + ", " + directions[3] + ", " + directions[5]
+			    + "\nWhere do you want to go? \n"));
+			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			    return retString;
 			case 1:
-			System.out.println("You see an unlocked trapdoor");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[2] + ", " + directions[3] + ", " + directions[5]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked trapdoor \nYou can go the following directions: \n" 
+						+ directions[2] + ", " + directions[3] + ", " + directions[5]
+						+ "\nWhere do you want to go? \n"));
+			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			    return retString;
 			default:
-			break;
+			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			    return retString;
 			
 			}
 			
@@ -452,65 +398,63 @@ public class TxtAdventMainFloor {
 			int flagCheck = flags[5];
 			switch(flagCheck) {
 			case 0:
-			System.out.println("You see a locked Door");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[4]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-			break;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked Door \nYou can go the following directions: \n" 
+			    + directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[4]
+			    + "\nWhere do you want to go? \n"));
+				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				return retString;
 			case 1:
-			System.out.println("You see an unlocked Door");
-			System.out.println(" ");
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[4]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked Door \nYou can go the following directions: \n" 
+			    + directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[4]
+			    + "\nWhere do you want to go? \n"));
+				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				return retString;
 			default:
-			break;
+				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			    return retString;
 			
 			}
 			
 		}
 		else if(room == 7) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			System.out.println("You can go the following directions: ");
-			System.out.println(" ");
-			System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[3]);
-			System.out.println(" ");
-			System.out.println("Where do you want to go?");
-			System.out.println(" ");
-			
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" 
+					+ directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[3]
+					+ "\nWhere do you want to go? \n"));
+			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			return retString;
 		}
-	
+		 return retString;
 	}
 	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 9) {
 			if (flags[1] == 0) {
-			System.out.println("A Dark Knight appears!");
-			System.out.println(" ");
+			JOptionPane.showMessageDialog(null, "A Dark Knight appears! \n");
 			flags[1] += 1;
 			TxtAdventGameEasyEnc newEnc = new TxtAdventGameEasyEnc();
-			newEnc.randEncounterEasy(room, roomName, whereToGo, directions, myStats, invo, flags);
+			newEnc.randEasyStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				System.out.println("You hear noises in nearby rooms, but the room is safe.");
-				System.out.println(" ");	
+			JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but the room is safe. \n");
 		
 			}
 		}
 		else if (newRand.randEnemyEnc() < 3) {
-			System.out.println("A Dark Knight appears!");
-			System.out.println(" ");
+			JOptionPane.showMessageDialog(null, "A Dark Knight appears! \n");
 			TxtAdventGameEasyEnc newEnc = new TxtAdventGameEasyEnc();
-			newEnc.randEncounterEasy(room, roomName, whereToGo, directions, myStats, invo, flags);
+			newEnc.randEasyStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}	
+		
+	}
+	public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		
+		if(field.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "You need to type something.");
+			Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			
+		}
 		
 	}
 	

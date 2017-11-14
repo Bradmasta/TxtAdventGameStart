@@ -1,28 +1,39 @@
 import java.util.*;
-public class TxtAdventInvoCheck {
 
+import javax.swing.JOptionPane;
+public class TxtAdventInvoCheck {
+	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
+	TxtAdventDungeon newDungeon = new TxtAdventDungeon();
+	TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
+	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 
 	
 		public void invoCheck(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-			TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
-			TxtAdventUserInput newScan = new TxtAdventUserInput();
-			TxtAdventDungeon newDungeon = new TxtAdventDungeon();
-			TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
 			 final int RETRY = 0;
-			 int choice;
-			 System.out.println("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Speed Boost: " + invo[2] + "\n Defence Boost: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6]);
-			 System.out.println(" ");
-			
+			 int invoChoice = 0;
 			 while (RETRY >= 0) {
-				 System.out.println("Return to the game?");
-				 System.out.println(" ");
-					System.out.println("1) Yes\n2) Not yet");
-		
+				String invoInfo = null;
+				invoInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Speed Boost: " + invo[2] + "\n Defence Boost: " 
+				+ invo[3] + "\n Downstairs Key: " 
+				+ invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] + "\n\nReturn to the game? \n1) Yes\n2) Not yet"));
+				emptyField(invoInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+				 
+				 switch(invoInfo) {
+				 case "1":
+					 invoChoice = Integer.parseInt(invoInfo);
+					 break;
+				 case "2":
+					 invoChoice = Integer.parseInt(invoInfo);
+					 break;
+				 default:
+					 JOptionPane.showMessageDialog(null, "Not a valid option");
+					 invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
+					 
+				 }
 					try {
-						choice = newScan.ScannerInt();
-						if (choice == 1) {
-							System.out.println("And we continue!");
-							System.out.println(" ");
+						if (invoChoice == 1) {
+							
+							JOptionPane.showMessageDialog(null, "And we continue!");
 							if (room >=0 && room < 13 && room != 4) {
 							newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 							}
@@ -35,34 +46,47 @@ public class TxtAdventInvoCheck {
 							}
 							
 						}
-						else if (choice == 2) {
-							System.out.println("You should consider returning! Enemys lurk about!");
-							System.out.println(" ");
+						else if (invoChoice == 2) {
+							
+							JOptionPane.showMessageDialog(null, "You should consider returning! Enemys lurk about!");
+							invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
+							
 						}
 						
 						else {
-							System.out.println("Not a valid option");
-							System.out.println(" ");
 							
+							JOptionPane.showMessageDialog(null, "Not a valid option");
+							invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
 						}
 						
 					}
 					catch (InputMismatchException error) {
-							System.out.println("Can't use letters/symbols/other nonsense here!");
+							JOptionPane.showMessageDialog(null, "Can't use letters/symbols/other nonsense here!");
 					}
 					break;
 				}
 			 
 		}
-
-		public void endGame() {
+		
+		public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 			
-			System.out.println("More to come; Game still in construction!");
+			if(field.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "You need to type something.");
+			invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
+						
+					}
+				
+			}
+		
+		public void endGame() {
+			 JOptionPane.showMessageDialog(null, "More to come; Game still in construction!");
 			System.exit(0);
 		}
 		
-  }
+}
+		
+  
 
 
 

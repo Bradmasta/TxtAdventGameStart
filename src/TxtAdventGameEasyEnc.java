@@ -1,41 +1,43 @@
 import java.util.*;
+
+import javax.swing.*;
 public class TxtAdventGameEasyEnc {
-	TxtAdventUserInput newScan = new TxtAdventUserInput();
+	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventRandNum newRand = new TxtAdventRandNum();
 	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 
-	  public void randEncounterEasy(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	  public void randEasyStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		 int enemyStats[] = {15, 7, 3, newRand.randEasyEnemySpd()};
+		 randEncounterEasy(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+		  
+	  }
+	
+	  public void randEncounterEasy(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
 			
 		  
-		  int enemyStats[] = {15, 7, 3, newRand.randEasyEnemySpd()};
+
 		  
 		  
 		 while (myStats[0] > 0 || enemyStats[0] > 0) {
-		 System.out.println("Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3]);
-		 System.out.println(" ");
-		 System.out.println("Dark Knight Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3]);
-		 System.out.println(" ");  
+			 int battleChoice = 0;
 		  if (myStats[0] <= 0 || enemyStats[0] <= 0) {
+			 
 			  if (myStats[0] <= 0) {
-				  System.out.println("You lost..Good luck next time!");
+				  JOptionPane.showMessageDialog(null, "You lost..Good luck next time!");
 				  System.exit(0);
 			  }
 			  if (enemyStats[0] <= 0) {
-				  System.out.println("You Won!");
-				  System.out.println(" ");
+				  String win = "You Won! \n";
 
 				  if (newRand.randBattleReward() <= 4) {
-					  System.out.println("You received an Attack boost potion!");
-					  System.out.println(" "); 
+					  JOptionPane.showMessageDialog(null, win + "You received an Attack boost potion!");
 					  invo[1] += 1;
-
 					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					  break;
 					 
 				  }
 				  else if (newRand.randBattleReward() > 4 && newRand.randBattleReward() <= 8) {
-					  System.out.println("You received a Defense boost potion!");
-					  System.out.println(" "); 
+					  JOptionPane.showMessageDialog(null, win + "You received a Defense boost potion!");
 					  invo[3] += 1;
 	
 					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -43,8 +45,7 @@ public class TxtAdventGameEasyEnc {
 					 
 				  }
 				  else if (newRand.randBattleReward() > 8 && newRand.randBattleReward()<= 12) {
-					  System.out.println("You received a Speed boost potion!");
-					  System.out.println(" "); 
+					  JOptionPane.showMessageDialog(null, win + "You received a Speed boost potion!");
 					  invo[2] += 1;
 
 					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -52,8 +53,7 @@ public class TxtAdventGameEasyEnc {
 					 
 				  }
 				  else if (newRand.randBattleReward() > 12 && newRand.randBattleReward() <= 18) {
-					  System.out.println("You received a Health boost potion!");
-					  System.out.println(" "); 
+					  JOptionPane.showMessageDialog(null, win + "You received a Health boost potion!"); 
 					  invo[0] += 1;
 
 					  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -61,8 +61,7 @@ public class TxtAdventGameEasyEnc {
 					 
 				  }
 				  else {
-				  System.out.println("You didn't receive anything this time.");
-				  System.out.println(" ");
+				  JOptionPane.showMessageDialog(null, win + "You didn't receive anything this time.");
 				  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				  break;
 				  }
@@ -73,12 +72,49 @@ public class TxtAdventGameEasyEnc {
 			  
 		  
 		  else if(myStats[3] < enemyStats[3]) {
-			  enemyCombat(enemyStats, myStats);
-			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+			  while (battleChoice == 0) {
+				  enemyCombat(enemyStats, myStats);
+					 String battleInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3] + "\n\n\n"
+					 + "Dark Knight Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3] + 
+						"\n\n\n What do you want to do? \n\n\n1) Attack\n2) Inventory\n3) Run")); 
+					 emptyField(battleInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+					 switch(battleInfo) {
+					 case "1":
+						 battleChoice = Integer.parseInt(battleInfo);
+						 break;
+					 case "2":
+						 battleChoice = Integer.parseInt(battleInfo);
+						 break;
+					 case "3":
+						 battleChoice = Integer.parseInt(battleInfo);
+						 break;
+					 default:
+						 JOptionPane.showMessageDialog(null, "Not a valid option");
+					 }
+				 }
+			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 			  
 		  }
 		  else {
-			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+			  while (battleChoice == 0) {
+					 String battleInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3] + "\n\n\n"
+					 + "Dark Knight Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3] + 
+						"\n\n\n What do you want to do? \n\n\n1) Attack\n2) Inventory\n3) Run")); 
+					 switch(battleInfo) {
+					 case "1":
+						 battleChoice = Integer.parseInt(battleInfo);
+						 break;
+					 case "2":
+						 battleChoice = Integer.parseInt(battleInfo);
+						 break;
+					 case "3":
+						 battleChoice = Integer.parseInt(battleInfo);
+						 break;
+					 default:
+						 JOptionPane.showMessageDialog(null, "Not a valid option");
+					 }
+				 }
+			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 			  enemyCombat(enemyStats, myStats);
 		  }
 
@@ -86,12 +122,54 @@ public class TxtAdventGameEasyEnc {
 		 
 	    }
 	  }
-	  
-	  public void myCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
+	  public int combatVerify(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
+			final int RETRY = 0;
+			
+			while (RETRY >= 0) {
+
+					try {
+						if (battleChoice == 1) {
+							return battleChoice;
+							
+						}
+						else if (battleChoice == 2) {
+							return battleChoice;
+						}
+						else if (battleChoice == 3) {
+							if (myStats[3] > enemyStats[3]) {
+								
+								JOptionPane.showMessageDialog(null, "You got away safely!"); 
+								  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+								  break;
+								  }
+								  else {
+									  JOptionPane.showMessageDialog(null, "Can't escape!"); 
+								  }
+							
+							break;
+						}
+						else {
+							JOptionPane.showMessageDialog(null, "Not a valid option"); 
+							combatVerify(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
+							break;
+						}
+						
+					}
+					catch (InputMismatchException error) {
+						JOptionPane.showMessageDialog(null, "Can't use letters/symbols/other nonsense here!"); 
+
+					}
+				}
+			return battleChoice;
+
+
+
+		}
+	  public void myCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
 		  int hpChangeAttk = 0;
 		  int hpUsed = invo[0];
 		  int attk = myStats[1] - enemyStats[2];
-		  int combatChoice = combatVerify(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+		  int combatChoice = combatVerify(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 		  
 		  if (combatChoice == 1) {
 		  if (newRand.randAttkSuccess() > 1) {
@@ -102,104 +180,99 @@ public class TxtAdventGameEasyEnc {
 					 else {
 					enemyStats[0] = 0;
 					 }
-			  System.out.println("The attack is successful! You deal " + attk + " damage!");
-			  System.out.println(" ");
-			  
+			  JOptionPane.showMessageDialog(null, "The attack is successful! You deal " + attk + " damage!");  
 			  
 		  }
 		  else {
 			  hpChangeAttk = enemyStats[0];
-			  System.out.println("You attack isn't successful.");
-			  System.out.println(" ");
-			  
+			  JOptionPane.showMessageDialog(null, "You attack isn't successful."); 
+		  
 		  }
 		  
 		  } 
 		  else if (combatChoice == 2) {
 			 final int RETRY = 0;
-			 int choice;
-			 System.out.println("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Speed Boost: " + invo[2] + "\n Defence Boost: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6]);
-			 System.out.println(" ");
-			
+			 String choice;
 			 while (RETRY >= 0) {
-				 System.out.println("Select item to use or return to battle?");
-				 System.out.println(" ");
-					System.out.println("1) Use Health Potion\n2) Use Attack Potion\n3) Use Defence Potion\n4) Use Speed Potion\n5) Return to battle!");
-
+				choice = JOptionPane.showInputDialog("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Speed Boost: " + invo[2] +
+				"\n Defence Boost: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] +
+				"\nSelect item to use or return to battle? \n1) Use Health Potion\n2) Use Attack Potion\n3) Use Defence Potion\n4) Use Speed Potion"
+				+ "\n5) Return to battle!");
 					try {
-						choice = newScan.ScannerInt();
-						if (choice == 1) {
+						int number = 0;
+						try {
+							number = Integer.parseInt(choice);
+							}
+							catch (InputMismatchException error) {
+								JOptionPane.showMessageDialog(null, "Not a valid option");
+							}
+						if (number == 1) {
 							  int hpHeal = myStats[0] + 10;
 							  if (invo[0] > 0) {
 							  hpUsed = invo[0] - 1;
-							  System.out.println("You use a health potion! It increases your health by " + hpHeal);
-							  System.out.println(" ");
+							  JOptionPane.showMessageDialog(null, "You use a health potion! It increases your health by " + hpHeal); 
 							  myStats[0] = hpHeal;
 							  invo[0] = hpUsed;
 							  }
 							  else {
-								  System.out.println("You don't have any health potions.");
+								  JOptionPane.showMessageDialog(null, "You don't have any health potions.");
 							  }
 							
 						}
-						else if (choice == 2) {
+						else if (number == 2) {
 							  int attkBoost = myStats[1] + 5;
 							  if (invo[1] > 0) {
 							  int attkUsed = invo[1] - 1;
-							  System.out.println("You use an attack potion! It increases your attack by " + attkBoost);
-							  System.out.println(" ");
+							  JOptionPane.showMessageDialog(null, "You use an attack potion! It increases your attack by " + attkBoost); 
 							  myStats[1] = attkBoost;
 							  invo[1] = attkUsed;
 							  }
 							  else {
-								  System.out.println("You don't have any attack potions.");
+								  JOptionPane.showMessageDialog(null, "You don't have any attack potions.");
 							  }
 							
 						}
-						else if (choice == 3) {
+						else if (number == 3) {
 							  int defBoost = myStats[2] + 5;
 							  if (invo[3] > 0) {
 							  int defUsed = invo[3] - 1;
-							  System.out.println("You use a potion! It increases your defence by " + defBoost);
-							  System.out.println(" ");
+							  JOptionPane.showMessageDialog(null, "You use a defense potion! It increases your defence by " + defBoost); 
 							  myStats[2] = defBoost;
 							  invo[3] = defUsed;
 							  }
 							  else {
-								  System.out.println("You don't have any defence potions.");
+								  JOptionPane.showMessageDialog(null, "You don't have any defence potions.");
 							  }
 							
 						}
-						else if (choice == 4) {
+						else if (number == 4) {
 							  int spdBoost = myStats[3] + 1;
 							  if (invo[2] > 0) {
 							  int spdUsed = invo[2] - 1;
-							  System.out.println("You use a potion! It increases your speed by " + spdBoost);
-							  System.out.println(" ");
+							  JOptionPane.showMessageDialog(null, "You use a speed potion! It increases your speed by " + spdBoost); 
 							  myStats[3] = spdBoost;
 							  invo[2] = spdUsed;
 							  }
 							  else {
-								  System.out.println("You don't have any speed potions.");
+								  JOptionPane.showMessageDialog(null, "You don't have any speed potions.");
 							  }
 							
 						}
-						else if (choice == 5) {
-							System.out.println("Back to the battle! Good luck!");
-							System.out.println(" ");
-							myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+						else if (number == 5) {
+							JOptionPane.showMessageDialog(null, "Back to the battle! Good luck!");
+							randEncounterEasy(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 						}
 						
 						else {
-							System.out.println("Not a valid option");
-							System.out.println(" ");
 							
-					
+							JOptionPane.showMessageDialog(null, "Not a valid option");
+												
 						}
 						break;
 					}
 					catch (InputMismatchException error) {
-							System.out.println("Can't use letters/symbols/other nonsense here!");
+						
+						JOptionPane.showMessageDialog(null, "Can't use letters/symbols/other nonsense here!");
 					}
 					break;
 				}
@@ -216,86 +289,38 @@ public class TxtAdventGameEasyEnc {
 		  if (newRand.randEnemySuccess() > 4) {
 			  if(enemyStats[1] < myStats[2]) {
 				  hpChange = myStats[0];
-				  System.out.println("The enemy's attack is unsuccessful!");
-				  System.out.println(" ");
+				  JOptionPane.showMessageDialog(null, "The enemy's attack is unsuccessful!");
 			
 			  }
 			  else {
 				  if(newRand.randEnemyUsePotion() > 16) {
 					  int enAttkIncrease = 4;
 					  enemyStats[1] += enAttkIncrease;
-					  System.out.println("The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
-					  System.out.println(" ");
+					  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
 				  
 				  }
 				  else {
 					  hpChange = myStats[0] - attk;
 					  myStats[0] = hpChange;
-					  System.out.println("The enemy's attack is successful! They deal " + attk + " damage!");
-					  System.out.println(" ");
+					  JOptionPane.showMessageDialog(null, "The enemy's attack is successful! They deal " + attk + " damage!");
+
 				  }
 			  }
 			  
 			  
-		  }
-		  else {
-			  hpChange = myStats[0];
-			  System.out.println("The enemy's attack is unsuccessful!");
-			  System.out.println(" ");
-			  
-		  }
-		  
-		  
+		  }			  	  
 		  
 	  }
-	  public int combatVerify(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
-			final int RETRY = 0;
-			int choice;
+	  public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 			
-			while (RETRY >= 0) {
-					System.out.println("1) Attack\n2) Inventory\n3) Run");
-
-					try {
-						choice = newScan.ScannerInt();
-						if (choice == 1) {
-							return choice;
-							
-						}
-						else if (choice == 2) {
-							return choice;
-						}
-						else if (choice == 3) {
-							if (myStats[3] > enemyStats[3]) {
-								
-								  System.out.println("You got away safely!");
-								  System.out.println(" ");
-								  newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-								  break;
-								  }
-								  else {
-									  System.out.println("Can't escape!");
-									  System.out.println(" ");
-								  }
-							
-							break;
-						}
-						else {
-							System.out.println("Not a valid option");
-							System.out.println(" ");
-							combatVerify(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
-							break;
-						}
+			if(field.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "You need to type something.");
+			
 						
 					}
-					catch (InputMismatchException error) {
-							System.out.println("Can't use letters/symbols/other nonsense here!");
-					}
-				}
-			return choice;
-
-
-
-		}
+				
+			}
+	  
 		
 	
 }

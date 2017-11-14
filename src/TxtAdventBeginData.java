@@ -49,7 +49,7 @@ public class TxtAdventBeginData {
 			
 		}
 	public int[] BeginDataFlags() {
-		int flags[] = {0, 0, 0, 0, 0, 0, 0, 0};
+		int flags[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		return flags;
 			
 		}
