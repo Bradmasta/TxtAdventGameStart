@@ -88,4 +88,11 @@ public int randHardEnemySpd() {
 	  
 	return newInt;
 	}
+	public int randDragonKeepQuestion() {
+		
+		
+		int newInt = R.nextInt(9) + 1;
+		  
+		return newInt;
+		}
 }

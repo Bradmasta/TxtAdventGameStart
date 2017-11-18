@@ -9,7 +9,7 @@ public class TxtAdventDungeon {
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 
 		
-	String directChoice;
+		String directChoice;
 		
 		directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags);
 		
@@ -304,14 +304,14 @@ public class TxtAdventDungeon {
 			switch(flagCheck) {
 			case 0:
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.."
-			+ "\nYou can go the following directions: " + directions[1]
+			+ "\nYou can go the following directions: \n" + directions[1]
 			+ "\nWhere do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 			
 			case 1:
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!"
-			+ "\nYou can go the following directions: " + directions[1]
+			+ "\nYou can go the following directions: \n" + directions[1]
 			+ "\nWhere do you want to go?"));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
@@ -387,18 +387,18 @@ public class TxtAdventDungeon {
 			if (flags[4] == 0) {
 			JOptionPane.showMessageDialog(null, "A Hellhound appears!");
 			flags[4] += 1;
-			TxtAdventGameMedEnc newEnc = new TxtAdventGameMedEnc();
-			newEnc.randMediumStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
 				JOptionPane.showMessageDialog(null, "You hear the howl of the Hellhounds nearby, but the room is safe.");
 
 			}
 		}
-		else if (newRand.randEnemyEnc() < 6) {
+		else if (newRand.randEnemyEnc() <= 4) {
 			JOptionPane.showMessageDialog(null, "A Hellhound appears!");
-			TxtAdventGameMedEnc newEnc = new TxtAdventGameMedEnc();
-			newEnc.randMediumStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}	
 		
 	}

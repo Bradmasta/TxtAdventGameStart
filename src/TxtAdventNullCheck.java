@@ -15,7 +15,7 @@ public class TxtAdventNullCheck {
 		}
 		catch (NullPointerException error) {
 			
-			JOptionPane.showMessageDialog(null, "Nothing was inputted, so the game is ending. Goodbye");
+			JOptionPane.showMessageDialog(null, "Goodbye :)");
 			System.exit(0);
 		}
 		return nullCheck;

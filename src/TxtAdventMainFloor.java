@@ -2,12 +2,13 @@ import javax.swing.*;
 public class TxtAdventMainFloor {
 
 
-
+	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 	
 	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 	
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventDungeon dunRoom = new TxtAdventDungeon();
+		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
 
 		
 		String directChoice;
@@ -26,39 +27,43 @@ public class TxtAdventMainFloor {
 		case "c":
 			if (room == 9) {
 			if (flags[0] == 0) {
-				JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room. \n");
+				
+				newPrompt.PromptKey();
 				invo[4] += 1;
 				flags[0] += 1;
 				room = whereToGo[9][2];	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 				else {
-				JOptionPane.showMessageDialog(null, "You've already opened this chest. \nYou exit the room. \n");
+					
+				newPrompt.PromptAlreadyOpen();
 				room = whereToGo[9][2];	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "There isn't a chest here! \n");
+				
+				newPrompt.PromptNoChest();
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
 			}
 			break;
 		case "k":
 			if (room == 2) {
 			if (flags[2] == 0) {
 				if (invo[4] == 1) {
-				JOptionPane.showMessageDialog(null, "You unlocked the Trapdoor! This will take you to the dungeon! \n");
+				JOptionPane.showMessageDialog(null, "You unlocked the Trapdoor! This will take you to the dungeon!");
 				flags[2] += 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 				else {
-				JOptionPane.showMessageDialog(null, "You don't have the correct key for this trapdoor yet! \n");
+				JOptionPane.showMessageDialog(null, "You don't have the correct key for this trapdoor yet!");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 			}
 				else {
-				JOptionPane.showMessageDialog(null, "You've already unlocked the trapdoor! \n");	
+				JOptionPane.showMessageDialog(null, "You've already unlocked the trapdoor!");	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				
 				}
@@ -66,26 +71,26 @@ public class TxtAdventMainFloor {
 			else if (room == 3) {
 				if (flags[5] == 0) {
 					if (invo[5] == 1) {
-						JOptionPane.showMessageDialog(null, "You unlocked the door to the Upstairs! Head through when you're ready. \n");
+						JOptionPane.showMessageDialog(null, "You unlocked the door to the Upstairs! Head through when you're ready.");
 						flags[5] += 1;
 						Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					}
 				else {
-					JOptionPane.showMessageDialog(null, "You don't have the correct key for this door yet! \n");		
+					JOptionPane.showMessageDialog(null, "You don't have the correct key for this door yet!");		
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
 				}
 					
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "You've already unlocked the Upstairs door. \n");		
+					JOptionPane.showMessageDialog(null, "You've already unlocked the Upstairs door.");		
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
 				}
 				
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "You can't use a key here! \n");			
+				newPrompt.PromptCantUseKey();			
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -114,12 +119,12 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+				newPrompt.PromptIncorrect();	
 				break;
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "You can't go " + directions[0] + "\n");
+				newPrompt.PromptCantGoDirection(0);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
@@ -149,14 +154,15 @@ public class TxtAdventMainFloor {
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					default:
-					JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+					newPrompt.PromptIncorrect();	
 					break;
 				
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "You can't go " + directions[1] + "\n");
+				newPrompt.PromptCantGoDirection(1);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
@@ -190,13 +196,14 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+				newPrompt.PromptIncorrect();	
 				break;
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "You can't go " + directions[2] + "\n");
+				newPrompt.PromptCantGoDirection(2);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
@@ -230,43 +237,37 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+				newPrompt.PromptIncorrect();	
 				break;
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "You can't go " + directions[3] + "\n");
+				newPrompt.PromptCantGoDirection(3);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 
 		case "u":
 			checkIfValid = whereToGo[room][4];
 			if (checkIfValid != -1) {
-				switch(room) {
-				case 3:
 					int flagCheck = flags[5];
 					if (flagCheck == 0) {
-					JOptionPane.showMessageDialog(null, "You can't go " + directions[4] + " yet! The Door needs unlocked! \n");
+					JOptionPane.showMessageDialog(null, "You can't go " + directions[4] + " yet! The Door needs unlocked!");
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					}
 					else {
 					room = whereToGo[3][4];
-					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					}
-					break;
-				case 4:
-				room = whereToGo[4][4];
-				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-				break;
-				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
-				break;
-				}
+
+
+				
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "You can't go " + directions[4] + "\n");
+				newPrompt.PromptCantGoDirection(4);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 
@@ -277,7 +278,7 @@ public class TxtAdventMainFloor {
 				case 2:
 				int flagCheck = flags[2];
 				if (flagCheck == 0) {
-				JOptionPane.showMessageDialog(null, "You can't go " + directions[5] + " yet! The trapdoor needs unlocked! \n");
+				JOptionPane.showMessageDialog(null, "You can't go " + directions[5] + " yet! The trapdoor needs unlocked!");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 				else {
@@ -290,19 +291,21 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly. \n");	
+				newPrompt.PromptIncorrect();	
 				break;
 				}
 			}
 			else {
-				JOptionPane.showMessageDialog(null, "You can't go " + directions[5] + "\n");
+				newPrompt.PromptCantGoDirection(5);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
 			default:
-			JOptionPane.showMessageDialog(null, "Unrecognized input. \n");	
+			JOptionPane.showMessageDialog(null, "Unrecognized input.");	
 			Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
 			 
 		}
 	}			
@@ -310,16 +313,15 @@ public class TxtAdventMainFloor {
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		String retString = null;
 		String roomIn = "You are in the " + roomName[room];
-		System.out.println(" ");
 		 if(room == 12 || room == 10) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou can go the following directions: \n" + directions[0] + "\nWhere do you want to go? \n"));
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		 else if (room == 8 || room == 11) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[1] + "\nWhere do you want to go? \n"));
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(1)));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
@@ -328,14 +330,14 @@ public class TxtAdventMainFloor {
 			int flagCheck = flags[0];
 			switch(flagCheck) {
 			case 0:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside..\nYou can go the following directions: \n" + directions[2] + "\nWhere do you want to go? \n"
-					+ "Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!) \n"));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(2)
+				+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
 				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 
 			case 1:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!\nYou can go the following directions: \n" + directions[2] + "\nWhere do you want to go? \n"
-			+ "Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!) \n"));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(2)
+				+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
 				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 			default:
@@ -346,29 +348,22 @@ public class TxtAdventMainFloor {
 		}
 		else if(room == 5 || room == 6) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[3] + "\nWhere do you want to go? \n"));
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 13) {
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[5] + "\nWhere do you want to go? \n"));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-			return retString;
-		}
-		else if(room == 4) {
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[4] + "\nWhere do you want to go? \n"));
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 0) {
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[0] + ", " + directions[2] + ", " + directions[3]
-			+ "\nWhere do you want to go? \n"));
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(6)));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 1) {
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" + directions[1] + ", " + directions[2] + ", " + directions[3]
-					+ "\nWhere do you want to go? \n"));
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(7)));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
@@ -376,15 +371,11 @@ public class TxtAdventMainFloor {
 			int flagCheck = flags[2];
 			switch(flagCheck) {
 			case 0:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked trapdoor \nYou can go the following directions: \n" 
-				+ directions[2] + ", " + directions[3] + ", " + directions[5]
-			    + "\nWhere do you want to go? \n"));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked trapdoor." + newPrompt.PromptBasicScript(8)));
 			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			    return retString;
 			case 1:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked trapdoor \nYou can go the following directions: \n" 
-						+ directions[2] + ", " + directions[3] + ", " + directions[5]
-						+ "\nWhere do you want to go? \n"));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked trapdoor." + newPrompt.PromptBasicScript(8)));
 			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			    return retString;
 			default:
@@ -398,15 +389,11 @@ public class TxtAdventMainFloor {
 			int flagCheck = flags[5];
 			switch(flagCheck) {
 			case 0:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked Door \nYou can go the following directions: \n" 
-			    + directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[4]
-			    + "\nWhere do you want to go? \n"));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked Door."  + newPrompt.PromptBasicScript(9)));
 				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 			case 1:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked Door \nYou can go the following directions: \n" 
-			    + directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[4]
-			    + "\nWhere do you want to go? \n"));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked Door."  + newPrompt.PromptBasicScript(9)));
 				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 			default:
@@ -418,9 +405,7 @@ public class TxtAdventMainFloor {
 		}
 		else if(room == 7) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou can go the following directions: \n" 
-					+ directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[3]
-					+ "\nWhere do you want to go? \n"));
+			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(10)));
 			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
@@ -431,20 +416,20 @@ public class TxtAdventMainFloor {
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 9) {
 			if (flags[1] == 0) {
-			JOptionPane.showMessageDialog(null, "A Dark Knight appears! \n");
+			newPrompt.PromptDarkKnight();
 			flags[1] += 1;
-			TxtAdventGameEasyEnc newEnc = new TxtAdventGameEasyEnc();
-			newEnc.randEasyStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-			JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but the room is safe. \n");
+			JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but the room is safe.");
 		
 			}
 		}
-		else if (newRand.randEnemyEnc() < 3) {
-			JOptionPane.showMessageDialog(null, "A Dark Knight appears! \n");
-			TxtAdventGameEasyEnc newEnc = new TxtAdventGameEasyEnc();
-			newEnc.randEasyStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+		else if (newRand.randEnemyEnc() <= 4) {
+			newPrompt.PromptDarkKnight();
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}	
 		
 	}

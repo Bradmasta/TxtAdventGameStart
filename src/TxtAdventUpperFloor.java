@@ -2,7 +2,11 @@ import javax.swing.JOptionPane;
 
 public class TxtAdventUpperFloor {
 
-
+	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
+	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
+	TxtAdventRandNum newRand = new TxtAdventRandNum();
+	TxtAdventDungeon newDunFlr = new TxtAdventDungeon();
+	TxtAdventDragon drgnft = new TxtAdventDragon();
 
 	
 	public void UpperRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
@@ -23,19 +27,20 @@ public class TxtAdventUpperFloor {
 		case "i":
 			playerChooses.invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
+			
 		case "c":
 			switch (room) {
 			
 			case 31:
 				if (flags[10] == 0) {
-					JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room.");
+					newPrompt.PromptKey();
 					invo[6] += 1;
 					flags[10] += 1;
 					room = whereToGo[31][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 					else {
-					JOptionPane.showMessageDialog(null, "You've already opened this chest. \nYou exit the room.");
+					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[31][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
@@ -44,7 +49,7 @@ public class TxtAdventUpperFloor {
 			
 			case 32:
 				if (flags[11] == 0) {
-					JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room.");
+					JOptionPane.showMessageDialog(null, "You receive an Attack, a Defense, and Two Health Potions! \nYou exit the room.");
 					invo[0] += 2;
 					invo[1] += 1;
 					invo[2] += 1;
@@ -53,7 +58,7 @@ public class TxtAdventUpperFloor {
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 					else {
-					JOptionPane.showMessageDialog(null, "You've already opened this chest. \nYou exit the room.");
+					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[32][0];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
@@ -62,7 +67,7 @@ public class TxtAdventUpperFloor {
 			
 			case 34:
 				if (flags[12] == 0) {
-					JOptionPane.showMessageDialog(null, "You receive a key! Keep exploring to find out what it goes to! \nYou exit the room.");
+					JOptionPane.showMessageDialog(null, "You receive a Health, a Defense, and Two Attack potions! \nYou exit the room.");
 					invo[0] += 1;
 					invo[1] += 2;
 					invo[2] += 1;
@@ -70,10 +75,7 @@ public class TxtAdventUpperFloor {
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 					else {
-					System.out.println("You've already opened this chest.");
-					System.out.println(" ");
-					System.out.println("You exit the room.");
-					System.out.println(" ");
+					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[34][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
@@ -82,10 +84,7 @@ public class TxtAdventUpperFloor {
 			
 			case 35:
 				if (flags[13] == 0) {
-					System.out.println("You receive a key! Keep exploring to find out what it goes to!");
-					System.out.println(" ");
-					System.out.println("You exit the room.");
-					System.out.println(" ");
+					JOptionPane.showMessageDialog(null, "You receive a Health, an Attack, and two Defense potions! \nYou exit the room.");
 					invo[0] += 1;
 					invo[1] += 1;
 					invo[2] += 2;
@@ -94,10 +93,7 @@ public class TxtAdventUpperFloor {
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 					else {
-					System.out.println("You've already opened this chest.");
-					System.out.println(" ");
-					System.out.println("You exit the room.");
-					System.out.println(" ");
+					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[35][0];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					
@@ -105,205 +101,311 @@ public class TxtAdventUpperFloor {
 			break;
 			
 			default:
-			System.out.println("There isn't a chest here!");
-			System.out.println(" ");
+			newPrompt.PromptNoChest();
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 			}
+			
 		case "k":
 			if (room == 29) {
+				
 			if (flags[14] == 0) {
+				
 				if (invo[6] == 1) {
-				System.out.println("You unlocked the Final door! Good luck proceeding; you're going to need it!");
-				System.out.println(" ");
+					
+				JOptionPane.showMessageDialog(null, "You unlocked the Final door! Good luck proceeding; you're going to need it!");
 				flags[14] += 1;
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
 				}
 				else {
-				System.out.println("You don't have the correct key for this door yet!");
-				System.out.println(" ");
+					
+				JOptionPane.showMessageDialog(null, "You don't have the correct key for this door yet!");
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
 				}
 			}
 				else {
-				System.out.println("You've already unlocked the Final Door!");
-				System.out.println(" ");
+					
+				JOptionPane.showMessageDialog(null, "You've already unlocked the Final Door!");
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				
 				}
 			}
 			else {
 				
-				System.out.println("You can't use a key here!");
-				System.out.println(" ");
+				JOptionPane.showMessageDialog(null, "You can't use a key here!");
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
 			}
 			break;
+			
 		case "n":
+			
 			int checkIfValid = whereToGo[room][0];
 			if(checkIfValid != -1) {
 				switch(room) {
+				
 				case 13:
 				room = whereToGo[13][0];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 29:
+					if (flags[14] == 0) {
+						JOptionPane.showMessageDialog(null, "You haven't unlocked this door yet!");
+						UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						
+					}
+					else {
 				room = whereToGo[29][0];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
 				break;
+				
 				case 30:
 				room = whereToGo[30][0];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 32:
 				room = whereToGo[32][0];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 33:
 				room = whereToGo[33][0];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 35:
 				room = whereToGo[35][0];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 36:
-				room = whereToGo[36][0];
-				// needs Dragon Method
+				if (flags[15] == 2) {
+					String choiceInfo = null;
+					int choice = 0;
+					choiceInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Are you sure you want to proceed? There's no turning back.\n1) Yes \n2) Not just yet."));
+					emptyField(choiceInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+					 switch(choiceInfo) {
+					 case "1":
+						 choice = Integer.parseInt(choiceInfo);
+						 break;
+					 case "2":
+						 choice = Integer.parseInt(choiceInfo);
+						 break;
+					 default:
+						 JOptionPane.showMessageDialog(null, "Not a valid option");
+						 UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						 break;
+						 
+					 }
+					
+					switch(choice) {
+					
+					case 1:
+						
+						room = whereToGo[36][0];
+						drgnft.DragonFightStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+						break;
+					
+					case 2:
+
+						JOptionPane.showMessageDialog(null, "Wise choice. The Dragon is much too powerful.");
+						UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						break;
+						
+					default:
+						JOptionPane.showMessageDialog(null, "Invalid input.");
+						UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						break;
+	
+					}
+					
+				}
+				else if (flags[15] == 0) {
+					newPrompt.PromptDragonKeepFirstSee();
+					DragonKeep(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else if (flags[15] == 1) {
+					newPrompt.PromptDragonKeepSecondSee();
+					DragonKeep(room, roomName, whereToGo, directions, myStats, invo, flags);
+					
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "Invalid input.");
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
 				break;
+				
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+					
+				newPrompt.PromptIncorrect();
+				
+				break;
+					
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[0]);
-				System.out.println(" ");
+				
+				newPrompt.PromptCantGoDirection(0);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
 		
 		case "s":
+			
 			checkIfValid = whereToGo[room][1];
 			if (checkIfValid != -1) {
+				
 				switch(room) {
+				
 				case 29:
 				room = whereToGo[29][1];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 30:
 				room = whereToGo[30][1];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 31:
 				room = whereToGo[31][1];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 33:
 				room = whereToGo[33][1];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 34:
 				room = whereToGo[34][1];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 36:
 				room = whereToGo[36][1];
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+					JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
+				break;
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[1]);
-				System.out.println(" ");
+				newPrompt.PromptCantGoDirection(1);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 			break;
 		
-
 		case "e":
+			
 			checkIfValid = whereToGo[room][2];
 			if (checkIfValid != -1) {
 				switch(room) {
+				
 				case 29:
 				room = whereToGo[29][2];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 30:
 				room = whereToGo[30][2];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
+				break;
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[2]);
-				System.out.println(" ");
+				
+				newPrompt.PromptCantGoDirection(2);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
 			}
 			break;
 		
 
 		case "w":
+			
 			checkIfValid = whereToGo[room][3];
 			if (checkIfValid != -1) {
+				
 				switch(room) {
+				
 				case 29:
 				room = whereToGo[29][3];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				case 33:
 				room = whereToGo[33][3];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
+				break;
+				
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[3]);
-				System.out.println(" ");
+				
+				newPrompt.PromptCantGoDirection(3);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
 			}
 			break;
 
 		case "u":
-			System.out.println("You can't go " + directions[4]);
-			System.out.println(" ");
+			
+			newPrompt.PromptCantGoDirection(4);
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 			
 		case "d":
+			
 			checkIfValid = whereToGo[room][5];
 			if (checkIfValid != -1) {
+				
 				switch(room) {
+				
 				case 13:
 				room = whereToGo[13][5];
 				mainRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
+				
 				default:
-				System.out.println("If this message if shown, I coded something incorrectly.");
+				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
 				break;
+				
 				}
 			}
 			else {
-				System.out.println("You can't go " + directions[4]);
-				System.out.println(" ");
+				
+				newPrompt.PromptCantGoDirection(5);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
 			}
 			break;
+			
 			default:
-			System.out.println("Unrecognized input.");	
-			System.out.println(" ");
+				
+			JOptionPane.showMessageDialog(null, "Unrecognized input.");			
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags); 
+			
 		}
 	}			
 	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		
-		System.out.println("You are in the " + roomName[room]);
-		System.out.println(" ");
+		String retString = null;
+		String roomIn = "You are in the " + roomName[room];
 			switch (room) {
 			
 				case 31:
@@ -311,25 +413,15 @@ public class TxtAdventUpperFloor {
 				int flagCheck = flags[10];
 					switch(flagCheck) {
 					case 0:
-					System.out.println("You see a chest! Wonder what's inside..");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(1)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					case 1:
-					System.out.println("You see an already opened chest!");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(1)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					}
 				break;
 				
@@ -338,201 +430,410 @@ public class TxtAdventUpperFloor {
 				flagCheck = flags[11];
 					switch(flagCheck) {
 					case 0:
-					System.out.println("You see a chest! Wonder what's inside..");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(0)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					case 1:
-					System.out.println("You see an already opened chest!");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(0)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					}
 				break;
 				
 				case 34:
 				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-				flagCheck = flags[11];
+				flagCheck = flags[12];
 					switch(flagCheck) {
 					case 0:
-					System.out.println("You see a chest! Wonder what's inside..");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(1)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					case 1:
-					System.out.println("You see an already opened chest!");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(1)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					}
 				break;
 				
 				case 35:
 				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-				flagCheck = flags[11];
+				flagCheck = flags[13];
 					switch(flagCheck) {
 					case 0:
-					System.out.println("You see a chest! Wonder what's inside..");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go? or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(0)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					case 1:
-					System.out.println("You see an already opened chest!");
-					System.out.println(" ");
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-					break;
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(0)
+						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						return retString;
 					}
 				break;
 				
-				case 13:
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
+				case 36:
+					flagCheck = flags[15];
+					switch(flagCheck) {
+					case 0:
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(99)));
+					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
+				
+					case 1:
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(99)));
+					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
+					case 2:
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(100)));
+					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
+					
+					}
+					
 				break;
+				case 13:
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
+					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
 				
 				case 29:
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2] + ", " + directions[3]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-				break;
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a Door. " + newPrompt.PromptBasicScript(10)));
+					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
 				
 				case 30:
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0] + ", " + directions[1] + ", " + directions[2]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-				break;
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(11)));
+					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
 				
 				case 33:
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0] + ", " + directions[1] + ", " + directions[3]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-				break;
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(12)));
+					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
 				
-				case 36:
-					System.out.println("You can go the following directions: ");
-					System.out.println(" ");
-					System.out.println(directions[0] + ", " + directions[1]);
-					System.out.println(" ");
-					System.out.println("Where do you want to go?");
-					System.out.println(" ");
-				break;
 				
 				default:
-					System.out.println("If this message is shown, I did something wrong. Terminating program now.");
+					newPrompt.PromptIncorrect();
 					System.exit(0);
 				break;
 				
 		}
+			return retString;
 	}
 	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 
-		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 31) {
 			if (flags[6] == 0) {
-			System.out.println("A Drake appears!");
-			System.out.println(" ");
+			newPrompt.PromptDrake();
 			flags[6] += 1;
-			TxtAdventGameHardEnc newEnc = new TxtAdventGameHardEnc();
-			newEnc.randEncounterHard(room, roomName, whereToGo, directions, myStats, invo, flags);
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				System.out.println("You hear the sounds of small dragons pacing about, but the room is safe.");
-				System.out.println(" ");	
+				newPrompt.PromptDrakeSafe();	
 		
 			}
 		}
 		else if (room == 32) {
 			if (flags[7] == 0) {
-			System.out.println("A Drake appears!");
-			System.out.println(" ");
+			newPrompt.PromptDrake();
 			flags[7] += 1;
-			TxtAdventGameHardEnc newEnc = new TxtAdventGameHardEnc();
-			newEnc.randEncounterHard(room, roomName, whereToGo, directions, myStats, invo, flags);
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				System.out.println("You hear the sounds of small dragons pacing about, but the room is safe.");
-				System.out.println(" ");	
+				newPrompt.PromptDrakeSafe();	
 		
 			}
 		}
 		else if (room == 34) {
 			if (flags[8] == 0) {
-			System.out.println("A Drake appears!");
-			System.out.println(" ");
+				newPrompt.PromptDrake();
 			flags[8] += 1;
-			TxtAdventGameHardEnc newEnc = new TxtAdventGameHardEnc();
-			newEnc.randEncounterHard(room, roomName, whereToGo, directions, myStats, invo, flags);
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				System.out.println("You hear the sounds of small dragons pacing about, but the room is safe.");
-				System.out.println(" ");	
+				newPrompt.PromptDrakeSafe();	
 		
 			}
 		}
 		else if (room == 35) {
 			if (flags[9] == 0) {
-			System.out.println("A Drake appears!");
-			System.out.println(" ");
+				newPrompt.PromptDrake();
 			flags[9] += 1;
-			TxtAdventGameHardEnc newEnc = new TxtAdventGameHardEnc();
-			newEnc.randEncounterHard(room, roomName, whereToGo, directions, myStats, invo, flags);
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				System.out.println("You hear the sounds of small dragons pacing about, but the room is safe.");
-				System.out.println(" ");	
+				newPrompt.PromptDrakeSafe();	
 		
 			}
-		}
-		else if (newRand.randEnemyEnc() < 4) {
-			System.out.println("A Drake appears!");
-			System.out.println(" ");
-			TxtAdventGameHardEnc newEnc = new TxtAdventGameHardEnc();
-			newEnc.randEncounterHard(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}	
 		
 	}
-	
+	public void DragonKeep(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		 int question = newRand.randDragonKeepQuestion();
+
+		 String answer = null;
+		 JOptionPane.showMessageDialog(null, "Here is your question: ");
+		 switch(question) {
+		
+		 case 1:
+			 
+		answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many miles away is the Sun from the Earth (Approximately)? \nA) 90 Million"
+				+ "\nB) 97 Million \nC) 93 Million \nD) 85 Million"));
+		emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+		answer = answer.substring(0, 1).toLowerCase();
+		
+		if (answer.equals("c")) {
+			
+			JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+			flags[15] = 2;
+			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+		}
+		else {
+			JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+			myStats[0] =  myStats[0] / 2;
+			flags[15] = 1;
+			room = whereToGo[25][6];
+			JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+			JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+			newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+		}
+		 case 2:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which of these colors is not on the Rubik's Cube? \nA) Blue\nB) Purple\n"
+			 		+ "C) Yellow\nD) Green"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("b")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+
+		 case 3:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "What does \"RAM\" stand for? \nA) Random Available Memory"
+						+ "\nB) Readily Available Memory \nC) Run All Memory \nD) Random Access Memory"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("d")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 case 4:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which of these Intel Cores types doesn't exist? \nA) I-1"
+						+ "\nB) I-3 \nC) I-5 \nD) I-7"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("a")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 case 5:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which months have 28 days? \nA) 6 months"
+						+ "\nB) 7 months \nC) 1 month \nD) All of them"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("d")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 case 6:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many NFL teams are there? \nA) 29"
+						+ "\nB) 30 \nC) 32 \nD) 42"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("c")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 case 7:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "What type of programming language is \"Java\"? \nA) Object Creating"
+						+ "\nB) Object Oriented \nC) Scripted \nD) Low Level"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("b")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 case 8:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many stomachs does a Cow have? \nA) 2"
+						+ "\nB) 6 \nC) 1 \nD) 4"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("d")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 case 9:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many bones does a fully grown adult have? \nA) 200"
+						+ "\nB) 150 \nC) 206 \nD) 214"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("c")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 case 10:
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many buttons does a Guitar Hero controller have? \nA) 3"
+						+ "\nB) 4 \nC) 5\nD) 6"));
+				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+				answer = answer.substring(0, 1).toLowerCase();
+				
+				if (answer.equals("c")) {
+					
+					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					flags[15] = 2;
+					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+				else {
+					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					myStats[0] =  myStats[0] / 2;
+					flags[15] = 1;
+					room = whereToGo[25][6];
+					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
+				}
+		 default:
+		 JOptionPane.showMessageDialog(null, "You shouldn't see this.");
+		 break;
+		
+		
+		
+		
+		}
+		
+	}
+public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		
+		if(field.isEmpty()) {
+			JOptionPane.showMessageDialog(null, "You need to type something.");
+			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			
+		}
+		
+	}
 	
 }

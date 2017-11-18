@@ -1,121 +1,72 @@
-import java.util.InputMismatchException;
-
+import java.util.*;
 import javax.swing.JOptionPane;
-public class TxtAdventGameHardEnc {
+
+public class TxtAdventDragon {
+	
 	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventRandNum newRand = new TxtAdventRandNum();
-	TxtAdventUpperFloor newRoom = new TxtAdventUpperFloor();
-	public void randHardStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		 int enemyStats[] = {25, 8, 6, newRand.randMedEnemySpd()};
-		 randEncounterHard(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+	
+	public void DragonFightStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		
+		 int enemyStats[] = {100, 20, 30, 999};
+		 DragonFight(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 		  
 	  }
-	  public void randEncounterHard(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
-			
-		  
-		  
+	  public void DragonFight(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
 		  
 		while (myStats[0] > 0 || enemyStats[0] > 0) {
+			
 		int battleChoice = 0;
+		
 		  if (myStats[0] <= 0 || enemyStats[0] <= 0) {
+			  
 			  if (myStats[0] <= 0) {
-				  JOptionPane.showMessageDialog(null, "You lost..Good luck next time!");
+				  
+				  JOptionPane.showMessageDialog(null, "You lost..The Dragon got the best of you, this time. Good luck next time!");
 				  System.exit(0);
+				  
 			  }
 			  if (enemyStats[0] <= 0) {
-				  String win = "You Won! \n";
-
-				  if (newRand.randBattleReward() <= 1) {
-					  JOptionPane.showMessageDialog(null, win + "You received an Attack boost potion!");
-					  invo[1] += 1;
-
-					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-					  break;
-					 
-				  }
-				  else if (newRand.randBattleReward() > 1 && newRand.randBattleReward() <= 3) {
-					  JOptionPane.showMessageDialog(null, win + "You received an Defense boost potion!");
-					  invo[3] += 1;
-	
-					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-					  break;
-					 
-				  }
-				  else if (newRand.randBattleReward() > 3 && newRand.randBattleReward()<= 6) {
-					  JOptionPane.showMessageDialog(null, win + "You received an Speed boost potion!");
-					  invo[2] += 1;
-
-					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-					  break;
-					 
-				  }
-				  else if (newRand.randBattleReward() > 6 && newRand.randBattleReward() <= 18) {
-					  JOptionPane.showMessageDialog(null, win + "You received an Health boost potion!");
-					  invo[0] += 1;
-
-					  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-					  break;
-					 
-				  }
-				  else {
-				  JOptionPane.showMessageDialog(null, win + "You didn't receive anything this time.");
-				  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-				  break;
-				  }
-				 
-			  }
-			  
-		  }
-			  
+				  
+				  JOptionPane.showMessageDialog(null, "Somehow, someway...you won! Incredible!\n I do hope you enjoyed this game, and best of luck if you try again!");
+				  System.exit(0);
+ 
+			  }  
+		  }  
 		  
 		  else if(myStats[3] < enemyStats[3]) {
+			  
 			  enemyCombat(enemyStats, myStats);
-			  String battleInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3] + "\n\n\n"
-			  + "Hellhound Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3] + 
-			  "\n\n\n What do you want to do? \n\n\n1) Attack\n2) Inventory\n3) Run")); 
-		      emptyField(battleInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 
 			  while(battleChoice == 0) {
+				  
+				  String battleInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3] + "\n\n\n"
+						  + "The Dragons Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3] + 
+						  "\n\n\n What do you want to do? \n\n\n1) Attack\n2) Inventory\n3) Run")); 
+					      emptyField(battleInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+					      
 			  switch(battleInfo) {
 				 case "1":
+					 
 					 battleChoice = Integer.parseInt(battleInfo);
 					 break;
+					 
 				 case "2":
 					 battleChoice = Integer.parseInt(battleInfo);
 					 break;
+					 
 				 case "3":
 					 battleChoice = Integer.parseInt(battleInfo);
 					 break;
+					 
 				 default:
+					 
 					 JOptionPane.showMessageDialog(null, "Not a valid option");
+					 break;
 				 }
-			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 		  }
-			  
+			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice); 
 		  }
-		  else {
-			  while (battleChoice == 0) {
-					 String battleInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3] + "\n\n\n"
-					 + "Hellhound Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3] + 
-						"\n\n\n What do you want to do? \n\n\n1) Attack\n2) Inventory\n3) Run")); 
-					 switch(battleInfo) {
-					 case "1":
-						 battleChoice = Integer.parseInt(battleInfo);
-						 break;
-					 case "2":
-						 battleChoice = Integer.parseInt(battleInfo);
-						 break;
-					 case "3":
-						 battleChoice = Integer.parseInt(battleInfo);
-						 break;
-					 default:
-						 JOptionPane.showMessageDialog(null, "Not a valid option");
-					 }
-				 }
-			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
-			  enemyCombat(enemyStats, myStats);
-		  }
-
-	 
 		 
 	    }
 	  }
@@ -126,70 +77,78 @@ public class TxtAdventGameHardEnc {
 
 
 				try {
+					
 					if (battleChoice == 1) {
-						return battleChoice;
 						
+						return battleChoice;
+		
 					}
 					else if (battleChoice == 2) {
+						
 						return battleChoice;
 					}
 					else if (battleChoice == 3) {
-						if (myStats[3] > enemyStats[3]) {
-							
-							JOptionPane.showMessageDialog(null, "You got away safely!"); 
-							  newRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-							  break;
-							  }
-							  else {
-								  JOptionPane.showMessageDialog(null, "Can't escape!"); 
-							  }
+						
+			   		    JOptionPane.showMessageDialog(null, "There is no escaping this fight!"); 	 
 						
 						break;
 					}
 					else {
+						
 						JOptionPane.showMessageDialog(null, "Not a valid option"); 
-						combatVerify(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
-						break;
 					}
 					
 				}
 				catch (InputMismatchException error) {
+					
 					JOptionPane.showMessageDialog(null, "Can't use letters/symbols/other nonsense here!"); 
-
+					
 				}
 			}
+			
 			return battleChoice;
-
-
 
 		}
 	  
 	  public void myCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
+		 
 		  int hpChangeAttk = 0;
 		  int hpUsed = invo[0];
 		  int attk = myStats[1] - enemyStats[2];
 		  int combatChoice = combatVerify(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 		  
 		  if (combatChoice == 1) {
-		  if (newRand.randAttkSuccess() > 1) {
+			  if (myStats[1] < enemyStats[2]) {
+				  JOptionPane.showMessageDialog(null, "Your Attack isn't high enough to do damage to the Dragon!"); 
+				  
+			  }
+		 else {	  
+		  if (newRand.randAttkSuccess() > 3) {
+			  
 			  hpChangeAttk = enemyStats[0] - attk;
+			  
 			 if (hpChangeAttk > 0) {
+				 
 			 enemyStats[0] = hpChangeAttk;
+			 
 			 }
 			 else {
+				 
 			enemyStats[0] = 0;
+			
 			 }
+			 
 			 JOptionPane.showMessageDialog(null, "The attack is successful! You deal " + attk + " damage!");
-			  
 			  
 		  }
 		  else {
+			  
 			  hpChangeAttk = enemyStats[0];
 			  JOptionPane.showMessageDialog(null, "You attack isn't successful.");
 			  
 		  }
-		  
-		  } 
+		 }
+	    } 
 		  else if (combatChoice == 2) {
 				 final int RETRY = 0;
 				 String choice;
@@ -203,14 +162,14 @@ public class TxtAdventGameHardEnc {
 							try {
 								number = Integer.parseInt(choice);
 								}
-								catch (InputMismatchException error) {
+								catch (NumberFormatException error) {
 									JOptionPane.showMessageDialog(null, "Not a valid option");
 								}
 							if (number == 1) {
 								  int hpHeal = myStats[0] + 10;
 								  if (invo[0] > 0) {
 								  hpUsed = invo[0] - 1;
-								  JOptionPane.showMessageDialog(null, "You use a health potion! It increases your health by " + hpHeal);
+								  JOptionPane.showMessageDialog(null, "You use a health potion! It increases your health to " + hpHeal);
 								  myStats[0] = hpHeal;
 								  invo[0] = hpUsed;
 								  }
@@ -223,7 +182,7 @@ public class TxtAdventGameHardEnc {
 								  int attkBoost = myStats[1] + 5;
 								  if (invo[1] > 0) {
 								  int attkUsed = invo[1] - 1;
-								  JOptionPane.showMessageDialog(null, "You use an attack potion! It increases your attack by " + attkBoost);
+								  JOptionPane.showMessageDialog(null, "You use an attack potion! It increases your attack to " + attkBoost);
 								  myStats[1] = attkBoost;
 								  invo[1] = attkUsed;
 								  }
@@ -236,7 +195,7 @@ public class TxtAdventGameHardEnc {
 								  int defBoost = myStats[2] + 5;
 								  if (invo[3] > 0) {
 								  int defUsed = invo[3] - 1;
-								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your defence by " + defBoost);
+								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your defence to " + defBoost);
 								  myStats[2] = defBoost;
 								  invo[3] = defUsed;
 								  }
@@ -249,7 +208,7 @@ public class TxtAdventGameHardEnc {
 								  int spdBoost = myStats[3] + 1;
 								  if (invo[2] > 0) {
 								  int spdUsed = invo[2] - 1;
-								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your speed by " + spdBoost);
+								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your speed to " + spdBoost);
 								  myStats[3] = spdBoost;
 								  invo[2] = spdUsed;
 								  }
@@ -260,7 +219,7 @@ public class TxtAdventGameHardEnc {
 							}
 							else if (number == 5) {
 								JOptionPane.showMessageDialog(null, "Back to the battle! Good luck!");
-								randEncounterHard(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+								DragonFight(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 							}
 							
 							else {
@@ -289,24 +248,28 @@ public class TxtAdventGameHardEnc {
 		  if (newRand.randEnemySuccess() > 8) {
 			  if(enemyStats[1] < myStats[2]) {
 				  hpChange = myStats[0];
-				  JOptionPane.showMessageDialog(null, "The enemy's attack is unsuccessful!");
+				  JOptionPane.showMessageDialog(null, "The Dragon's attack is unsuccessful!");
 			
 			  }
 			  else {
-				  if(newRand.randEnemyUsePotion() > 10) {
-					  int enAttkIncrease = 5;
+				  if(newRand.randEnemyUsePotion() > 6) {
+					  int enAttkIncrease = 8;
 					  enemyStats[1] += enAttkIncrease;
-					  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
+					  JOptionPane.showMessageDialog(null, "The Dragon used an attack potion! Their attack was increased by " + enAttkIncrease);
 				  
 				  }
 				  else {
 					  hpChange = myStats[0] - attk;
 					  myStats[0] = hpChange;
-					  JOptionPane.showMessageDialog(null, "The enemy's attack is successful! They deal " + attk + " damage!");
+					  JOptionPane.showMessageDialog(null, "The Dragon's attack is successful! They deal " + attk + " damage!");
 				  }
 			  }
 			  
 			  
+		  }
+		  else {
+			  
+			  JOptionPane.showMessageDialog(null, "The Dragon's attack is unsuccessful!");
 		  }
 		  
 	  }
