@@ -48,7 +48,7 @@ public class TxtAdventEncounters {
 						  }
 						  else if (newRand.randBattleReward() > 4 && newRand.randBattleReward() <= 8) {
 							  JOptionPane.showMessageDialog(null, win + "You received a Defense boost potion!");
-							  invo[3] += 1;
+							  invo[2] += 1;
 			
 							  mainRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 							  break;
@@ -56,7 +56,7 @@ public class TxtAdventEncounters {
 						  }
 						  else if (newRand.randBattleReward() > 8 && newRand.randBattleReward()<= 12) {
 							  JOptionPane.showMessageDialog(null, win + "You received a Speed boost potion!");
-							  invo[2] += 1;
+							  invo[3] += 1;
 
 							  mainRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 							  break;
@@ -87,7 +87,7 @@ public class TxtAdventEncounters {
 							  }
 							  else if (newRand.randBattleReward() > 2 && newRand.randBattleReward() <= 4) {
 								  JOptionPane.showMessageDialog(null, win + "You received a Defense boost potion!");
-								  invo[3] += 1;
+								  invo[2] += 1;
 				
 								  dunRoom.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 								  break;
@@ -95,7 +95,7 @@ public class TxtAdventEncounters {
 							  }
 							  else if (newRand.randBattleReward() > 4 && newRand.randBattleReward()<= 6) {
 								  JOptionPane.showMessageDialog(null, win + "You received a Speed boost potion!"); 
-								  invo[2] += 1;
+								  invo[3] += 1;
 
 								  dunRoom.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 								  break;
@@ -126,7 +126,7 @@ public class TxtAdventEncounters {
 							  }
 							  else if (newRand.randBattleReward() > 1 && newRand.randBattleReward() <= 3) {
 								  JOptionPane.showMessageDialog(null, win + "You received an Defense boost potion!");
-								  invo[3] += 1;
+								  invo[2] += 1;
 				
 								  upperRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 								  break;
@@ -134,7 +134,7 @@ public class TxtAdventEncounters {
 							  }
 							  else if (newRand.randBattleReward() > 3 && newRand.randBattleReward()<= 6) {
 								  JOptionPane.showMessageDialog(null, win + "You received an Speed boost potion!");
-								  invo[2] += 1;
+								  invo[3] += 1;
 
 								  upperRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 								  break;
@@ -432,8 +432,8 @@ public class TxtAdventEncounters {
 				 final int RETRY = 0;
 				 String choice;
 				 while (RETRY >= 0) {
-					 choice = JOptionPane.showInputDialog("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Speed Boost: " + invo[2] +
-								"\n Defence Boost: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] +
+					 choice = JOptionPane.showInputDialog("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Defence Boost: " + invo[2] +
+								"\n Speed Boost: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] +
 								"\nSelect item to use or return to battle? \n1) Use Health Potion\n2) Use Attack Potion\n3) Use Defence Potion\n4) Use Speed Potion"
 								+ "\n5) Return to battle!");
 					 emptyField(choice, room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -473,11 +473,11 @@ public class TxtAdventEncounters {
 							}
 							else if (number == 3) {
 								  int defBoost = myStats[2] + 5;
-								  if (invo[3] > 0) {
-								  int defUsed = invo[3] - 1;
+								  if (invo[2] > 0) {
+								  int defUsed = invo[2] - 1;
 								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your defence to " + defBoost);
 								  myStats[2] = defBoost;
-								  invo[3] = defUsed;
+								  invo[2] = defUsed;
 								  }
 								  else {
 									  JOptionPane.showMessageDialog(null, "You don't have any defense potions.");
@@ -486,11 +486,11 @@ public class TxtAdventEncounters {
 							}
 							else if (number == 4) {
 								  int spdBoost = myStats[3] + 1;
-								  if (invo[2] > 0) {
-								  int spdUsed = invo[2] - 1;
+								  if (invo[3] > 0) {
+								  int spdUsed = invo[3] - 1;
 								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your speed to " + spdBoost);
 								  myStats[3] = spdBoost;
-								  invo[2] = spdUsed;
+								  invo[3] = spdUsed;
 								  }
 								  else {
 									  JOptionPane.showMessageDialog(null, "You don't have any speed potions.");
@@ -533,7 +533,7 @@ public class TxtAdventEncounters {
 					  }
 					  else {
 						  if(newRand.randEnemyUsePotion() > 16) {
-							  int enAttkIncrease = 4;
+							  int enAttkIncrease = 2;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
 						  
@@ -562,7 +562,7 @@ public class TxtAdventEncounters {
 					  }
 					  else {
 						  if(newRand.randEnemyUsePotion() > 13) {
-							  int enAttkIncrease = 5;
+							  int enAttkIncrease = 3;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
 						  
@@ -590,7 +590,7 @@ public class TxtAdventEncounters {
 					  }
 					  else {
 						  if(newRand.randEnemyUsePotion() > 7) {
-							  int enAttkIncrease = 8;
+							  int enAttkIncrease = 4;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
 						  

@@ -8,7 +8,7 @@ public class TxtAdventDragon {
 	
 	public void DragonFightStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		
-		 int enemyStats[] = {100, 20, 30, 999};
+		 int enemyStats[] = {200, 45, 40, 999};
 		 DragonFight(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 		  
 	  }
@@ -252,8 +252,8 @@ public class TxtAdventDragon {
 			
 			  }
 			  else {
-				  if(newRand.randEnemyUsePotion() > 6) {
-					  int enAttkIncrease = 8;
+				  if(newRand.randEnemyUsePotion() > 5) {
+					  int enAttkIncrease = 5;
 					  enemyStats[1] += enAttkIncrease;
 					  JOptionPane.showMessageDialog(null, "The Dragon used an attack potion! Their attack was increased by " + enAttkIncrease);
 				  

@@ -316,13 +316,13 @@ public class TxtAdventMainFloor {
 		 if(room == 12 || room == 10) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		 else if (room == 8 || room == 11) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(1)));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 9) {
@@ -332,16 +332,16 @@ public class TxtAdventMainFloor {
 			case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(2)
 				+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
-				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 
 			case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(2)
 				+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
-				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 			default:
-	    	emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 		    return retString;
 			}
 
@@ -349,22 +349,22 @@ public class TxtAdventMainFloor {
 		else if(room == 5 || room == 6) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 13) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 0) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(6)));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 1) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(7)));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		else if(room == 2) {
@@ -372,14 +372,14 @@ public class TxtAdventMainFloor {
 			switch(flagCheck) {
 			case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked trapdoor." + newPrompt.PromptBasicScript(8)));
-			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			    return retString;
 			case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked trapdoor." + newPrompt.PromptBasicScript(8)));
-			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			    return retString;
 			default:
-			    emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			    return retString;
 			
 			}
@@ -390,14 +390,14 @@ public class TxtAdventMainFloor {
 			switch(flagCheck) {
 			case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked Door."  + newPrompt.PromptBasicScript(9)));
-				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 			case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked Door."  + newPrompt.PromptBasicScript(9)));
-				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 			default:
-				emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			    return retString;
 			
 			}
@@ -406,7 +406,7 @@ public class TxtAdventMainFloor {
 		else if(room == 7) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(10)));
-			emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 		}
 		 return retString;
@@ -431,15 +431,6 @@ public class TxtAdventMainFloor {
 			TxtAdventEncounters newEnc = new TxtAdventEncounters();
 			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}	
-		
-	}
-	public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		
-		if(field.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "You need to type something.");
-			Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-			
-		}
 		
 	}
 	

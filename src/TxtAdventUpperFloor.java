@@ -134,7 +134,7 @@ public class TxtAdventUpperFloor {
 			}
 			else {
 				
-				JOptionPane.showMessageDialog(null, "You can't use a key here!");
+				newPrompt.PromptCantUseKey();
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				
 			}
@@ -293,7 +293,7 @@ public class TxtAdventUpperFloor {
 				break;
 				
 				default:
-					JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
+				newPrompt.PromptIncorrect();
 				break;
 				}
 			}
@@ -320,7 +320,7 @@ public class TxtAdventUpperFloor {
 				break;
 				
 				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
+				newPrompt.PromptIncorrect();
 				break;
 				}
 			}
@@ -351,7 +351,7 @@ public class TxtAdventUpperFloor {
 				break;
 				
 				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
+				newPrompt.PromptIncorrect();
 				break;
 				
 				}
@@ -383,7 +383,7 @@ public class TxtAdventUpperFloor {
 				break;
 				
 				default:
-				JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");
+				newPrompt.PromptIncorrect();
 				break;
 				
 				}
@@ -413,13 +413,12 @@ public class TxtAdventUpperFloor {
 				int flagCheck = flags[10];
 					switch(flagCheck) {
 					case 0:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(1)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0) + newPrompt.PromptBasicScript(1)
+						+  newPrompt.PromptChestTxt(2)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(1)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(1)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
@@ -431,12 +430,11 @@ public class TxtAdventUpperFloor {
 					switch(flagCheck) {
 					case 0:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(0)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						+  newPrompt.PromptChestTxt(2)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(0)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(0)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
@@ -447,13 +445,12 @@ public class TxtAdventUpperFloor {
 				flagCheck = flags[12];
 					switch(flagCheck) {
 					case 0:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(1)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0) + newPrompt.PromptBasicScript(1)
+						+  newPrompt.PromptChestTxt(2)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(1)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(1)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
@@ -464,13 +461,12 @@ public class TxtAdventUpperFloor {
 				flagCheck = flags[13];
 					switch(flagCheck) {
 					case 0:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(0)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0) + newPrompt.PromptBasicScript(0)
+						+  newPrompt.PromptChestTxt(2)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(0)
-						+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(0)));
 						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
@@ -593,18 +589,16 @@ public class TxtAdventUpperFloor {
 		
 		if (answer.equals("c")) {
 			
-			JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+			newPrompt.PromptQRightWrong(0);
 			flags[15] = 2;
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		}
 		else {
-			JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+			newPrompt.PromptQRightWrong(1);
 			myStats[0] =  myStats[0] / 2;
 			flags[15] = 1;
 			room = whereToGo[25][6];
-			JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-			JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 			newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		}
@@ -616,18 +610,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("b")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -640,18 +632,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("d")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -663,18 +653,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("a")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -686,18 +674,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("d")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -709,18 +695,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("c")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+					newPrompt.PromptQRightWrong(1);
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -732,18 +716,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("b")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -755,18 +737,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("d")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -778,18 +758,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("c")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
@@ -801,18 +779,16 @@ public class TxtAdventUpperFloor {
 				
 				if (answer.equals("c")) {
 					
-					JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+					newPrompt.PromptQRightWrong(0);
 					flags[15] = 2;
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");
+					newPrompt.PromptQRightWrong(1);
 					myStats[0] =  myStats[0] / 2;
 					flags[15] = 1;
 					room = whereToGo[25][6];
-					JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
-					JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
 					newDunFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 				}

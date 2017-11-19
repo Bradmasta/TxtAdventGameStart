@@ -9,6 +9,12 @@ public class TxtAdventPrompts {
 		
 		
 	}
+public void PromptNeedType() {
+		
+	JOptionPane.showMessageDialog(null, "You need to type something.");
+		
+		
+	}
 public void PromptAlreadyOpen() {
 		
 	JOptionPane.showMessageDialog(null, "You've already opened this chest. \nYou exit the room.");
@@ -37,6 +43,56 @@ public void PromptIncorrect() {
 	
 	JOptionPane.showMessageDialog(null, "If this message if shown, I coded something incorrectly.");	
 	
+	
+}
+public String PromptChestTxt(int chestOption) {
+	String retString= null;
+	switch(chestOption) {
+	
+	case 0:
+	JOptionPane.showMessageDialog(null, "\nYou see a chest! Wonder what's inside..");
+	return retString;
+
+	
+	case 1:
+	JOptionPane.showMessageDialog(null, "\nYou see an already opened chest!");	
+	return retString;
+	
+	case 2:
+	JOptionPane.showMessageDialog(null, " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");	
+	return retString;
+	
+	default:
+	return retString;
+	
+	
+	}
+		
+	
+}
+
+public String PromptQRightWrong(int rightWrong) {
+	String retString= null;
+	switch(rightWrong) {
+	
+	case 0:
+	JOptionPane.showMessageDialog(null, "That is correct! You may now move on if you so chose to!");
+	return retString;
+
+	
+	case 1:
+	JOptionPane.showMessageDialog(null, "WRONG! Your health is now halved! Down to the dungeon you go!");	
+	JOptionPane.showMessageDialog(null, "You are knocked out by the guardian");
+	JOptionPane.showMessageDialog(null, "You wake up in some pain, but you're still alive. Onward!");
+	return retString;
+	
+	
+	default:
+	return retString;
+	
+	
+	}
+		
 	
 }
 public void PromptCantGoDirection(int directNumber) {
@@ -129,6 +185,24 @@ public String PromptBasicScript(int directionCase) {
 		return retString;
 	case 12:
 		retString =  "\nYou can go the following directions: \n" + directions[0] + ", " + directions[1] + ", " + directions[3] + "\nWhere do you want to go?";
+		return retString;
+	case 13:
+		retString =  "\nYou can go the following directions: \n" + directions[0] + ", " + directions[1] + "\nWhere do you want to go?";
+		return retString;
+	case 14:
+		retString =  "\nYou can go the following directions: \n" + directions[2] + ", " + directions[3] + "\nWhere do you want to go?";
+		return retString;
+	case 15:
+		retString =  "\nYou can go the following directions: \n" + directions[2] + ", " + directions[3] + ", " + directions[4] + "\nWhere do you want to go?";
+		return retString;
+	case 16:
+		retString =  "\nYou can go the following directions: \n" + directions[1] + ", " + directions[3] + "\nWhere do you want to go?";
+		return retString;
+	case 17:
+		retString =   "\nYou can go the following directions: \n" + directions[0] + ", " + directions[2] + "\nWhere do you want to go?";
+		return retString;
+	case 18:
+		retString =   "\nYou can go the following directions: \n" + directions[1] + ", " + directions[2] + "\nWhere do you want to go?";
 		return retString;
 	case 99:
 		retString = "\nYou see a guardian of sorts in front of the northern door. \nYou can go the following directions: \n" + directions[0] + ", " + directions[1] +  "\nWhere do you want to go?";

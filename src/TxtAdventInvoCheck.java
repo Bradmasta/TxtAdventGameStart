@@ -107,11 +107,11 @@ public class TxtAdventInvoCheck {
 										}
 										else if (number == 3) {
 											  int defBoost = myStats[2] + 5;
-											  if (invo[3] > 0) {
-											  int defUsed = invo[3] - 1;
+											  if (invo[2] > 0) {
+											  int defUsed = invo[2] - 1;
 											  JOptionPane.showMessageDialog(null, "You use a Defense potion! It increases your Defence to " + defBoost);
 											  myStats[2] = defBoost;
-											  invo[3] = defUsed;
+											  invo[2] = defUsed;
 											  invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 											  }
 											  else {
@@ -122,11 +122,11 @@ public class TxtAdventInvoCheck {
 										}
 										else if (number == 4) {
 											  int spdBoost = myStats[3] + 1;
-											  if (invo[2] > 0) {
-											  int spdUsed = invo[2] - 1;
+											  if (invo[3] > 0) {
+											  int spdUsed = invo[3] - 1;
 											  JOptionPane.showMessageDialog(null, "You use a Speed Potion! It increases your Speed to " + spdBoost);
 											  myStats[3] = spdBoost;
-											  invo[2] = spdUsed;
+											  invo[3] = spdUsed;
 											  invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 											  }
 											  else {
@@ -158,8 +158,20 @@ public class TxtAdventInvoCheck {
 							
 						}
 						else if (invoChoice == 3) {
-							if (randEnc > 0) {
+							if (randEnc == 3) {
 								JOptionPane.showMessageDialog(null, "You should consider returning! Enemys lurk about!");
+								randEnc -= 1;
+								invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);	
+								
+							}
+							else if (randEnc == 2) {
+								JOptionPane.showMessageDialog(null, "You really should consider returning...");
+								randEnc -= 1;
+								invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);	
+								
+							}
+							else if (randEnc == 1) {
+								JOptionPane.showMessageDialog(null, "Don't say you weren't warned! I didn't warn you!");
 								randEnc -= 1;
 								invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);	
 								

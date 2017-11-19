@@ -39,12 +39,12 @@ public class TxtAdventBeginData {
 			
 		}
 	public int[] BeginDataMyStats() {
-		int myStats[] = {50, 12, 6, 7};
+		int myStats[] = {60, 25, 20, 5};
 		return myStats;
 			
 		}
 	public int[] BeginDataInvo() {
-		int invo[] = {2, 0, 0 , 0, 0, 0, 0};
+		int invo[] = {3, 0, 0 , 0, 0, 0, 0};
 		return invo;
 			
 		}
