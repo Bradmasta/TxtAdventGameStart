@@ -50,16 +50,16 @@ public String PromptChestTxt(int chestOption) {
 	switch(chestOption) {
 	
 	case 0:
-	JOptionPane.showMessageDialog(null, "\nYou see a chest! Wonder what's inside..");
+	retString = "\nYou see a chest! Wonder what's inside..";
 	return retString;
 
 	
 	case 1:
-	JOptionPane.showMessageDialog(null, "\nYou see an already opened chest!");	
+	retString = "\nYou see an already opened chest!";	
 	return retString;
 	
 	case 2:
-	JOptionPane.showMessageDialog(null, " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)");	
+	retString = " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)";	
 	return retString;
 	
 	default:

@@ -123,7 +123,7 @@ public class TxtAdventDragon {
 				  
 			  }
 		 else {	  
-		  if (newRand.randAttkSuccess() > 3) {
+		  if (newRand.randAttkSuccess() > 2) {
 			  
 			  hpChangeAttk = enemyStats[0] - attk;
 			  
@@ -153,10 +153,11 @@ public class TxtAdventDragon {
 				 final int RETRY = 0;
 				 String choice;
 				 while (RETRY >= 0) {
-					 choice = JOptionPane.showInputDialog("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Speed Boost: " + invo[2] +
-								"\n Defence Boost: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] +
+					 choice = JOptionPane.showInputDialog("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Potion: " + invo[1] + "\n Defense Potion: " + invo[2] +
+								"\n Speed Potion: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] +
 								"\nSelect item to use or return to battle? \n1) Use Health Potion\n2) Use Attack Potion\n3) Use Defence Potion\n4) Use Speed Potion"
 								+ "\n5) Return to battle!");
+					 emptyField(choice, room, roomName, whereToGo, directions, myStats, invo, flags);
 						try {
 							int number = 0;
 							try {
@@ -164,17 +165,18 @@ public class TxtAdventDragon {
 								}
 								catch (NumberFormatException error) {
 									JOptionPane.showMessageDialog(null, "Not a valid option");
+									myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice); 
 								}
 							if (number == 1) {
 								  int hpHeal = myStats[0] + 10;
 								  if (invo[0] > 0) {
 								  hpUsed = invo[0] - 1;
-								  JOptionPane.showMessageDialog(null, "You use a health potion! It increases your health to " + hpHeal);
+								  JOptionPane.showMessageDialog(null, "You use a Health potion! It increases your Health to " + hpHeal);
 								  myStats[0] = hpHeal;
 								  invo[0] = hpUsed;
 								  }
 								  else {
-									  JOptionPane.showMessageDialog(null, "You don't have any health potions.");
+									  JOptionPane.showMessageDialog(null, "You don't have any Health potions.");
 								  }
 								
 							}
@@ -182,38 +184,38 @@ public class TxtAdventDragon {
 								  int attkBoost = myStats[1] + 5;
 								  if (invo[1] > 0) {
 								  int attkUsed = invo[1] - 1;
-								  JOptionPane.showMessageDialog(null, "You use an attack potion! It increases your attack to " + attkBoost);
+								  JOptionPane.showMessageDialog(null, "You use an Attack potion! It increases your Attack to " + attkBoost);
 								  myStats[1] = attkBoost;
 								  invo[1] = attkUsed;
 								  }
 								  else {
-									  JOptionPane.showMessageDialog(null, "You don't have any attack potions.");
+									  JOptionPane.showMessageDialog(null, "You don't have any Attack potions.");
 								  }
 								
 							}
 							else if (number == 3) {
 								  int defBoost = myStats[2] + 5;
-								  if (invo[3] > 0) {
-								  int defUsed = invo[3] - 1;
-								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your defence to " + defBoost);
+								  if (invo[2] > 0) {
+								  int defUsed = invo[2] - 1;
+								  JOptionPane.showMessageDialog(null, "You use a Defense potion! It increases your Defence to " + defBoost);
 								  myStats[2] = defBoost;
-								  invo[3] = defUsed;
+								  invo[2] = defUsed;
 								  }
 								  else {
-									  JOptionPane.showMessageDialog(null, "You don't have any defense potions.");
+									  JOptionPane.showMessageDialog(null, "You don't have any Defense potions.");
 								  }
 								
 							}
 							else if (number == 4) {
-								  int spdBoost = myStats[3] + 1;
-								  if (invo[2] > 0) {
-								  int spdUsed = invo[2] - 1;
-								  JOptionPane.showMessageDialog(null, "You use a potion! It increases your speed to " + spdBoost);
+								  int spdBoost = myStats[3] + 5;
+								  if (invo[3] > 0) {
+								  int spdUsed = invo[3] - 1;
+								  JOptionPane.showMessageDialog(null, "You use a Speed potion! It increases your Speed to " + spdBoost);
 								  myStats[3] = spdBoost;
-								  invo[2] = spdUsed;
+								  invo[3] = spdUsed;
 								  }
 								  else {
-									  JOptionPane.showMessageDialog(null, "You don't have any speed potions.");
+									  JOptionPane.showMessageDialog(null, "You don't have any Speed potions.");
 								  }
 								
 							}
@@ -243,29 +245,20 @@ public class TxtAdventDragon {
 	  
 	  public void enemyCombat(int[] enemyStats, int[] myStats) {
 		  int hpChange = 0;
+		  int enAttkIncrease = 5;
 		  int attk = enemyStats[1] - myStats[2];
-		  
-		  if (newRand.randEnemySuccess() > 8) {
-			  if(enemyStats[1] < myStats[2]) {
-				  hpChange = myStats[0];
-				  JOptionPane.showMessageDialog(null, "The Dragon's attack is unsuccessful!");
+		  if (myStats[2] > enemyStats[1]) {
+			  enemyStats[1] += enAttkIncrease;
+			  JOptionPane.showMessageDialog(null, "The Dragon can't attack because its Attack is too low! But not for long.. The Dragon "
+			  		+ "increases its Attack by " + enAttkIncrease + "!");
+			  
+		  }
+		  if (newRand.randEnemySuccess() >= 5) {
 			
-			  }
-			  else {
-				  if(newRand.randEnemyUsePotion() > 5) {
-					  int enAttkIncrease = 5;
-					  enemyStats[1] += enAttkIncrease;
-					  JOptionPane.showMessageDialog(null, "The Dragon used an attack potion! Their attack was increased by " + enAttkIncrease);
-				  
-				  }
-				  else {
 					  hpChange = myStats[0] - attk;
 					  myStats[0] = hpChange;
 					  JOptionPane.showMessageDialog(null, "The Dragon's attack is successful! They deal " + attk + " damage!");
-				  }
-			  }
-			  
-			  
+				  
 		  }
 		  else {
 			  

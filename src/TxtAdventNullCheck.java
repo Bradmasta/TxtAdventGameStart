@@ -2,13 +2,7 @@ import javax.swing.JOptionPane;
 
 
 public class TxtAdventNullCheck {	
-	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
-	TxtAdventDungeon newDungeon = new TxtAdventDungeon();
-	TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
-	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
-	TxtAdventEncounters newEnc = new TxtAdventEncounters();
-	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
-	TxtAdventInvoCheck newInvo = new TxtAdventInvoCheck();
+	
 	public String nullCheck(String check) {
 		String nullCheck = null;
 	
@@ -27,7 +21,10 @@ public class TxtAdventNullCheck {
 		return nullCheck;
   }
 	public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		
+		TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
+		TxtAdventDungeon newDungeon = new TxtAdventDungeon();
+		TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
+		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		if(field.isEmpty()) {
 			if (room >=0 && room < 13 && room != 4) {
 				newPrompt.PromptNeedType();

@@ -16,9 +16,9 @@ public class TxtAdventInvoCheck {
 			 while (RETRY >= 0) {
 				String invoInfo = null;
 				invoInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats: \nHealth: " + myStats[0] + "\nAttack: " + myStats[1] + "\nDefense: " + myStats[2] + "\nSpeed: " + myStats[3] + 
-				"\n\nYour Inventory:\n Health Potion: " + invo[0] + "\n Attack Boost: " + invo[1] + "\n Speed Boost: " + invo[2] + "\n Defence Boost: " 
+				"\n\nYour Inventory:\n Health Potion: " + invo[0] + "\n Attack Potion: " + invo[1] + "\n Defense Potion: " + invo[2] + "\n Speed Potion: " 
 				+ invo[3] + "\n Downstairs Key: " 
-				+ invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] + "\n\nUse a potion, or return to the game? \n\n1) Return to the game\n2) Use a potion\n3) Not ready to go back just yet"));
+				+ invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] + "\n\nUse a potion, or return to the game? \n\n1) Return to the game\n2) Use a potion\n3) Not ready to go back just yet.."));
 				emptyField(invoInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
 				 
 				 switch(invoInfo) {
@@ -121,7 +121,7 @@ public class TxtAdventInvoCheck {
 											
 										}
 										else if (number == 4) {
-											  int spdBoost = myStats[3] + 1;
+											  int spdBoost = myStats[3] + 5;
 											  if (invo[3] > 0) {
 											  int spdUsed = invo[3] - 1;
 											  JOptionPane.showMessageDialog(null, "You use a Speed Potion! It increases your Speed to " + spdBoost);
@@ -171,7 +171,7 @@ public class TxtAdventInvoCheck {
 								
 							}
 							else if (randEnc == 1) {
-								JOptionPane.showMessageDialog(null, "Don't say you weren't warned! I didn't warn you!");
+								JOptionPane.showMessageDialog(null, "Don't say you weren't warned! I did warn you!");
 								randEnc -= 1;
 								invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);	
 								

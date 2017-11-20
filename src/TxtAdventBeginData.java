@@ -7,14 +7,14 @@ public class TxtAdventBeginData {
 		return room;
 	}
 	public String[] BeginDataRoomName() {
-		String roomName[] = {"0", "1", "2", "3", "4", "5",
-				"6", "7", "8", "9", "10",
-				"11", "12", "13", "14", "15", 
-				"16", "17", "18", "19", "20",
-				"21", "22", "23", "24", "25",
-				"26", "27", "28", "29", "30",
-				"31", "32", "33", "34", "35",
-				"36", "37"};
+		String roomName[] = {"Main Hall", "North Corridor", "East Corridor", "West Corridor", "Dungeon Entrance", "Side Closet",
+				"Storage Room", "North Side Hall", "Broom Closet", "Treasure Room", "Empty Room",
+				"Empty Room", "Empty Room", "Upper Stairwell", "Dungeon West Corridor", "Dungeon Barren Hallway", 
+				"Dungeon Empty Chamber", "Dungeon East Corridor", "Dungeon Threeway Path", "Dungeon Corner Hallway", "Dungeon Deadend",
+				"Dungeon Crossed Pathway", "Dungeon Dusty Corner Hallway", "Dungeon dusty Straight Pathway", "Dungeon Dusty Split Hallway", "Dungeon Backroom",
+				"Dungeon Cracked-Wall Room", "Dungeon Northern Hallway", "Dungeon Abandoned Room", "Upper Main Hall", "Upper Western Towers Split Hall",
+				"Upper North-Western Tower", "Upper South-Western Tower", "Upper Eastern Towers Split Hall", "Upper North-Eastern Tower", "Upper South-Eastern Tower",
+				"Final Castle Room", "Dragon Room"};
 		return roomName;
 		
 			
@@ -28,7 +28,7 @@ public class TxtAdventBeginData {
 		    {-1, 20, 18, -1, -1, -1, 19}, {19, -1, -1, -1, -1, -1, 20}, {27, 22, -1, 18, -1, -1, 21}, {21, -1, 23, -1, -1, -1, 22},
 		    {-1, -1, 24, 22, -1, -1, 23}, {25, 26, -1, 23, -1, -1, 24}, {-1, 24, -1, -1, -1, -1, 25}, {24, -1, -1, -1, -1, -1, 26},
 		    {28, 21, -1, -1, -1, -1, 27}, {-1, 27, -1, -1, -1, -1, 28}, {36, 13, 33, 30, -1, -1, 29}, {31, 32, 29, -1, -1, -1, 30}, 
-		    {-1, 30, -1, -1, -1, -1, 31}, {30, -1, -1, -1, -1, -1, 32}, {34, 34, -1, 29, -1, -1, 33}, {-1, 33, -1, -1, -1, -1, 34}, 
+		    {-1, 30, -1, -1, -1, -1, 31}, {30, -1, -1, -1, -1, -1, 32}, {34, 35, -1, 29, -1, -1, 33}, {-1, 33, -1, -1, -1, -1, 34}, 
 		    {33, -1, -1, -1, -1, -1, 35}, {37, 29, -1, -1, -1, -1, 36}, {-1, -1, -1, -1, -1, -1, 37}};
 			
 			return whereToGo;
@@ -39,12 +39,12 @@ public class TxtAdventBeginData {
 			
 		}
 	public int[] BeginDataMyStats() {
-		int myStats[] = {60, 25, 20, 5};
+		int myStats[] = {60, 30, 25, 7};
 		return myStats;
 			
 		}
 	public int[] BeginDataInvo() {
-		int invo[] = {3, 0, 0 , 0, 0, 0, 0};
+		int invo[] = {5, 1, 1 , 0, 0, 0, 0};
 		return invo;
 			
 		}

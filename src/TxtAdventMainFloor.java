@@ -2,10 +2,10 @@ import javax.swing.*;
 public class TxtAdventMainFloor {
 
 
-	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
+	
 	
 	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-	
+		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventDungeon dunRoom = new TxtAdventDungeon();
 		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
@@ -311,6 +311,7 @@ public class TxtAdventMainFloor {
 	}			
 	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
+		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		String retString = null;
 		String roomIn = "You are in the " + roomName[room];
 		 if(room == 12 || room == 10) {
@@ -412,7 +413,7 @@ public class TxtAdventMainFloor {
 		 return retString;
 	}
 	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-
+		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 9) {
 			if (flags[1] == 0) {
@@ -426,7 +427,7 @@ public class TxtAdventMainFloor {
 		
 			}
 		}
-		else if (newRand.randEnemyEnc() <= 4) {
+		else if (newRand.randEnemyEnc() <= 3) {
 			newPrompt.PromptDarkKnight();
 			TxtAdventEncounters newEnc = new TxtAdventEncounters();
 			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);

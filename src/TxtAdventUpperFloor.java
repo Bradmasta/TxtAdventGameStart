@@ -2,7 +2,7 @@ import javax.swing.JOptionPane;
 
 public class TxtAdventUpperFloor {
 
-	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
+	
 	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventRandNum newRand = new TxtAdventRandNum();
 	TxtAdventDungeon newDunFlr = new TxtAdventDungeon();
@@ -10,6 +10,8 @@ public class TxtAdventUpperFloor {
 
 	
 	public void UpperRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+
+		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventMainFloor mainRoom = new TxtAdventMainFloor();
 
@@ -188,7 +190,7 @@ public class TxtAdventUpperFloor {
 					String choiceInfo = null;
 					int choice = 0;
 					choiceInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Are you sure you want to proceed? There's no turning back.\n1) Yes \n2) Not just yet."));
-					emptyField(choiceInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(choiceInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
 					 switch(choiceInfo) {
 					 case "1":
 						 choice = Integer.parseInt(choiceInfo);
@@ -404,6 +406,8 @@ public class TxtAdventUpperFloor {
 		}
 	}			
 	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+
+		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		String retString = null;
 		String roomIn = "You are in the " + roomName[room];
 			switch (room) {
@@ -415,11 +419,11 @@ public class TxtAdventUpperFloor {
 					case 0:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0) + newPrompt.PromptBasicScript(1)
 						+  newPrompt.PromptChestTxt(2)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(1)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
 				break;
@@ -431,11 +435,11 @@ public class TxtAdventUpperFloor {
 					case 0:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(0)
 						+  newPrompt.PromptChestTxt(2)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(0)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
 				break;
@@ -447,11 +451,11 @@ public class TxtAdventUpperFloor {
 					case 0:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0) + newPrompt.PromptBasicScript(1)
 						+  newPrompt.PromptChestTxt(2)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(1)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
 				break;
@@ -463,11 +467,11 @@ public class TxtAdventUpperFloor {
 					case 0:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0) + newPrompt.PromptBasicScript(0)
 						+  newPrompt.PromptChestTxt(2)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					case 1:
 						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1) + newPrompt.PromptBasicScript(0)));
-						emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+						nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 						return retString;
 					}
 				break;
@@ -477,16 +481,16 @@ public class TxtAdventUpperFloor {
 					switch(flagCheck) {
 					case 0:
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(99)));
-					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 				
 					case 1:
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(99)));
-					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 					case 2:
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(100)));
-					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 					
 					}
@@ -494,22 +498,22 @@ public class TxtAdventUpperFloor {
 				break;
 				case 13:
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
-					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 				
 				case 29:
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a Door. " + newPrompt.PromptBasicScript(10)));
-					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 				
 				case 30:
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(11)));
-					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 				
 				case 33:
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(12)));
-					emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 				
 				
@@ -522,7 +526,7 @@ public class TxtAdventUpperFloor {
 			return retString;
 	}
 	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-
+		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		if (room == 31) {
 			if (flags[6] == 0) {
 			newPrompt.PromptDrake();
@@ -574,8 +578,9 @@ public class TxtAdventUpperFloor {
 		
 	}
 	public void DragonKeep(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		 int question = newRand.randDragonKeepQuestion();
-
+		
+		int question = newRand.randDragonKeepQuestion();
+		 TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		 String answer = null;
 		 JOptionPane.showMessageDialog(null, "Here is your question: ");
 		 switch(question) {
@@ -584,7 +589,7 @@ public class TxtAdventUpperFloor {
 			 
 		answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many miles away is the Sun from the Earth (Approximately)? \nA) 90 Million"
 				+ "\nB) 97 Million \nC) 93 Million \nD) 85 Million"));
-		emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+		nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 		answer = answer.substring(0, 1).toLowerCase();
 		
 		if (answer.equals("c")) {
@@ -605,7 +610,7 @@ public class TxtAdventUpperFloor {
 		 case 2:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which of these colors is not on the Rubik's Cube? \nA) Blue\nB) Purple\n"
 			 		+ "C) Yellow\nD) Green"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("b")) {
@@ -627,7 +632,7 @@ public class TxtAdventUpperFloor {
 		 case 3:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "What does \"RAM\" stand for? \nA) Random Available Memory"
 						+ "\nB) Readily Available Memory \nC) Run All Memory \nD) Random Access Memory"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("d")) {
@@ -648,7 +653,7 @@ public class TxtAdventUpperFloor {
 		 case 4:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which of these Intel Cores types doesn't exist? \nA) I-1"
 						+ "\nB) I-3 \nC) I-5 \nD) I-7"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("a")) {
@@ -669,7 +674,7 @@ public class TxtAdventUpperFloor {
 		 case 5:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which months have 28 days? \nA) 6 months"
 						+ "\nB) 7 months \nC) 1 month \nD) All of them"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("d")) {
@@ -690,7 +695,7 @@ public class TxtAdventUpperFloor {
 		 case 6:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many NFL teams are there? \nA) 29"
 						+ "\nB) 30 \nC) 32 \nD) 42"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("c")) {
@@ -711,7 +716,7 @@ public class TxtAdventUpperFloor {
 		 case 7:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "What type of programming language is \"Java\"? \nA) Object Creating"
 						+ "\nB) Object Oriented \nC) Scripted \nD) Low Level"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("b")) {
@@ -732,7 +737,7 @@ public class TxtAdventUpperFloor {
 		 case 8:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many stomachs does a Cow have? \nA) 2"
 						+ "\nB) 6 \nC) 1 \nD) 4"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("d")) {
@@ -753,7 +758,7 @@ public class TxtAdventUpperFloor {
 		 case 9:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many bones does a fully grown adult have? \nA) 200"
 						+ "\nB) 150 \nC) 206 \nD) 214"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("c")) {
@@ -774,7 +779,7 @@ public class TxtAdventUpperFloor {
 		 case 10:
 			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "How many buttons does a Guitar Hero controller have? \nA) 3"
 						+ "\nB) 4 \nC) 5\nD) 6"));
-				emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();
 				
 				if (answer.equals("c")) {
@@ -799,15 +804,6 @@ public class TxtAdventUpperFloor {
 		
 		
 		
-		}
-		
-	}
-public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		
-		if(field.isEmpty()) {
-			JOptionPane.showMessageDialog(null, "You need to type something.");
-			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-			
 		}
 		
 	}
