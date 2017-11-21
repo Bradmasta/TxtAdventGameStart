@@ -6,9 +6,10 @@ public class TxtAdventDungeon {
 	TxtAdventMainFloor mainFlr = new TxtAdventMainFloor();
 	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 	
-	public void DunRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void DunRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
-
+		TxtAdventHelp help = new TxtAdventHelp();
+		TxtAdventSave save = new TxtAdventSave();
 		
 		String directChoice;
 		
@@ -22,6 +23,12 @@ public class TxtAdventDungeon {
 
 		case "i":
 			playerChooses.invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+		case "h":
+			help.Help(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+		case "q":
+			save.Save(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "c":
 			if (room == 28) {
@@ -39,6 +46,30 @@ public class TxtAdventDungeon {
 				
 				}
 			}
+			else if (room == 25) {
+				if (flags[16] == 0) {
+					if(myStats[0] >= 80) {
+						JOptionPane.showMessageDialog(null, newPrompt.PromptRoom25(0));	
+						DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						
+					}
+					else {	
+						JOptionPane.showMessageDialog(null, newPrompt.PromptRoom25(1));	
+					invo[0] += 3;
+					invo[1] += 3;
+					invo[2] += 3;
+					flags[16] += 1;
+					room = whereToGo[25][1];	
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+				}
+					else {
+					newPrompt.PromptAlreadyOpen();
+					room = whereToGo[25][1];	
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					
+					}
+				}
 			else {
 				newPrompt.PromptNoChest();	
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -279,7 +310,7 @@ public class TxtAdventDungeon {
 			break;
 		}
 	}
-	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		String retString = null;
 		String roomIn = "You are in the " + roomName[room];
@@ -291,11 +322,26 @@ public class TxtAdventDungeon {
 
 		}
 		 else if (room == 25) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(1)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-			return retString;
-		}
+			 int flagCheck = flags[16];
+				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+				
+				switch(flagCheck) {
+				case 0:
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0)
+				+ newPrompt.PromptBasicScript(1) + newPrompt.PromptChestTxt(2)));
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				return retString;
+				
+				case 1:
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1)
+				+ newPrompt.PromptBasicScript(1)));
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				return retString;
+				default:
+					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			    return retString;
+		     }
+	    }
 		else if(room == 28) {
 			int flagCheck = flags[3];
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -369,7 +415,7 @@ public class TxtAdventDungeon {
 		}
 		 return retString;
 	}
-	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 28) {
@@ -380,7 +426,19 @@ public class TxtAdventDungeon {
 			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				JOptionPane.showMessageDialog(null, "You hear the howl of the Hellhounds nearby, but the room is safe.");
+				JOptionPane.showMessageDialog(null, "You hear the howl of the Hellhounds nearby, but this room is safe.");
+
+			}
+		}
+		else if (room == 25) {
+			if (flags[17] == 0) {
+			newPrompt.PromptHellHound();
+			flags[17] += 1;
+			TxtAdventEncounters newEnc = new TxtAdventEncounters();
+			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+		}
+			else {
+				JOptionPane.showMessageDialog(null, "You hear the howl of the Hellhounds nearby, but this room is safe.");
 
 			}
 		}

@@ -10,7 +10,7 @@ public class TxtAdventInvoCheck {
 	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 	int randEnc = 3;
 	
-		public void invoCheck(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		public void invoCheck(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 			 final int RETRY = 0;
 			 int invoChoice = 0;
 			 while (RETRY >= 0) {
@@ -64,7 +64,7 @@ public class TxtAdventInvoCheck {
 							 final int TRY = 0;
 							 String choice;
 							 while (TRY >= 0) {
-								 choice = nullCheck.nullCheck(JOptionPane.showInputDialog("Which potion do you want to use?\n1) Health Potion: " + invo[0] + "\n2) Attack Potion: " + invo[1] + "\n3) Defense Potion: " + invo[2] +
+								 choice = nullCheck.nullCheck(JOptionPane.showInputDialog("Which potion do you want to use?\n\n1) Health Potion: " + invo[0] + "\n2) Attack Potion: " + invo[1] + "\n3) Defense Potion: " + invo[2] +
 											"\n4) Speed Potion: " + invo[3] + "\n5) Go back"));
 								 emptyField(choice, room, roomName, whereToGo, directions, myStats, invo, flags);
 									try {
@@ -211,7 +211,7 @@ public class TxtAdventInvoCheck {
 			 
 		}
 		
-		public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 			
 			if(field.isEmpty()) {
 				JOptionPane.showMessageDialog(null, "You need to type something.");

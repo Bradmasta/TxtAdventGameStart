@@ -1,3 +1,5 @@
+
+
 import javax.swing.JOptionPane;
 
 
@@ -20,7 +22,7 @@ public class TxtAdventNullCheck {
 		}
 		return nullCheck;
   }
-	public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 		TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 		TxtAdventDungeon newDungeon = new TxtAdventDungeon();
 		TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
@@ -37,12 +39,15 @@ public class TxtAdventNullCheck {
 				else if (room >= 29 || room == 13) {
 				newPrompt.PromptNeedType();
 				newUpper.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else if (room == 999) {
+					
+					TxtAdventGameStart.startGame();
+				}
 					
 				}
 				
 			}
 					
-				}
-		
-	
 }
+

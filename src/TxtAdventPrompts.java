@@ -1,5 +1,6 @@
 import javax.swing.JOptionPane;
 
+
 public class TxtAdventPrompts {
 	TxtAdventBeginData newDirection = new TxtAdventBeginData();
 	String[] directions = newDirection.BeginDataDirections();
@@ -9,6 +10,23 @@ public class TxtAdventPrompts {
 		
 		
 	}
+	public String PromptRoom25(int chestPrompt) {
+		String retString = null;
+		switch(chestPrompt) {
+		case 0:
+			retString = "You can't open this chest for some reason..";
+			return retString;
+		case 1:
+			retString = "Your health being less than half has allowed you to open this chest!\n"
+					+ "You receive 3 Health, Attack, and Defense Potions!";
+			return retString;
+		default:
+		return retString;
+		
+		
+		}
+			
+		}
 public void PromptNeedType() {
 		
 	JOptionPane.showMessageDialog(null, "You need to type something.");
@@ -240,7 +258,7 @@ public void PromptDrake() {
 }
 public void PromptDrakeSafe() {
 	
-	JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but the room is safe.");
+	JOptionPane.showMessageDialog(null, "You hear the sounds of young drakes lurking about in nearby rooms, but this room is safe.");
 	
 	
 }

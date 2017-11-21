@@ -3,7 +3,7 @@ public class TxtAdventBeginData {
 
 	
 	public int BeginDataRoom() {
-	int room = 0;
+	int room = 999;
 		return room;
 	}
 	public String[] BeginDataRoomName() {
@@ -39,17 +39,17 @@ public class TxtAdventBeginData {
 			
 		}
 	public int[] BeginDataMyStats() {
-		int myStats[] = {60, 30, 25, 7};
+		int myStats[] = {160, 30, 25, 7};
 		return myStats;
 			
 		}
 	public int[] BeginDataInvo() {
-		int invo[] = {5, 1, 1 , 0, 0, 0, 0};
+		int invo[] = {5, 2, 2, 0, 0, 0, 0};
 		return invo;
 			
 		}
 	public int[] BeginDataFlags() {
-		int flags[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		int flags[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		return flags;
 			
 		}

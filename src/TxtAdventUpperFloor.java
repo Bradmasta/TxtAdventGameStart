@@ -9,11 +9,12 @@ public class TxtAdventUpperFloor {
 	TxtAdventDragon drgnft = new TxtAdventDragon();
 
 	
-	public void UpperRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-
+	public void UpperRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+		TxtAdventHelp help = new TxtAdventHelp();
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventMainFloor mainRoom = new TxtAdventMainFloor();
+		TxtAdventSave save = new TxtAdventSave();
 
 		
 		String directChoice;
@@ -29,7 +30,12 @@ public class TxtAdventUpperFloor {
 		case "i":
 			playerChooses.invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
-			
+		case "h":
+			help.Help(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+		case "q":
+			save.Save(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;	
 		case "c":
 			switch (room) {
 			
@@ -73,6 +79,7 @@ public class TxtAdventUpperFloor {
 					invo[0] += 1;
 					invo[1] += 2;
 					invo[2] += 1;
+					flags[12] += 1;
 					room = whereToGo[34][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
@@ -405,7 +412,7 @@ public class TxtAdventUpperFloor {
 			
 		}
 	}			
-	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		String retString = null;
@@ -525,7 +532,7 @@ public class TxtAdventUpperFloor {
 		}
 			return retString;
 	}
-	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		if (room == 31) {
 			if (flags[6] == 0) {
@@ -577,7 +584,7 @@ public class TxtAdventUpperFloor {
 		}	
 		
 	}
-	public void DragonKeep(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void DragonKeep(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 		
 		int question = newRand.randDragonKeepQuestion();
 		 TxtAdventPrompts newPrompt = new TxtAdventPrompts();
@@ -672,7 +679,7 @@ public class TxtAdventUpperFloor {
 					break;
 				}
 		 case 5:
-			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which months have 28 days? \nA) 6 months"
+			 answer = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Which month(s) have(has) 28 days? \nA) 6 months"
 						+ "\nB) 7 months \nC) 1 month \nD) All of them"));
 			 nullCheck.emptyField(answer, room, roomName, whereToGo, directions, myStats, invo, flags);
 				answer = answer.substring(0, 1).toLowerCase();

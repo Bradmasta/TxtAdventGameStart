@@ -8,7 +8,7 @@ public class TxtAdventDragon {
 	
 	public void DragonFightStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		
-		 int enemyStats[] = {200, 45, 40, 999};
+		 int enemyStats[] = {300, 50, 50, 99999};
 		 DragonFight(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 		  
 	  }
@@ -28,22 +28,21 @@ public class TxtAdventDragon {
 			  }
 			  if (enemyStats[0] <= 0) {
 				  
-				  JOptionPane.showMessageDialog(null, "Somehow, someway...you won! Incredible!\n I do hope you enjoyed this game, and best of luck if you try again!");
+				  JOptionPane.showMessageDialog(null, "Somehow, someway...YOU WON! Incredible!\n I do hope you enjoyed this game, and best of luck if you try again!");
 				  System.exit(0);
  
 			  }  
 		  }  
 		  
-		  else if(myStats[3] < enemyStats[3]) {
 			  
-			  enemyCombat(enemyStats, myStats);
+			  enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 			 
 			  while(battleChoice == 0) {
 				  
 				  String battleInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3] + "\n\n\n"
 						  + "The Dragons Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3] + 
 						  "\n\n\n What do you want to do? \n\n\n1) Attack\n2) Inventory\n3) Run")); 
-					      emptyField(battleInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+					      emptyField(battleInfo, room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 					      
 			  switch(battleInfo) {
 				 case "1":
@@ -65,8 +64,8 @@ public class TxtAdventDragon {
 					 break;
 				 }
 		  }
-			  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice); 
-		  }
+		  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice); 
+		  
 		 
 	    }
 	  }
@@ -118,7 +117,7 @@ public class TxtAdventDragon {
 		  int combatChoice = combatVerify(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 		  
 		  if (combatChoice == 1) {
-			  if (myStats[1] < enemyStats[2]) {
+			  if (myStats[1] <= enemyStats[2]) {
 				  JOptionPane.showMessageDialog(null, "Your Attack isn't high enough to do damage to the Dragon!"); 
 				  
 			  }
@@ -153,11 +152,11 @@ public class TxtAdventDragon {
 				 final int RETRY = 0;
 				 String choice;
 				 while (RETRY >= 0) {
-					 choice = JOptionPane.showInputDialog("Your Inventory:\n Health Potion: " + invo[0] + "\n Attack Potion: " + invo[1] + "\n Defense Potion: " + invo[2] +
+					 choice = nullCheck.nullCheck(JOptionPane.showInputDialog("Your Inventory:\n\n Health Potion: " + invo[0] + "\n Attack Potion: " + invo[1] + "\n Defense Potion: " + invo[2] +
 								"\n Speed Potion: " + invo[3] + "\n Downstairs Key: " + invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] +
-								"\nSelect item to use or return to battle? \n1) Use Health Potion\n2) Use Attack Potion\n3) Use Defence Potion\n4) Use Speed Potion"
-								+ "\n5) Return to battle!");
-					 emptyField(choice, room, roomName, whereToGo, directions, myStats, invo, flags);
+								"\n\nSelect item to use or return to battle? \n\n1) Use Health Potion\n2) Use Attack Potion\n3) Use Defence Potion\n4) Use Speed Potion"
+								+ "\n5) Return to battle!"));
+					 emptyField(choice, room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 						try {
 							int number = 0;
 							try {
@@ -243,21 +242,30 @@ public class TxtAdventDragon {
 	  }
 
 	  
-	  public void enemyCombat(int[] enemyStats, int[] myStats) {
+	  public void enemyCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
 		  int hpChange = 0;
-		  int enAttkIncrease = 5;
+		  int enAttkIncrease = 15;
 		  int attk = enemyStats[1] - myStats[2];
-		  if (myStats[2] > enemyStats[1]) {
+		  if (myStats[2] >= enemyStats[1]) {
 			  enemyStats[1] += enAttkIncrease;
 			  JOptionPane.showMessageDialog(null, "The Dragon can't attack because its Attack is too low! But not for long.. The Dragon "
 			  		+ "increases its Attack by " + enAttkIncrease + "!");
+	
 			  
 		  }
-		  if (newRand.randEnemySuccess() >= 5) {
+		  else if (newRand.randEnemySuccess() >= 5) {
+			  if (myStats[2] >= enemyStats[1]) {
+				  enemyStats[1] += enAttkIncrease;
+				  JOptionPane.showMessageDialog(null, "The Dragon still can't attack, for now.");
+		
+				  
+			  }
+			  else {
 			
 					  hpChange = myStats[0] - attk;
 					  myStats[0] = hpChange;
 					  JOptionPane.showMessageDialog(null, "The Dragon's attack is successful! They deal " + attk + " damage!");
+			  }
 				  
 		  }
 		  else {
@@ -266,11 +274,11 @@ public class TxtAdventDragon {
 		  }
 		  
 	  }
-	  public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	  public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
 			
 			if(field.isEmpty()) {
 					JOptionPane.showMessageDialog(null, "You need to type something.");
-				
+					DragonFight(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 							
 					}
 					

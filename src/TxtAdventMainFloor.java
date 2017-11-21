@@ -4,11 +4,13 @@ public class TxtAdventMainFloor {
 
 	
 	
-	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+		TxtAdventHelp help = new TxtAdventHelp();
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventDungeon dunRoom = new TxtAdventDungeon();
 		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+		TxtAdventSave save = new TxtAdventSave();
 
 		
 		String directChoice;
@@ -23,6 +25,12 @@ public class TxtAdventMainFloor {
 
 		case "i":
 			playerChooses.invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+		case "h":
+			help.Help(room, roomName, whereToGo, directions, myStats, invo, flags);
+			break;
+		case "q":
+			save.Save(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "c":
 			if (room == 9) {
@@ -309,7 +317,7 @@ public class TxtAdventMainFloor {
 			 
 		}
 	}			
-	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		String retString = null;
@@ -412,7 +420,7 @@ public class TxtAdventMainFloor {
 		}
 		 return retString;
 	}
-	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 9) {
@@ -423,11 +431,11 @@ public class TxtAdventMainFloor {
 			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-			JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but the room is safe.");
+			JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
 		
 			}
 		}
-		else if (newRand.randEnemyEnc() <= 3) {
+		else if (newRand.randEnemyEnc() < 3) {
 			newPrompt.PromptDarkKnight();
 			TxtAdventEncounters newEnc = new TxtAdventEncounters();
 			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);

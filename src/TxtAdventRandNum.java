@@ -2,7 +2,7 @@ import java.util.Random;
 public class TxtAdventRandNum {
 
 	Random R = new Random();
-	public void randRoom(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+	public void randRoom(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
 	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 	Random R = new Random();
 	int newStartRoom = R.nextInt(3) + 1;	
