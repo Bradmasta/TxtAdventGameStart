@@ -38,6 +38,14 @@ public class TxtAdventRandNum {
 		
 		
 		}
+	public int randDragonAttkInc() {
+		
+		int newInt = R.nextInt(9) + 1;
+	    
+		return newInt;
+		
+		
+		}
 	
 	public int randEasyEnemySpd() {
 		

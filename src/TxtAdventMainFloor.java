@@ -1,6 +1,10 @@
 import javax.swing.*;
 public class TxtAdventMainFloor {
-
+/********************************
+ * This class controls all movement between rooms on the middle floor, as well as moving to a room in the Dungeon and a room in the upstairs
+ * 
+ * 
+ ********************************/
 
 	
 	
@@ -11,10 +15,10 @@ public class TxtAdventMainFloor {
 		TxtAdventDungeon dunRoom = new TxtAdventDungeon();
 		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
 		TxtAdventSave save = new TxtAdventSave();
-
+		//Uses methods from the classes listed above
 		
 		String directChoice;
-		
+		// Input is done in the Script method, and that input is then turned into a lowercase and passed into the switch
 		directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags);
 		
 		directChoice = directChoice.substring(0, 1).toLowerCase();
@@ -22,7 +26,9 @@ public class TxtAdventMainFloor {
 		
 	
 		switch (directChoice) {
-
+		/* Takes in certain inputs, and based on them, does various things such as calling the inventory method, or passing in a new room ID
+		 * based on the direction the player wants to go and calling the "Rooms" method again.
+		*/
 		case "i":
 			playerChooses.invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
@@ -58,6 +64,7 @@ public class TxtAdventMainFloor {
 			}
 			break;
 		case "k":
+			// Checks if the room is 2, and then it checks if a flag has gone off.
 			if (room == 2) {
 			if (flags[2] == 0) {
 				if (invo[4] == 1) {
@@ -98,11 +105,13 @@ public class TxtAdventMainFloor {
 				
 			}
 			else {
+				// Prompt class used to take care of prompts that are used in multiple classes. This one will say you can't use a key here.
 				newPrompt.PromptCantUseKey();			
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			break;
 		case "n":
+			// Will check if the data from the 2D array doesn't contain -1; if it doesn't, it'll pass in the correct room ID and "move" the player to that room
 			int checkIfValid = whereToGo[room][0];
 			if(checkIfValid != -1) {
 				switch(room) {
@@ -132,6 +141,7 @@ public class TxtAdventMainFloor {
 				}
 			}
 			else {
+				// if the array data based on the room ID returns a -1, this shows.
 				newPrompt.PromptCantGoDirection(0);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
@@ -318,6 +328,7 @@ public class TxtAdventMainFloor {
 		}
 	}			
 	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+		//Here is where all the text is called based on the room ID. These will call a method inside the Prompt class.
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		String retString = null;
@@ -421,6 +432,7 @@ public class TxtAdventMainFloor {
 		 return retString;
 	}
 	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+		// This method is used in a few rooms to dictate potential encounters. On this floor, a player can encounter a Dark Knight and there's a 30% chance of that happening.
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 9) {

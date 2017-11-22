@@ -10,7 +10,7 @@ public class TxtAdventPrompts {
 		
 		
 	}
-	public String PromptRoom25(int chestPrompt) {
+	public String PromptRoom26(int chestPrompt) {
 		String retString = null;
 		switch(chestPrompt) {
 		case 0:
@@ -221,6 +221,9 @@ public String PromptBasicScript(int directionCase) {
 		return retString;
 	case 18:
 		retString =   "\nYou can go the following directions: \n" + directions[1] + ", " + directions[2] + "\nWhere do you want to go?";
+		return retString;
+	case 19:
+		retString =  "\nYou can go the following directions: \n" + directions[0] + ", " + directions[5] + "\nWhere do you want to go?";
 		return retString;
 	case 99:
 		retString = "\nYou see a guardian of sorts in front of the northern door. \nYou can go the following directions: \n" + directions[0] + ", " + directions[1] +  "\nWhere do you want to go?";

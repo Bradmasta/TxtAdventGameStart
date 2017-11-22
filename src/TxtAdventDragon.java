@@ -8,7 +8,7 @@ public class TxtAdventDragon {
 	
 	public void DragonFightStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		
-		 int enemyStats[] = {300, 50, 50, 99999};
+		 int enemyStats[] = {500, 50, 50, 99999};
 		 DragonFight(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 		  
 	  }
@@ -244,7 +244,7 @@ public class TxtAdventDragon {
 	  
 	  public void enemyCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
 		  int hpChange = 0;
-		  int enAttkIncrease = 15;
+		  int enAttkIncrease = 10;
 		  int attk = enemyStats[1] - myStats[2];
 		  if (myStats[2] >= enemyStats[1]) {
 			  enemyStats[1] += enAttkIncrease;
@@ -261,10 +261,30 @@ public class TxtAdventDragon {
 				  
 			  }
 			  else {
-			
+				  if (newRand.randDragonAttkInc() >= 7) {
+					  hpChange = myStats[0] - attk;
+					  myStats[0] = hpChange;
+					  enemyStats[1] += enAttkIncrease;
+					  JOptionPane.showMessageDialog(null, "The Dragon's attack is successful! They deal " + attk + " damage!\n"
+					  		+ "The Dragon's attack also went up by " + enAttkIncrease + "!");
+					  if (myStats[0] <= 0) {
+						  JOptionPane.showMessageDialog(null, "You lost..Better luck next time.");  
+						  System.exit(0);
+						  
+					  }
+					  
+				  }
+				  else {
+
 					  hpChange = myStats[0] - attk;
 					  myStats[0] = hpChange;
 					  JOptionPane.showMessageDialog(null, "The Dragon's attack is successful! They deal " + attk + " damage!");
+					  if (myStats[0] <= 0) {
+						  JOptionPane.showMessageDialog(null, "You lost..Better luck next time.");  
+						  System.exit(0);
+						  
+					  }
+				  }
 			  }
 				  
 		  }

@@ -504,7 +504,7 @@ public class TxtAdventUpperFloor {
 					
 				break;
 				case 13:
-					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(19)));
 					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 				

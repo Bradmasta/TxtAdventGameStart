@@ -8,6 +8,7 @@ public class TxtAdventSave {
 		TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
 		TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 		TxtAdventDungeon newDungeon = new TxtAdventDungeon();
+		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		
 		
 		
@@ -17,54 +18,95 @@ public class TxtAdventSave {
 		
 		
 		if(file.exists()) {
-			java.io.PrintWriter output = new java.io.PrintWriter(file);
-			JOptionPane.showMessageDialog(null, "Save detected. Saving the game now!");
-			output.println(room);
-			output.println(myStats[0]);
-			output.println(myStats[1]);
-			output.println(myStats[2]);
-			output.println(myStats[3]);
-			output.println(invo[0]);
-			output.println(invo[1]);
-			output.println(invo[2]);
-			output.println(invo[3]);
-			output.println(invo[4]);
-			output.println(invo[5]);
-			output.println(invo[6]);
-			output.println(flags[0]);
-			output.println(flags[1]);
-			output.println(flags[2]);
-			output.println(flags[3]);
-			output.println(flags[4]);
-			output.println(flags[5]);
-			output.println(flags[6]);
-			output.println(flags[7]);
-			output.println(flags[8]);
-			output.println(flags[9]);
-			output.println(flags[10]);
-			output.println(flags[11]);
-			output.println(flags[12]);
-			output.println(flags[13]);
-			output.println(flags[14]);
-			output.println(flags[15]);
-			output.println(flags[16]);
-			output.println(flags[17]);
+			String choiceInfo = null;
+			int choice = 0;
+			choiceInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Save detected. What you like to overwrite the current save?\n1) Yes \n2) No"));
+			emptyField(choiceInfo, room, roomName, whereToGo, directions, myStats, invo, flags);
+			//Will first ask player if they want to overwrite a save or not. Then, first switch converts from String to Int, second switch process request.
+			 switch(choiceInfo) {
+			 case "1":
+				 choice = Integer.parseInt(choiceInfo);
+				 break;
+			 case "2":
+				 choice = Integer.parseInt(choiceInfo);
+				 break;
+			 default:
+				 JOptionPane.showMessageDialog(null, "Not a valid option");
+				 Save(room, roomName, whereToGo, directions, myStats, invo, flags);
+				 break;
+				 
+			 }
 			
+			switch(choice) {
 			
-			output.close();
-
-			JOptionPane.showMessageDialog(null, "Save complete! And we continue!");
-			if (room >=0 && room < 13 && room != 4) {
-			newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-			}
-			else if (room > 13 && room < 29 || room == 4) {
-			newDungeon.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
-			}
-			else if (room >= 29 || room == 13) {
-			newUpper.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			case 1:
+				java.io.PrintWriter output = new java.io.PrintWriter(file);
+				output.println(room);
+				output.println(myStats[0]);
+				output.println(myStats[1]);
+				output.println(myStats[2]);
+				output.println(myStats[3]);
+				output.println(invo[0]);
+				output.println(invo[1]);
+				output.println(invo[2]);
+				output.println(invo[3]);
+				output.println(invo[4]);
+				output.println(invo[5]);
+				output.println(invo[6]);
+				output.println(flags[0]);
+				output.println(flags[1]);
+				output.println(flags[2]);
+				output.println(flags[3]);
+				output.println(flags[4]);
+				output.println(flags[5]);
+				output.println(flags[6]);
+				output.println(flags[7]);
+				output.println(flags[8]);
+				output.println(flags[9]);
+				output.println(flags[10]);
+				output.println(flags[11]);
+				output.println(flags[12]);
+				output.println(flags[13]);
+				output.println(flags[14]);
+				output.println(flags[15]);
+				output.println(flags[16]);
+				output.println(flags[17]);
 				
-			}
+				
+				output.close();
+				JOptionPane.showMessageDialog(null, "Save complete! And we continue!");
+				if (room >=0 && room < 13 && room != 4) {
+					newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+					else if (room > 13 && room < 29 || room == 4) {
+					newDungeon.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+					}
+					else if (room >= 29 || room == 13) {
+					newUpper.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						
+					}
+				break;
 			
+			case 2:
+				JOptionPane.showMessageDialog(null, "Save cancelled! and we continue!");
+				if (room >=0 && room < 13 && room != 4) {
+					newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+					else if (room > 13 && room < 29 || room == 4) {
+					newDungeon.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+					}
+					else if (room >= 29 || room == 13) {
+					newUpper.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						
+					}
+				break;
+				
+			default:
+				JOptionPane.showMessageDialog(null, "Invalid input.");
+				Save(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
+
+			}
 			
 		}
 		else {
@@ -126,7 +168,12 @@ public class TxtAdventSave {
 		java.io.File file = new java.io.File("save.txt"); 
 
 		if (file.exists()){ 
- 
+			/*
+			 * If the Save file exists and the player decides to continue where the last save took place,
+			 * the file is read and the players stats, inventory, and all the flags triggered
+			 * are loaded up and passed into the room method based on the room ID.
+			 *  
+			 */
 			Scanner input = new Scanner(file);
 
 			
@@ -184,4 +231,12 @@ public class TxtAdventSave {
 	
 
 }
+	public void emptyField (String field, int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+		//Checks if an input window is empty when OK is press. 
+		if(field.isEmpty()) {
+				JOptionPane.showMessageDialog(null, "You need to type something.");
+				Save(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				
+		}
 }

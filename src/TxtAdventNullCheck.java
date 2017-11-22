@@ -40,10 +40,6 @@ public class TxtAdventNullCheck {
 				newPrompt.PromptNeedType();
 				newUpper.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
-				else if (room == 999) {
-					
-					TxtAdventGameStart.startGame();
-				}
 					
 				}
 				

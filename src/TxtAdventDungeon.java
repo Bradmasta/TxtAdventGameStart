@@ -46,20 +46,20 @@ public class TxtAdventDungeon {
 				
 				}
 			}
-			else if (room == 25) {
+			else if (room == 26) {
 				if (flags[16] == 0) {
 					if(myStats[0] >= 80) {
-						JOptionPane.showMessageDialog(null, newPrompt.PromptRoom25(0));	
+						JOptionPane.showMessageDialog(null, newPrompt.PromptRoom26(0));	
 						DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 						
 					}
 					else {	
-						JOptionPane.showMessageDialog(null, newPrompt.PromptRoom25(1));	
+						JOptionPane.showMessageDialog(null, newPrompt.PromptRoom26(1));	
 					invo[0] += 3;
 					invo[1] += 3;
 					invo[2] += 3;
 					flags[16] += 1;
-					room = whereToGo[25][1];	
+					room = whereToGo[26][0];	
 					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					}
 				}
@@ -314,33 +314,38 @@ public class TxtAdventDungeon {
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		String retString = null;
 		String roomIn = "You are in the " + roomName[room];
-		 if(room == 16 || room == 20 || room == 26) {
+		 if(room == 16 || room == 20) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
 			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			return retString;
 
 		}
-		 else if (room == 25) {
+		 else if (room == 26) {
 			 int flagCheck = flags[16];
 				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 				
 				switch(flagCheck) {
 				case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0)
-				+ newPrompt.PromptBasicScript(1) + newPrompt.PromptChestTxt(2)));
+				+ newPrompt.PromptBasicScript(0) + newPrompt.PromptChestTxt(2)));
 				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 				
 				case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1)
-				+ newPrompt.PromptBasicScript(1)));
+				+ newPrompt.PromptBasicScript(0)));
 				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 				return retString;
 				default:
 					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
 			    return retString;
-		     }
+	       }
+		 }
+		 else if (room == 25) {
+			 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(1)));
+				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				return retString;
 	    }
 		else if(room == 28) {
 			int flagCheck = flags[3];
@@ -430,7 +435,7 @@ public class TxtAdventDungeon {
 
 			}
 		}
-		else if (room == 25) {
+		else if (room == 26) {
 			if (flags[17] == 0) {
 			newPrompt.PromptHellHound();
 			flags[17] += 1;

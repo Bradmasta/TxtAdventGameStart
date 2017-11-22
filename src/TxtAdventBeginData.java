@@ -1,8 +1,14 @@
 
 public class TxtAdventBeginData {
-
+	/************************
+	 * This class includes all the data necessary to start the game.
+	 ************************/
 	
 	public int BeginDataRoom() {
+   /* Starts at 999 due to how save data works. During my testing of the save/load system, 
+    * starting at a number that can exist resulted in that room always being the room you start out in upon loading.
+    * While i'm fairly confident I fixed the issue, this number gets overridden when the game begins anyway.
+	*/
 	int room = 999;
 		return room;
 	}
@@ -20,6 +26,7 @@ public class TxtAdventBeginData {
 			
 		}
 	public int[][] BeginDataWhereToGo() {
+		// 37 rooms with a possible room based on North, South, East, West, Up, and Down. Room 37 is only a placeholder for now.
 		int whereToGo[][] = 
 			{{1, -1, 2, 3, -1, -1, 0}, {-1, 0, 6, 7, -1, -1, 1}, {-1, -1, 5, 0, -1, 4, 2}, {11, 12, 0, -1, 13, -1, 3}, {-1, -1, 14, 17, 2, -1, 4},
 			{-1, -1, -1, 2, -1, -1, 5}, {-1, -1, -1, 1, -1, -1, 6}, {8, 10, 1, 9, -1, -1, 7}, {-1, 7, -1, -1, -1, -1, 8}, {-1, -1, 7, -1, -1, -1, 9},
@@ -39,16 +46,19 @@ public class TxtAdventBeginData {
 			
 		}
 	public int[] BeginDataMyStats() {
-		int myStats[] = {160, 30, 25, 7};
+		// Health, Attack, Defense, Speed.
+		int myStats[] = {160, 25, 25, 7};
 		return myStats;
 			
 		}
 	public int[] BeginDataInvo() {
+		// Health Potion, Attack Potion, Defense Potion, Speed Potion, Downstairs Key, Upstairs Key, Final Key.
 		int invo[] = {5, 2, 2, 0, 0, 0, 0};
 		return invo;
 			
 		}
 	public int[] BeginDataFlags() {
+		// All the flags necessary to proceed throughout the game correctly.
 		int flags[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		return flags;
 			
