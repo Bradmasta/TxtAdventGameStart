@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 public class TxtAdventHelp {
 	
@@ -10,15 +11,14 @@ public class TxtAdventHelp {
 				+ ", East, West, Up, Down, Chest, Help, Inventory, Key, and Questsave\n"
 				+ " (You can also use n, s, e, w, u, d, c, h, i, k, and q)\n"
 				+ "Anything else you try won't work/be recognized except for the following exceptions:\n"
-				+ "In combat, you will be asked to type 1, 2, 3, ect.\n"
-				+ "and at one point you will be asked to type in A, B, C, D, but this will be very specific (Just pay attention!)\n"
+				+ "In combat, you will be asked to type 1, 2, 3, ect., as well as a few other prompts.\n"
 				+ "If you ever feel the need to quit the game when it asks you for an input, hitting the Cancel button or the X button at the top of any window will do the trick!\n"
 				+ "Before quitting out however, make sure you save the game using the Questsave or q input!\n"
 				+ "One final note: If possible, explore everywhere! You never know what you'll find! There are some chests in the game that could save your life!\n"
 				+ "I suppose that's it! I wish you luck on your journey!");
 	
 	}
-public void Help(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+public void Help(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 	TxtAdventDungeon newDungeon = new TxtAdventDungeon();
 	TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();

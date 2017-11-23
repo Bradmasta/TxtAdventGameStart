@@ -1,3 +1,4 @@
+
 import java.util.*;
 import javax.swing.JOptionPane;
 
@@ -261,7 +262,7 @@ public class TxtAdventDragon {
 				  
 			  }
 			  else {
-				  if (newRand.randDragonAttkInc() >= 7) {
+				  if (newRand.randDragonAttkInc() >= 8) {
 					  hpChange = myStats[0] - attk;
 					  myStats[0] = hpChange;
 					  enemyStats[1] += enAttkIncrease;

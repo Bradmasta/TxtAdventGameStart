@@ -1,12 +1,19 @@
+
 import javax.swing.JOptionPane;
 
 public class TxtAdventDungeon {
+	/********************************
+	 * This class controls all movement between rooms on the dungeon, as well as moving to a room on the main floor
+	 * The code is very similar to that of both the main floor and the upstairs area. 
+	 * While I could've put everything in one class, management was easier this way.
+	 * 
+	 ********************************/
 
 
 	TxtAdventMainFloor mainFlr = new TxtAdventMainFloor();
 	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 	
-	public void DunRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+	public void DunRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventHelp help = new TxtAdventHelp();
 		TxtAdventSave save = new TxtAdventSave();
@@ -310,14 +317,21 @@ public class TxtAdventDungeon {
 			break;
 		}
 	}
-	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		String retString = null;
 		String roomIn = "You are in the " + roomName[room];
 		 if(room == 16 || room == 20) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 
 		}
@@ -329,22 +343,45 @@ public class TxtAdventDungeon {
 				case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0)
 				+ newPrompt.PromptBasicScript(0) + newPrompt.PromptChestTxt(2)));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 				return retString;
 				
 				case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1)
 				+ newPrompt.PromptBasicScript(0)));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 				return retString;
 				default:
-					nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-			    return retString;
+			
+						JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+						DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
 	       }
 		 }
 		 else if (room == 25) {
 			 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(1)));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			 if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 				return retString;
 	    }
 		else if(room == 28) {
@@ -355,72 +392,144 @@ public class TxtAdventDungeon {
 			case 0:
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0)
 			+ newPrompt.PromptBasicScript(1) + newPrompt.PromptChestTxt(2)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 			
 			case 1:
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1)
 			+ newPrompt.PromptBasicScript(1)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 			default:
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-		    return retString;
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+
+				return retString;
 			
 			}
 		}
 		else if(room == 15 || room == 27) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(13)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 
 		}
 		else if(room == 23) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(14)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		else if(room == 4) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(15)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 			
 		else if(room == 21 || room == 24) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(12)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 			
 		}
 		else if(room == 14) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(16)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 			
 		}
 		else if(room == 18) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(7)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-			return retString;
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
+			return retString;	
 			
 		}
 		else if(room == 17 || room == 22) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(17)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		else if(room == 19) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(18)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		 return retString;
 	}
-	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		if (room == 28) {
@@ -431,7 +540,7 @@ public class TxtAdventDungeon {
 			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				JOptionPane.showMessageDialog(null, "You hear the howl of the Hellhounds nearby, but this room is safe.");
+				newPrompt.PromptHellHoundSafe();
 
 			}
 		}
@@ -443,7 +552,7 @@ public class TxtAdventDungeon {
 			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 			else {
-				JOptionPane.showMessageDialog(null, "You hear the howl of the Hellhounds nearby, but this room is safe.");
+				newPrompt.PromptHellHoundSafe();
 
 			}
 		}

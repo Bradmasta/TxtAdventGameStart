@@ -1,3 +1,4 @@
+
 import javax.swing.*;
 public class TxtAdventMainFloor {
 /********************************
@@ -8,7 +9,7 @@ public class TxtAdventMainFloor {
 
 	
 	
-	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventHelp help = new TxtAdventHelp();
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
@@ -327,7 +328,7 @@ public class TxtAdventMainFloor {
 			 
 		}
 	}			
-	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		//Here is where all the text is called based on the room ID. These will call a method inside the Prompt class.
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
@@ -336,13 +337,27 @@ public class TxtAdventMainFloor {
 		 if(room == 12 || room == 10) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		 else if (room == 8 || room == 11) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(1)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		else if(room == 9) {
@@ -352,39 +367,84 @@ public class TxtAdventMainFloor {
 			case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a chest! Wonder what's inside.." + newPrompt.PromptBasicScript(2)
 				+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 				return retString;
 
 			case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see an already opened chest!" + newPrompt.PromptBasicScript(2)
 				+  " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)"));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 				return retString;
 			default:
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-		    return retString;
+				
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					return retString;
 			}
 
 		}
 		else if(room == 5 || room == 6) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		else if(room == 13) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		else if(room == 0) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(6)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		else if(room == 1) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(7)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		else if(room == 2) {
@@ -392,15 +452,33 @@ public class TxtAdventMainFloor {
 			switch(flagCheck) {
 			case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked trapdoor." + newPrompt.PromptBasicScript(8)));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 			    return retString;
 			case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked trapdoor." + newPrompt.PromptBasicScript(8)));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 			    return retString;
 			default:
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-			    return retString;
+	
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+		
+					return retString;
+
 			
 			}
 			
@@ -410,15 +488,32 @@ public class TxtAdventMainFloor {
 			switch(flagCheck) {
 			case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked Door."  + newPrompt.PromptBasicScript(9)));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 				return retString;
 			case 1:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see an unlocked Door."  + newPrompt.PromptBasicScript(9)));
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					return retString;
+				}
 				return retString;
 			default:
-				nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
-			    return retString;
+
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+	
+					return retString;
 			
 			}
 			
@@ -426,15 +521,23 @@ public class TxtAdventMainFloor {
 		else if(room == 7) {
 			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(10)));
-			nullCheck.emptyField(retString, room, roomName, whereToGo, directions, myStats, invo, flags);
+			if(retString.isEmpty()) {
+				
+				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			else {
+				return retString;
+			}
 			return retString;
 		}
 		 return retString;
 	}
-	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception {
+	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		// This method is used in a few rooms to dictate potential encounters. On this floor, a player can encounter a Dark Knight and there's a 30% chance of that happening.
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
+		// Room 9 is the only room that has a guaranteed
 		if (room == 9) {
 			if (flags[1] == 0) {
 			newPrompt.PromptDarkKnight();
@@ -447,13 +550,23 @@ public class TxtAdventMainFloor {
 		
 			}
 		}
+		
 		else if (newRand.randEnemyEnc() < 3) {
-			newPrompt.PromptDarkKnight();
-			TxtAdventEncounters newEnc = new TxtAdventEncounters();
-			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+			 if (flags[18] == 0) {
+				newPrompt.PromptDarkKnight();
+				TxtAdventEncounters newEnc = new TxtAdventEncounters();
+				newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+			 else {
+					flags[18] = 0;
+					JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
+					
+					
+				}
+			
+			}
 		}	
+		
 		
 	}
 	
-	
-}

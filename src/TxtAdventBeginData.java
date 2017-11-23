@@ -59,7 +59,7 @@ public class TxtAdventBeginData {
 		}
 	public int[] BeginDataFlags() {
 		// All the flags necessary to proceed throughout the game correctly.
-		int flags[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+		int flags[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 		return flags;
 			
 		}

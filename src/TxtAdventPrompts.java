@@ -1,3 +1,4 @@
+
 import javax.swing.JOptionPane;
 
 
@@ -27,9 +28,11 @@ public class TxtAdventPrompts {
 		}
 			
 		}
-public void PromptNeedType() {
+public String PromptNeedType() {
 		
-	JOptionPane.showMessageDialog(null, "You need to type something.");
+	String retString = "You need to type something.";
+	
+	return retString;
 		
 		
 	}
@@ -265,6 +268,12 @@ public void PromptDrakeSafe() {
 	
 	
 }
+public void PromptHellHoundSafe() {
+	
+	JOptionPane.showMessageDialog(null, "You hear the growling of some Hellhounds, but the room is safe.");
+	
+	
+}
 
 public void PromptDragonKeepFirstSee() {
 	
@@ -272,7 +281,7 @@ public void PromptDragonKeepFirstSee() {
 			+ "You are no ordinary fighter, I see that now. But, in order to fight the Dragon, you must answer one question for me.\nThink you can do it? We shall see.\nIf you get this right, you will have the "
 			+ "privilege of fighting the almighty beast, but if you should fail..\nyou will be sent all the way down to the back of the dungeon and must work your way back up here.\nThat's not all though: You will "
 			+ "lose half of your health! (rounded down if your health is an odd number)\n Also, I don't give the correct answer, so if you happen "
-			+ "to get this question again, you'll still have to know what the answer is, or guess!\nOne other thing: Typing ANYTHING other than the correct choice will result in a failed attempt, so be careful!\nSo, I hope you're ready; you finishing this quest could very well depend on your answer to this question!");
+			+ "to get this question again, you'll still have to know what the answer is, or guess!\nSo, I hope you're ready; you finishing this quest could very well depend on your answer to this question!");
 	
 	
 }
