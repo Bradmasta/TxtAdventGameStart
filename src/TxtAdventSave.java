@@ -5,12 +5,12 @@ import javax.swing.*;
 
 
 public class TxtAdventSave {
-	
+	TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
+	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
+	TxtAdventDungeon newDungeon = new TxtAdventDungeon();
+	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	public void Save(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
-		TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
-		TxtAdventDungeon newDungeon = new TxtAdventDungeon();
-		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
+		
 		
 		
 		
@@ -20,8 +20,8 @@ public class TxtAdventSave {
 		
 		
 		if(file.exists()) {
-			String choiceInfo = null;
-			choiceInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Save detected. What you like to overwrite the current save?\n1) Yes \n2) No"));
+		
+			String choiceInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Save detected. What you like to overwrite the current save?\n1) Yes \n2) No"));
 			if (choiceInfo.isEmpty()) {
 				
 				JOptionPane.showMessageDialog(null, "You need to type something.");
@@ -170,12 +170,12 @@ public class TxtAdventSave {
 		
 	}
 	
-	public void Load(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) throws Exception{
+	public void Load(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
 		TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 		TxtAdventDungeon newDungeon = new TxtAdventDungeon();
 		java.io.File file = new java.io.File("save.txt"); 
-
+		
 		if (file.exists()){ 
 			/*
 			 * If the Save file exists and the player decides to continue where the last save took place,
@@ -183,44 +183,50 @@ public class TxtAdventSave {
 			 * are loaded up and passed into the room method based on the room ID.
 			 *  
 			 */
-			Scanner input = new Scanner(file);
+			Scanner input;
+			try {
+				input = new Scanner(file);
+				while (input.hasNext()){
+					room = input.nextInt();
+					myStats[0] = input.nextInt();
+					myStats[1] = input.nextInt();
+					myStats[2] = input.nextInt();
+					myStats[3] = input.nextInt();
+					invo[0] = input.nextInt();
+					invo[1] = input.nextInt();
+					invo[2]= input.nextInt();
+					invo[3] = input.nextInt();
+					invo[4] = input.nextInt();
+					invo[5]= input.nextInt();
+					invo[6] = input.nextInt();
+					flags[0] = input.nextInt();
+					flags[1] = input.nextInt();
+					flags[2]= input.nextInt();
+					flags[3] = input.nextInt();
+					flags[4] = input.nextInt();
+					flags[5] = input.nextInt();
+					flags[6] = input.nextInt();
+					flags[7] = input.nextInt();
+					flags[8] = input.nextInt();
+					flags[9] = input.nextInt();
+					flags[10] = input.nextInt();
+					flags[11] = input.nextInt();
+					flags[12] = input.nextInt();
+					flags[13] = input.nextInt();
+					flags[14] = input.nextInt();
+					flags[15] = input.nextInt();
+					flags[16] = input.nextInt();
+					flags[17] = input.nextInt();
+					flags[18] = input.nextInt();
+							
+				}
+				input.close();
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 
 			
-			while (input.hasNext()){
-				room = input.nextInt();
-				myStats[0] = input.nextInt();
-				myStats[1] = input.nextInt();
-				myStats[2] = input.nextInt();
-				myStats[3] = input.nextInt();
-				invo[0] = input.nextInt();
-				invo[1] = input.nextInt();
-				invo[2]= input.nextInt();
-				invo[3] = input.nextInt();
-				invo[4] = input.nextInt();
-				invo[5]= input.nextInt();
-				invo[6] = input.nextInt();
-				flags[0] = input.nextInt();
-				flags[1] = input.nextInt();
-				flags[2]= input.nextInt();
-				flags[3] = input.nextInt();
-				flags[4] = input.nextInt();
-				flags[5] = input.nextInt();
-				flags[6] = input.nextInt();
-				flags[7] = input.nextInt();
-				flags[8] = input.nextInt();
-				flags[9] = input.nextInt();
-				flags[10] = input.nextInt();
-				flags[11] = input.nextInt();
-				flags[12] = input.nextInt();
-				flags[13] = input.nextInt();
-				flags[14] = input.nextInt();
-				flags[15] = input.nextInt();
-				flags[16] = input.nextInt();
-				flags[17] = input.nextInt();
-				flags[18] = input.nextInt();
-						
-			}
-			input.close();
+			
 			flags[18] = 1;
 			JOptionPane.showMessageDialog(null, "You shall continue where you left off!");
 			if (room >=0 && room < 13 && room != 4) {

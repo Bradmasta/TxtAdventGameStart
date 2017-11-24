@@ -17,15 +17,10 @@ public class TxtAdventDungeon {
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventHelp help = new TxtAdventHelp();
 		TxtAdventSave save = new TxtAdventSave();
+		try {
+			
+		String directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags).substring(0, 1).toLowerCase();
 		
-		String directChoice;
-		
-		directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags);
-		
-		directChoice = directChoice.substring(0, 1).toLowerCase();
-		
-		
-	
 		switch (directChoice) {
 
 		case "i":
@@ -316,13 +311,30 @@ public class TxtAdventDungeon {
 			DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags); 
 			break;
 		}
+		}
+		catch (NullPointerException | StringIndexOutOfBoundsException e) {
+			System.out.println(" ");
+			
+		}
+		
+	
 	}
 	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
+		TxtAdventEncounters newEnc = new TxtAdventEncounters();
+		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		String retString = null;
 		String roomIn = "You are in the " + roomName[room];
 		 if(room == 16 || room == 20) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			 if (newRand.randEnemyEnc() <= 3) {
+				 if (flags[18] == 0) {
+					 newPrompt.PromptHellHound();
+						
+						newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+			 else {
+				 flags[18] = 0;
+			newPrompt.PromptHellHoundSafe();
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
 			if(retString.isEmpty()) {
 				
@@ -332,13 +344,24 @@ public class TxtAdventDungeon {
 			else {
 				return retString;
 			}
-			return retString;
-
+			 }
 		}
+			 else {
+				 flags[18] = 0;
+				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0))); 
+			 }
+		 }
 		 else if (room == 26) {
-			 int flagCheck = flags[16];
-				enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
-				
+
+			 if (flags[17] == 0) {
+					newPrompt.PromptHellHound();
+					flags[17] += 1;
+					
+					newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+					else {
+						newPrompt.PromptHellHoundSafe();
+						 int flagCheck = flags[16];
 				switch(flagCheck) {
 				case 0:
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0)
@@ -371,6 +394,7 @@ public class TxtAdventDungeon {
 						DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 	       }
+					}
 		 }
 		 else if (room == 25) {
 			 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(1)));
@@ -385,14 +409,21 @@ public class TxtAdventDungeon {
 				return retString;
 	    }
 		else if(room == 28) {
-			int flagCheck = flags[3];
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+		
+				if (flags[4] == 0) {
+				newPrompt.PromptHellHound();
+				flags[4] += 1;
 			
+				newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+				else {
+					newPrompt.PromptHellHoundSafe();
+			int flagCheck = flags[3];
 			switch(flagCheck) {
 			case 0:
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(0)
 			+ newPrompt.PromptBasicScript(1) + newPrompt.PromptChestTxt(2)));
-if(retString.isEmpty()) {
+			if(retString.isEmpty()) {
 				
 				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -405,7 +436,7 @@ if(retString.isEmpty()) {
 			case 1:
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptChestTxt(1)
 			+ newPrompt.PromptBasicScript(1)));
-if(retString.isEmpty()) {
+			if(retString.isEmpty()) {
 				
 				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -422,8 +453,17 @@ if(retString.isEmpty()) {
 			
 			}
 		}
+		}
 		else if(room == 15 || room == 27) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			if (newRand.randEnemyEnc() <= 3) {
+				 if (flags[18] == 0) {
+					 newPrompt.PromptHellHound();
+						
+						newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+			 else {
+				 flags[18] = 0;
+			newPrompt.PromptHellHoundSafe();
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(13)));
 			if(retString.isEmpty()) {
 				
@@ -433,7 +473,12 @@ if(retString.isEmpty()) {
 			else {
 				return retString;
 			}
-			return retString;
+			 }
+			}
+			 else {
+				 flags[18] = 0;
+				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(13))); 
+			 }
 
 		}
 		else if(room == 23) {
@@ -446,7 +491,7 @@ if(retString.isEmpty()) {
 			else {
 				return retString;
 			}
-			return retString;
+			
 		}
 		else if(room == 4) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(15)));
@@ -458,7 +503,7 @@ if(retString.isEmpty()) {
 			else {
 				return retString;
 			}
-			return retString;
+			
 		}
 			
 		else if(room == 21 || room == 24) {
@@ -471,11 +516,18 @@ if(retString.isEmpty()) {
 			else {
 				return retString;
 			}
-			return retString;
 			
 		}
 		else if(room == 14) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			if (newRand.randEnemyEnc() <= 3) {
+				 if (flags[18] == 0) {
+					 newPrompt.PromptHellHound();
+						
+						newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+			 else {
+				 flags[18] = 0;
+			newPrompt.PromptHellHoundSafe();
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(16)));
 			if(retString.isEmpty()) {
 				
@@ -485,11 +537,24 @@ if(retString.isEmpty()) {
 			else {
 				return retString;
 			}
-			return retString;
+			 }
+			}
+			else {
+				 flags[18] = 0;
+				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(16))); 
+			 }
 			
 		}
 		else if(room == 18) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			if (newRand.randEnemyEnc() <= 3) {
+				 if (flags[18] == 0) {
+					 newPrompt.PromptHellHound();
+						
+						newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+			 else {
+				 flags[18] = 0;
+			newPrompt.PromptHellHoundSafe();
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(7)));
 			if(retString.isEmpty()) {
 				
@@ -499,7 +564,12 @@ if(retString.isEmpty()) {
 			else {
 				return retString;
 			}
-			return retString;	
+			 }
+			}
+			else {
+				 flags[18] = 0;
+				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(7))); 
+			 }
 			
 		}
 		else if(room == 17 || room == 22) {
@@ -515,7 +585,15 @@ if(retString.isEmpty()) {
 			return retString;
 		}
 		else if(room == 19) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			if (newRand.randEnemyEnc() <= 3) {
+				 if (flags[18] == 0) {
+					 newPrompt.PromptHellHound();
+						
+						newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+			 else {
+				 flags[18] = 0;
+			newPrompt.PromptHellHoundSafe();
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(18)));
 			if(retString.isEmpty()) {
 				
@@ -525,42 +603,18 @@ if(retString.isEmpty()) {
 			else {
 				return retString;
 			}
-			return retString;
+			 }
+			}
+			else {
+				 flags[18] = 0;
+				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(18))); 
+			 }
 		}
 		 return retString;
 	}
 	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 
-		TxtAdventRandNum newRand = new TxtAdventRandNum();
-		if (room == 28) {
-			if (flags[4] == 0) {
-			newPrompt.PromptHellHound();
-			flags[4] += 1;
-			TxtAdventEncounters newEnc = new TxtAdventEncounters();
-			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
-		}
-			else {
-				newPrompt.PromptHellHoundSafe();
-
-			}
-		}
-		else if (room == 26) {
-			if (flags[17] == 0) {
-			newPrompt.PromptHellHound();
-			flags[17] += 1;
-			TxtAdventEncounters newEnc = new TxtAdventEncounters();
-			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
-		}
-			else {
-				newPrompt.PromptHellHoundSafe();
-
-			}
-		}
-		else if (newRand.randEnemyEnc() <= 3) {
-			newPrompt.PromptHellHound();
-			TxtAdventEncounters newEnc = new TxtAdventEncounters();
-			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
-		}	
+		
 		
 	}
 

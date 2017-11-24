@@ -6,7 +6,6 @@ public class TxtAdventMainFloor {
  * 
  * 
  ********************************/
-
 	
 	
 	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
@@ -18,14 +17,10 @@ public class TxtAdventMainFloor {
 		TxtAdventSave save = new TxtAdventSave();
 		//Uses methods from the classes listed above
 		
-		String directChoice;
+		
 		// Input is done in the Script method, and that input is then turned into a lowercase and passed into the switch
-		directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags);
-		
-		directChoice = directChoice.substring(0, 1).toLowerCase();
-		
-		
-	
+		try {
+		String directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags).substring(0, 1).toLowerCase();
 		switch (directChoice) {
 		/* Takes in certain inputs, and based on them, does various things such as calling the inventory method, or passing in a new room ID
 		 * based on the direction the player wants to go and calling the "Rooms" method again.
@@ -327,15 +322,34 @@ public class TxtAdventMainFloor {
 			break;
 			 
 		}
+		
+		}
+		catch (NullPointerException | StringIndexOutOfBoundsException e) {
+			
+			System.out.println("");
+		}
+		
+	
+		
 	}			
 	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		//Here is where all the text is called based on the room ID. These will call a method inside the Prompt class.
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
-		String retString = null;
+		TxtAdventEncounters newEnc = new TxtAdventEncounters();
+		TxtAdventRandNum newRand = new TxtAdventRandNum();
 		String roomIn = "You are in the " + roomName[room];
+		String retString = null;
 		 if(room == 12 || room == 10) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			 if (newRand.randEnemyEnc() < 3) {
+				 if (flags[18] == 0) {
+					newPrompt.PromptDarkKnight();
+					
+					newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				 else {
+					 flags[18] = 0;
+						JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
 			if(retString.isEmpty()) {
 				
@@ -345,10 +359,25 @@ public class TxtAdventMainFloor {
 			else {
 				return retString;
 			}
-			return retString;
-		}
+			}
+			 }
+			else {
+				flags[18] = 0;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
+			}
+		
+			
+		 }
 		 else if (room == 8 || room == 11) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			 if (newRand.randEnemyEnc() < 3) {
+				 if (flags[18] == 0) {
+					newPrompt.PromptDarkKnight();
+					
+					newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				 else {
+					 flags[18] = 0;
+						JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(1)));
 			if(retString.isEmpty()) {
 				
@@ -359,9 +388,23 @@ public class TxtAdventMainFloor {
 				return retString;
 			}
 			return retString;
+		 }
 		}
-		else if(room == 9) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			 else {
+				 flags[18] = 0;
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(1)));
+				}
+		 }
+		
+		 else if (room == 9) {
+				if (flags[1] == 0) {
+				newPrompt.PromptDarkKnight();
+				flags[1] += 1;
+				
+				newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+			}
+				else {
+			JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
 			int flagCheck = flags[0];
 			switch(flagCheck) {
 			case 0:
@@ -396,10 +439,19 @@ public class TxtAdventMainFloor {
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					return retString;
 			}
-
+			}
 		}
 		else if(room == 5 || room == 6) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			
+			if (newRand.randEnemyEnc() < 3) {
+				 if (flags[18] == 0) {
+					newPrompt.PromptDarkKnight();
+					
+					newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				 else {
+					 flags[18] = 0;
+						JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
 			if(retString.isEmpty()) {
 				
@@ -409,19 +461,12 @@ public class TxtAdventMainFloor {
 			else {
 				return retString;
 			}
-			return retString;
 		}
-		else if(room == 13) {
-			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(3)));
-			if(retString.isEmpty()) {
-				
-				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
-				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			else {
-				return retString;
+				flags[18] = 0;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(3)));
 			}
-			return retString;
 		}
 		else if(room == 0) {
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(6)));
@@ -519,7 +564,15 @@ public class TxtAdventMainFloor {
 			
 		}
 		else if(room == 7) {
-			enemyEnc(room, roomName, whereToGo, directions, myStats, invo, flags);
+			if (newRand.randEnemyEnc() < 3) {
+				 if (flags[18] == 0) {
+					newPrompt.PromptDarkKnight();
+					
+					newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				 else {
+						flags[18] = 0;
+						JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
 			retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  newPrompt.PromptBasicScript(10)));
 			if(retString.isEmpty()) {
 				
@@ -529,44 +582,18 @@ public class TxtAdventMainFloor {
 			else {
 				return retString;
 			}
+				 }
 			return retString;
+		}
+				 
+			else {
+				flags[18] = 0;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(10)));
+			}
+	
 		}
 		 return retString;
 	}
-	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-		// This method is used in a few rooms to dictate potential encounters. On this floor, a player can encounter a Dark Knight and there's a 30% chance of that happening.
-		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
-		TxtAdventRandNum newRand = new TxtAdventRandNum();
-		// Room 9 is the only room that has a guaranteed
-		if (room == 9) {
-			if (flags[1] == 0) {
-			newPrompt.PromptDarkKnight();
-			flags[1] += 1;
-			TxtAdventEncounters newEnc = new TxtAdventEncounters();
-			newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
-		}
-			else {
-			JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
-		
-			}
-		}
-		
-		else if (newRand.randEnemyEnc() < 3) {
-			 if (flags[18] == 0) {
-				newPrompt.PromptDarkKnight();
-				TxtAdventEncounters newEnc = new TxtAdventEncounters();
-				newEnc.randStart(room, roomName, whereToGo, directions, myStats, invo, flags);
-			}
-			 else {
-					flags[18] = 0;
-					JOptionPane.showMessageDialog(null, "You hear noises in nearby rooms, but this room is safe.");
-					
-					
-				}
-			
-			}
-		}	
-		
 		
 	}
 	
