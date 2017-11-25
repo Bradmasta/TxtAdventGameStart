@@ -1,6 +1,17 @@
 import javax.swing.JOptionPane;
 
 public class TxtAdventInvoCheck {
+	/****************************************************************
+	 * This methods purpose is for the player to be able to check their inventory at any given time from any room.
+	 * The Inventory will show the players stats, as well as how many Health, Attack, Defense, and Speed potions they have.
+	 * The inventory will also show which keys a player currently has, and which type of key it is (Either downstair, upstairs, or final) 
+	 ****************************************************************/
+	
+	
+	
+	
+	
+	
 	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 	TxtAdventDungeon newDungeon = new TxtAdventDungeon();
 	TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
@@ -8,7 +19,11 @@ public class TxtAdventInvoCheck {
 	TxtAdventEncounters newEnc = new TxtAdventEncounters();
 	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 	int randEnc = 3;
-	
+	/*
+	 * Three choices: To return to the game after looking at what's in the inventory, to use a potion if the player has one,
+	 * and to decide to hang around the inventory for a little while longer.
+	 * 
+	 */
 		public void invoCheck(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 			
 
@@ -18,6 +33,7 @@ public class TxtAdventInvoCheck {
 				+ invo[4] + "\n Upstairs Key: " + invo[5] + "\n Final Key: " + invo[6] + "\n\nUse a potion, or return to the game? \n\n1) Return to the game\n2) Use a potion\n3) Not ready to go back just yet.."));
 				if (invoInfo.equals("1")) {
 					JOptionPane.showMessageDialog(null, "And we continue!");
+					//Once this choice is made, the player will return to the room tied to the Room ID (Which should be the room they chose the inventory option)
 					if (room >=0 && room < 13 && room != 4) {
 					flags[18] = 1;
 					newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -38,7 +54,7 @@ public class TxtAdventInvoCheck {
 				}
 				else if (invoInfo.equals("2")) {
 					 String choice;
-						
+					// Allows the player to use as many potions as they have, but only one at a time.
 					 choice = nullCheck.nullCheck(JOptionPane.showInputDialog("Which potion do you want to use?\n\n1) Health Potion: " + invo[0] + "\n2) Attack Potion: " + invo[1] + "\n3) Defense Potion: " + invo[2] +
 								"\n4) Speed Potion: " + invo[3] + "\n5) Go back"));
 					
@@ -129,6 +145,7 @@ public class TxtAdventInvoCheck {
 					
 				}
 				else if (invoInfo.equals("3")) {
+					// If the player chooses this option 3 times while in the inventory, the 4th time results in an encounter based on the room ID passed in.
 					if (randEnc == 3) {
 						JOptionPane.showMessageDialog(null, "You should consider returning! Enemys lurk about!");
 						randEnc -= 1;
@@ -193,7 +210,10 @@ public class TxtAdventInvoCheck {
 			 
 		
 		
-		
+		/*
+		 *  This method was used while I was still constructing the game. Serves no purpose currently, but I plan to expand on this game,
+		 *  so I might need this method later on.
+		 */
 		public void endGame() {
 			 JOptionPane.showMessageDialog(null, "More to come; Game still in construction!");
 			System.exit(0);

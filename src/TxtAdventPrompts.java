@@ -3,6 +3,14 @@ import javax.swing.JOptionPane;
 
 
 public class TxtAdventPrompts {
+	/*******************************************************************
+	 * This class is pretty self explanatory: It contains probably 95% of all the prompts used throughout the game.
+	 * Most classes are of return type void, but a few return a string depending on which prompt is needed.
+	 * Feel free to scroll down to read the prompts, but the player should see most of these just by playing the game.
+	 *******************************************************************/
+	
+	
+	
 	TxtAdventBeginData newDirection = new TxtAdventBeginData();
 	String[] directions = newDirection.BeginDataDirections();
 	public void PromptKey() {
@@ -280,8 +288,8 @@ public void PromptDragonKeepFirstSee() {
 	JOptionPane.showMessageDialog(null, "Ahh, so I see you've made it this far. \nI noticed you enter the Castle, and thought that you would have been destroyed by the many monsters that plague these halls.\n"
 			+ "You are no ordinary fighter, I see that now. But, in order to fight the Dragon, you must answer one question for me.\nThink you can do it? We shall see.\nIf you get this right, you will have the "
 			+ "privilege of fighting the almighty beast, but if you should fail..\nyou will be sent all the way down to the back of the dungeon and must work your way back up here.\nThat's not all though: You will "
-			+ "lose half of your health! (rounded down if your health is an odd number)\n Also, I don't give the correct answer, so if you happen "
-			+ "to get this question again, you'll still have to know what the answer is, or guess!\nSo, I hope you're ready; you finishing this quest could very well depend on your answer to this question!");
+			+ "lose half of your health! \n Also, I don't give the correct answer, so if you happen to get this question again, you'll still have to know what the answer is, or guess!\n"
+			+ "So, I hope you're ready; you finishing this quest could very well depend on your answer to this question!");
 	
 	
 }

@@ -1,12 +1,18 @@
 
 import java.util.Random;
 public class TxtAdventRandNum {
+	
+	/****************************************************************
+	 * Generates various random numbers in the game. While some of the methods have the same exact number generation, these numbers
+	 * might change in the future, so i've simply left them alone.
+	 ****************************************************************/
 
 	Random R = new Random();
 	public void randRoom(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags)  {
 	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 	Random R = new Random();
 	int newStartRoom = R.nextInt(3) + 1;	
+	// Randomly generates one of 4 room ID's, and that is where the player will start during a new game.
 	switch(newStartRoom) {
 	
 	case(1):
@@ -30,7 +36,7 @@ public class TxtAdventRandNum {
 	
 	
 	}
-	
+	// The rest of these are encounter rates, attack success, speed for enemy's, and the question from the Dragon Keeper.
 	public int randEnemyEnc() {
 	
 		int newInt = R.nextInt(9) + 1;

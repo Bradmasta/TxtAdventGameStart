@@ -1,5 +1,14 @@
 import javax.swing.JOptionPane;
 public class TxtAdventEncounters {
+	/********************************************************************
+	 * This class handles all Encounters except for the Dragon Fight, which is in its own class.
+	 * The mechanics are very simple, but do work very well, at least in the eyes of this programmer.
+	 * All normal encounter for both the Main floor, Dungeon, and Upper floor are handled here.
+	 ********************************************************************/
+	
+	
+	
+	
 	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventUpperFloor upperRoom = new TxtAdventUpperFloor();
 	TxtAdventMainFloor mainRoom = new TxtAdventMainFloor();
@@ -9,10 +18,13 @@ public class TxtAdventEncounters {
 	public void randStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		
 	
-		
+		/*
+		 *  This method is called first. It checks which room the player is in based on the room ID,
+		 *  and then it will pass in enemy values to the method based on whether the players speed is higher than the enemy's and vice versa.
+		 */
 		if (room >=0 && room < 13 && room != 4) {
 
-			int enemyStats[] = {30, 30, 15, newRand.randEasyEnemySpd()};
+			int enemyStats[] = {50, 45, 25, newRand.randEasyEnemySpd()};
 			if (enemyStats[3] > myStats[3]) {
 				enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 				
@@ -23,7 +35,7 @@ public class TxtAdventEncounters {
 			}
 			}
 			else if (room > 13 && room < 29 || room == 4) {
-				 int enemyStats[] = {40, 35, 20, newRand.randMedEnemySpd()};
+				 int enemyStats[] = {60, 55, 40, newRand.randMedEnemySpd()};
 					if (enemyStats[3] > myStats[3]) {
 						enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 						
@@ -34,7 +46,7 @@ public class TxtAdventEncounters {
 					}
 			}
 			else if (room >= 29 || room == 13) {
-				int enemyStats[] = {100, 45, 30, newRand.randHardEnemySpd()};
+				int enemyStats[] = {100, 60, 55, newRand.randHardEnemySpd()};
 				if (enemyStats[3] > myStats[3]) {
 					enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 					
@@ -51,10 +63,11 @@ public class TxtAdventEncounters {
 	
 	
 	  public void myCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
-		  
+		  // Very similar to the Dragon Fight method, except this one handles logic based on the room ID, along with speed.
 			TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 			int breakLoop = 0;
 			String battleInfo = null;
+			// The options are the same as that of the Dragon Fight, but this code works much more efficiently, and no longer causes errors.
 			while (breakLoop <= 0) {
 				
 			
@@ -147,7 +160,7 @@ public class TxtAdventEncounters {
 						  else {
 							  hpChangeAttk = enemyStats[0];
 							  JOptionPane.showMessageDialog(null, "You attack isn't successful."); 
-								enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+							  enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 						  
 						  }
 						}
@@ -280,7 +293,7 @@ public class TxtAdventEncounters {
 				  }
 			}
 				 
-			
+			// Same potion usage as in the Dragon Class.
 			else if (battleInfo.equals("2")) {
 				
 				 String choice = nullCheck.nullCheck(JOptionPane.showInputDialog("Your Inventory:\n\n Health Potion: " + invo[0] + "\n Attack Potion: " + invo[1] + "\n Defence Potion: " + invo[2] +
@@ -364,6 +377,10 @@ public class TxtAdventEncounters {
 					
 						}
 			}
+			/*
+			 *  Once run is chosen, if the player has higher speed, they will return to the room they had the encounter. If the players speed is
+			 *  less than that of the enemy, they can't escape and must finish the fight.
+			 */
 			else if (battleInfo.equals("3")) {
 	
 				  if (myStats[3] > enemyStats[3]) {
@@ -384,11 +401,13 @@ public class TxtAdventEncounters {
 							upperRoom.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 								
 							}
-						  else {
-							  JOptionPane.showMessageDialog(null, "Can't escape!"); 
-							  enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
-						  }
+						 
 					
+			}
+				  else {
+					  JOptionPane.showMessageDialog(null, "Can't escape!"); 
+					  enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
+				  }
 			}
 			else {
 				if(battleInfo.isEmpty()) {
@@ -409,19 +428,23 @@ public class TxtAdventEncounters {
 		 
 			  }
 		
-	  }
+	  
 				
 				
 				 
 			  
-	  
+	  /*
+	   * The enemy combat is very similar to the Dragon Fight, except that enemys will only randomly increase their attack; This means that if
+	   * the enemy has less attack then the players defense, there is a strong chance the enemy won't be able to attack at all during the fight!
+	   * This works heavily in the players favor when trying to farm for potions for the Dragon Fight.
+	   */
 	  public void enemyCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
 		  TxtAdventRandNum newRand = new TxtAdventRandNum();
 		  int hpChange = 0;
 		  int enAttk = enemyStats[1] - myStats[2];
 			if (room >=0 && room < 13 && room != 4) {
 				  if (newRand.randEnemySuccess() >= 3) {
-						  if(newRand.randEnemyUsePotion() > 18) {
+						  if(newRand.randEnemyUsePotion() > 14) {
 							  int enAttkIncrease = 2;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
@@ -462,7 +485,7 @@ public class TxtAdventEncounters {
 			else if (room > 13 && room < 29 || room == 4) {
 				 if (newRand.randEnemySuccess() >= 3) {
 
-						  if(newRand.randEnemyUsePotion() > 13) {
+						  if(newRand.randEnemyUsePotion() > 10) {
 							  int enAttkIncrease = 3;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
@@ -500,7 +523,7 @@ public class TxtAdventEncounters {
 			else if (room >= 29 || room == 13) {
 				if (newRand.randEnemySuccess() >= 4) {
 					 
-						  if(newRand.randEnemyUsePotion() > 10) {
+						  if(newRand.randEnemyUsePotion() > 5) {
 							  int enAttkIncrease = 4;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);

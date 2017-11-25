@@ -1,7 +1,9 @@
 
 
 import javax.swing.JOptionPane;
-
+/*****************************************************************
+ * Very simple class that checks if an input window is either cancelled or the X is pressed. If those are the cases, the program will end.
+ *****************************************************************/
 
 public class TxtAdventNullCheck {	
 	

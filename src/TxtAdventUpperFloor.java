@@ -4,7 +4,8 @@ import java.awt.event.*;
 
 import javax.swing.*;
 
-public class TxtAdventUpperFloor implements WindowListener  {
+@SuppressWarnings("serial")
+public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 	JFrame myWindow = new JFrame("Question");
 	JPanel temp = new JPanel();
 	
@@ -12,18 +13,18 @@ public class TxtAdventUpperFloor implements WindowListener  {
 	 * This class controls all movement between rooms in the upstairs, as well as moving to a room on the main floor and dungeon
 	 * The code is very similar to that of both the main floor and the dungeon. 
 	 * While I could've put everything in one class, management was easier this way.
-	 * 
+	 * For everything but the Dragonkeep method, refer to either the Main Floor of Dungeon class for functionality.
 	 ********************************/
 
 	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventRandNum newRand = new TxtAdventRandNum();
 	TxtAdventDungeon newDunFlr = new TxtAdventDungeon();
 	TxtAdventDragon drgnFt = new TxtAdventDragon();
+	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 
 	
 	public void UpperRooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
 		TxtAdventHelp help = new TxtAdventHelp();
-		TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 		TxtAdventInvoCheck playerChooses = new TxtAdventInvoCheck();
 		TxtAdventMainFloor mainRoom = new TxtAdventMainFloor();
 		TxtAdventSave save = new TxtAdventSave();
@@ -45,25 +46,27 @@ public class TxtAdventUpperFloor implements WindowListener  {
 			save.Save(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;	
 		case "c":
-			switch (room) {
 			
-			case 31:
+			
+			if (room == 31) {
 				if (flags[10] == 0) {
 					newPrompt.PromptKey();
 					invo[6] += 1;
 					flags[10] += 1;
 					room = whereToGo[31][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 				}
 					else {
 					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[31][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 					}
-			break;
-			
-			case 32:
+	
+			}
+				else if (room == 32) {
 				if (flags[11] == 0) {
 					JOptionPane.showMessageDialog(null, "You receive an Attack, a Defense, and Two Health Potions! \nYou exit the room.");
 					invo[0] += 2;
@@ -72,16 +75,17 @@ public class TxtAdventUpperFloor implements WindowListener  {
 					flags[11] += 1;
 					room = whereToGo[32][0];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 				}
 					else {
 					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[32][0];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 					}
-			break;
-			
-			case 34:
+				}
+				else if  (room == 34) {
 				if (flags[12] == 0) {
 					JOptionPane.showMessageDialog(null, "You receive a Health, a Defense, and Two Attack potions! \nYou exit the room.");
 					invo[0] += 1;
@@ -90,16 +94,18 @@ public class TxtAdventUpperFloor implements WindowListener  {
 					flags[12] += 1;
 					room = whereToGo[34][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 				}
 					else {
 					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[34][1];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 					}
-			break;
+				}
 			
-			case 35:
+				else if (room == 35) {
 				if (flags[13] == 0) {
 					JOptionPane.showMessageDialog(null, "You receive a Health, an Attack, and two Defense potions! \nYou exit the room.");
 					invo[0] += 1;
@@ -108,20 +114,23 @@ public class TxtAdventUpperFloor implements WindowListener  {
 					flags[13] += 1;
 					room = whereToGo[35][0];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 				}
 					else {
 					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[35][0];	
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 					}
-			break;
+				}
 			
-			default:
+				else {
 			newPrompt.PromptNoChest();
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
-			}
+				}
+		
 			
 		case "k":
 			if (room == 29) {
@@ -133,12 +142,14 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				JOptionPane.showMessageDialog(null, "You unlocked the Final door! Good luck proceeding; you're going to need it!");
 				flags[14] += 1;
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 				}
 				else {
 					
 				JOptionPane.showMessageDialog(null, "You don't have the correct key for this door yet!");
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 				}
 			}
@@ -146,6 +157,7 @@ public class TxtAdventUpperFloor implements WindowListener  {
 					
 				JOptionPane.showMessageDialog(null, "You've already unlocked the Final Door!");
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 				}
 			}
@@ -153,9 +165,10 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				
 				newPrompt.PromptCantUseKey();
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 			}
-			break;
+		
 			
 		case "n":
 			
@@ -172,13 +185,15 @@ public class TxtAdventUpperFloor implements WindowListener  {
 					if (flags[14] == 0) {
 						JOptionPane.showMessageDialog(null, "You haven't unlocked this door yet!");
 						UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						break;
 						
 					}
 					else {
 				room = whereToGo[29][0];	
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-					}
 				break;
+					}
+				
 				
 				case 30:
 				room = whereToGo[30][0];
@@ -209,6 +224,7 @@ public class TxtAdventUpperFloor implements WindowListener  {
 						
 						JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
 						UpperRooms(room, directions, whereToGo, directions, flags, flags, flags);
+						break;
 					}
 					else {
 					 switch(choiceInfo) {
@@ -250,18 +266,21 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				else if (flags[15] == 0) {
 					newPrompt.PromptDragonKeepFirstSee();
 					DragonKeepStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 					
 				}
 				else if (flags[15] == 1) {
 					newPrompt.PromptDragonKeepSecondSee();
 					DragonKeepStart(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 					
 				}
 				else {
 					JOptionPane.showMessageDialog(null, "Invalid input.");
 					UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 				}
 				break;
 				
@@ -277,6 +296,7 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				
 				newPrompt.PromptCantGoDirection(0);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
@@ -325,6 +345,7 @@ public class TxtAdventUpperFloor implements WindowListener  {
 			else {
 				newPrompt.PromptCantGoDirection(1);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				}
 			break;
 		
@@ -353,6 +374,7 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				
 				newPrompt.PromptCantGoDirection(2);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 			}
 			break;
@@ -385,6 +407,7 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				
 				newPrompt.PromptCantGoDirection(3);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 			}
 			break;
@@ -417,6 +440,7 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				
 				newPrompt.PromptCantGoDirection(5);
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 			}
 			break;
@@ -425,7 +449,9 @@ public class TxtAdventUpperFloor implements WindowListener  {
 				
 			JOptionPane.showMessageDialog(null, "Unrecognized input.");			
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags); 
+			break;
 			}
+		
 		}
 		catch (NullPointerException | StringIndexOutOfBoundsException e) {
 			System.out.println(" ");
@@ -764,8 +790,15 @@ public class TxtAdventUpperFloor implements WindowListener  {
 			return retString;		
 	}
 	public void DragonKeepStart(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+    	/*
+    	 * This class controls the window that pops up to ask the player a question. It is the only point in the game where the player is
+    	 * required to click a button. I only created this method to see if I could, and it seems to work. I had to restructure most of my code
+    	 * due to an annoying reoccuring bug, but I believe I have fixed it (have played through multiple times now without breaking the game)
+    	 * There is probably a more efficient way to do what i've done below, but it does function.
+    	 * A random question out of Ten will be asked of the player; if they click the right answer they can move on to fight the Dragon, but if 
+    	 * the player clicks any of the other 3 answers, they will be sent to a room in the dungeon and lose half their health.
+    	 */
     	
-    	TxtAdventPrompts newPrompt = new TxtAdventPrompts();
 
         Button a;
         Button b;
@@ -773,8 +806,8 @@ public class TxtAdventUpperFloor implements WindowListener  {
         Button d;
     	
     	TxtAdventRandNum newRand = new TxtAdventRandNum();
-    	//int question = newRand.randDragonKeepQuestion();
-    	int question = 1;
+    	int question = newRand.randDragonKeepQuestion();
+  
     	
         
         myWindow.setSize(500,300);
@@ -789,7 +822,11 @@ public class TxtAdventUpperFloor implements WindowListener  {
         layout.setVgap(10);
         myWindow.setLayout(layout);
         
-		JOptionPane.showMessageDialog(null, "Here is your question: ");
+        
+		JOptionPane.showMessageDialog(null, "What follows is a window with four possible options. Click an answer to proceed!\n"
+				+ "Here is your question: ");
+		switch(question) {
+		case 1:
 			JLabel label = new JLabel("How many miles away is the sun from the earth (Approximately)?", SwingConstants.CENTER);
 			a = new Button("90 Million");
             b = new Button("97 Million");
@@ -814,10 +851,8 @@ public class TxtAdventUpperFloor implements WindowListener  {
                		 myStats[0] =  myStats[0] / 2;
             		 flags[15] = 1;
             		 int room = whereToGo[25][6];
-            			
-            		dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-            		
-            		
+            		 dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		 
             	}
             	
             	
@@ -868,12 +903,12 @@ public class TxtAdventUpperFloor implements WindowListener  {
             	
             	
             });
-			
+			break;
 	
 	
 		
 		
-    	/*case 2:
+    	case 2:
 
     		label = new JLabel("Which of these colors is not on the Rubik's Cube?", SwingConstants.CENTER);
     		a = new Button("Blue");
@@ -891,11 +926,64 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
     		myWindow.add(d, layout);
     		myWindow.setVisible(true);
-    		a.addActionListener(this);
-    		b.addActionListener(this);
-    		c.addActionListener(this);
-    		d.addActionListener(this);
-    		actionPerformed(null);
+    		a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+        
+            		 myWindow.dispose();
+                   	 newPrompt.PromptQRightWrong(1);
+               		 myStats[0] =  myStats[0] / 2;
+            		 flags[15] = 1;
+            		 int room = whereToGo[25][6];
+            			
+            		dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            		
+            	}
+            	
+            	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           		
+           				dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		 myWindow.dispose();
+                   	 newPrompt.PromptQRightWrong(1);
+            				myStats[0] =  myStats[0] / 2;
+            			flags[15] = 1;
+            			int room = whereToGo[25][6];
+            			
+            				dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
     		break;
         
     	case 3:
@@ -916,14 +1004,66 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+        
+            		 myWindow.dispose();
+                   	 newPrompt.PromptQRightWrong(1);
+               		 myStats[0] =  myStats[0] / 2;
+            		 flags[15] = 1;
+            		 int room = whereToGo[25][6];
+            			
+            		dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            		
+            	}
+            	
+            	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
             
     	case 4:
-        	label = new JLabel("Which of these Intel Cores types doesn't exist? ", SwingConstants.CENTER);
+        	label = new JLabel("Which of these Intel Cores types doesn't exist?", SwingConstants.CENTER);
         	a = new Button("I-1");
             b = new Button("I-3");
             c = new Button("I-5");
@@ -939,11 +1079,59 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+            	}
+            	
+   	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
             
     	case 5:
         	label = new JLabel("Which month(s) have(has) 28 days?", SwingConstants.CENTER);
@@ -962,11 +1150,59 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+            	}
+            	
+   	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
             
     	case 6:
         	label = new JLabel("How many NFL teams are there?", SwingConstants.CENTER);
@@ -985,11 +1221,59 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+            	}
+            	
+   	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
             
     	case 7:
         	label = new JLabel("What type of programming language is \"Java\"?", SwingConstants.CENTER);
@@ -1008,11 +1292,59 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+            	}
+            	
+   	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
             
     	case 8:
         	label = new JLabel("How many stomachs does a Cow have?", SwingConstants.CENTER);
@@ -1031,11 +1363,59 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+            	}
+            	
+   	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
             
     	case 9:
         	label = new JLabel("How many bones does a fully grown adult have?", SwingConstants.CENTER);
@@ -1054,11 +1434,59 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+            	}
+            	
+   	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
             
     	case 10:
         	label = new JLabel("How many buttons does a Guitar Hero controller have?", SwingConstants.CENTER);
@@ -1077,20 +1505,71 @@ public class TxtAdventUpperFloor implements WindowListener  {
 
             myWindow.add(d, layout);
             myWindow.setVisible(true);
-            a.addActionListener(this);
-            b.addActionListener(this);
-            c.addActionListener(this);
-            d.addActionListener(this);
-            break;*/
-           /* default:
-            JOptionPane.showMessageDialog(null, "Test");
-            break;*/
-
+            a.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
+            	}
+            	
+   	
+            });
+            b.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
+            	}
+            	
+            	
+            });
+            c.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
+            		myWindow.dispose();
+                 	newPrompt.PromptQRightWrong(0);
+          		    flags[15] = 2;
+          			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            		
+            	}
+            	
+            	
+            });
+            d.addActionListener(new ActionListener() {
+            	public void actionPerformed (ActionEvent a) {
+            		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
+            		myWindow.dispose();
+                  	newPrompt.PromptQRightWrong(1);
+           			myStats[0] =  myStats[0] / 2;
+           			flags[15] = 1;
+           			int room = whereToGo[25][6];
+           			dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+            			
+            	}
+            	
+            	
+            });
+    		break;
+            default:
+            JOptionPane.showMessageDialog(null, "You shouldn't see this");
+            break;
+        }
 	
 	}
 	
     
-
+	/*
+	 *  Since i'm implementing from the WindowListener class, these had to be placed here 
+	 *  (At the very least without doing so, i'd get an error and be prompted to place them in here).
+	 */
 	
 	@Override
     public void windowClosing(WindowEvent e) {
@@ -1100,35 +1579,35 @@ public class TxtAdventUpperFloor implements WindowListener  {
     }
 	@Override
 	public void windowActivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	@Override
 	public void windowClosed(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	@Override
 	public void windowDeactivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	@Override
 	public void windowDeiconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	@Override
 	public void windowIconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	@Override
 	public void windowOpened(WindowEvent arg0) {
-		// TODO Auto-generated method stub
+		
 		
 	}
-
+	
 	
 	
 }

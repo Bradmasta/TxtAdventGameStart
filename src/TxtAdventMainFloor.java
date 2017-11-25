@@ -43,12 +43,14 @@ public class TxtAdventMainFloor {
 				flags[0] += 1;
 				room = whereToGo[9][2];	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 				else {
 					
 				newPrompt.PromptAlreadyOpen();
 				room = whereToGo[9][2];	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 				}
 			}
@@ -56,9 +58,10 @@ public class TxtAdventMainFloor {
 				
 				newPrompt.PromptNoChest();
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 			}
-			break;
+	
 		case "k":
 			// Checks if the room is 2, and then it checks if a flag has gone off.
 			if (room == 2) {
@@ -67,15 +70,18 @@ public class TxtAdventMainFloor {
 				JOptionPane.showMessageDialog(null, "You unlocked the Trapdoor! This will take you to the dungeon!");
 				flags[2] += 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				}
 				else {
 				JOptionPane.showMessageDialog(null, "You don't have the correct key for this trapdoor yet!");
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				}
 			}
 				else {
 				JOptionPane.showMessageDialog(null, "You've already unlocked the trapdoor!");	
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 				}
 			}
@@ -85,10 +91,12 @@ public class TxtAdventMainFloor {
 						JOptionPane.showMessageDialog(null, "You unlocked the door to the Upstairs! Head through when you're ready.");
 						flags[5] += 1;
 						Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						break;
 					}
 				else {
 					JOptionPane.showMessageDialog(null, "You don't have the correct key for this door yet!");		
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 				}
 					
@@ -96,6 +104,7 @@ public class TxtAdventMainFloor {
 				else {
 					JOptionPane.showMessageDialog(null, "You've already unlocked the Upstairs door.");		
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					
 				}
 				
@@ -104,8 +113,9 @@ public class TxtAdventMainFloor {
 				// Prompt class used to take care of prompts that are used in multiple classes. This one will say you can't use a key here.
 				newPrompt.PromptCantUseKey();			
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
-			break;
+			
 		case "n":
 			// Will check if the data from the 2D array doesn't contain -1; if it doesn't, it'll pass in the correct room ID and "move" the player to that room
 			int checkIfValid = whereToGo[room][0];
@@ -140,6 +150,7 @@ public class TxtAdventMainFloor {
 				// if the array data based on the room ID returns a -1, this shows.
 				newPrompt.PromptCantGoDirection(0);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
@@ -269,10 +280,12 @@ public class TxtAdventMainFloor {
 					if (flagCheck == 0) {
 					JOptionPane.showMessageDialog(null, "You can't go " + directions[4] + " yet! The Door needs unlocked!");
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					}
 					else {
 					room = whereToGo[3][4];
 					upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					}
 
 
@@ -283,7 +296,7 @@ public class TxtAdventMainFloor {
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
-			break;
+			
 
 		case "d":
 			checkIfValid = whereToGo[room][5];

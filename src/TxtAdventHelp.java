@@ -1,7 +1,11 @@
 
 import javax.swing.*;
 public class TxtAdventHelp {
-	
+	/****************************************************************
+	 * Fairly self explanatory; The first method will display whenever a new game is started, and the second shows whenever player chooses "Help"
+	 * or "h" ( even "H" works) from any room. The purpose of both is to inform players of some general knowledge about the game, and in the case
+	 * of the second method, once a player is ready to proceed, they will resume in the room where they chose the Help option.
+	 ****************************************************************/
 	public void StartTxt() {
 		
 		JOptionPane.showMessageDialog(null, "Hello Adventurer! I see you've travelled many miles to reach this place!\n"
@@ -10,7 +14,7 @@ public class TxtAdventHelp {
 				+ "For starts, there are only a few words/letters that are recogniziable by this game!\n These are North, South"
 				+ ", East, West, Up, Down, Chest, Help, Inventory, Key, and Questsave\n"
 				+ " (You can also use n, s, e, w, u, d, c, h, i, k, and q)\n"
-				+ "Anything else you try won't work/be recognized except for the following exceptions:\n"
+				+ "Anything else you try won't work/be recognized except for in combat or your inventory:\n"
 				+ "In combat, you will be asked to type 1, 2, 3, ect., as well as a few other prompts.\n"
 				+ "If you ever feel the need to quit the game when it asks you for an input, hitting the Cancel button or the X button at the top of any window will do the trick!\n"
 				+ "Before quitting out however, make sure you save the game using the Questsave or q input!\n"
@@ -28,12 +32,14 @@ public void Help(int room, String roomName[], int[][] whereToGo, String[] direct
 				+ "Other keywords are Chest, Help, Inventory, Key, and Questsave.\n"
 				+ "You may also use n, s, e, w, d, u, c, h, i, k, and q for these inputs.\n"
 				+ "You may be asked to type 1, 2, 3, ect.\n"
-				+ "There is a point in the game where you'll be required to use A, B, C, or D; Just pay attention to when that might happen!\n"
-				+ "There is a 30% chance of encounters on two of the floors, and it happens everytime you access a room that has encounter code.\n"
-				+ "Whenever you finish a fight, you are \"sent\" back to the room you had the encounter, so that means there's a 30% chance you could get another encounter.\n"
-				+ "Just be patient! The encounters will eventually end and you can proceed.\n"
-				+ "Also keep in mind that saving is not possible during combat, so make sure to save outside of it(Also doesn't work while accessing your inventory)!\n"
-				+ "The final fight at the end of the game is extremely difficult, so I would recommend stacking up your stats as much as possible before it, as well as saving often!\n"
+				+ "There is a point in the game where you'll be asked to choose an option out of four; just click the appropriate button.\n"
+				+ "Encounters are something that exists in this game, but fear not! I was a bit lenient on you with this:\n"
+				+ "Whenever you finish a fight, you will be given a moment to breath before you continue (No new encounters will happen until you move to another room)\n"
+				+ "Some monsters are very tough, but you've been given plenty of potions to be able to take them on!\n"
+				+ "Speaking of potions, so long as you have them, you can use any many as you want, and the effects are permanent!\n"
+				+ "Your health has no cap, so feel free to buff that up as much as possible!\n"
+				+ "Make sure to save often, but keep in mind that saving is not possible during combat, so make sure to save outside of it(Also doesn't work while accessing your inventory)!\n"
+				+ "The final fight at the end of the game is extremely difficult, so I would recommend stacking up your stats as much as possible before it!\n"
 				+ "Once you unlock an area, it remains unlocked permanently so long as the game is running or if you save your progess for later.\n"
 				+ "Once you're ready to proceed, just hit enter, or Click the OK button!");
 		JOptionPane.showMessageDialog(null, "And we continue!");

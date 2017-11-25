@@ -18,21 +18,28 @@ public class TxtAdventDungeon {
 		TxtAdventHelp help = new TxtAdventHelp();
 		TxtAdventSave save = new TxtAdventSave();
 		try {
-			
+			/*
+			 * Based on the room you're in, the script will prompt certain text. You then choose which of the follow you want to do. A switch
+			 * statement handles all responses.
+			 */
 		String directChoice = Script(room, roomName, whereToGo, directions, myStats, invo, flags).substring(0, 1).toLowerCase();
 		
 		switch (directChoice) {
 
 		case "i":
+			// Will pull up the players inventory.
 			playerChooses.invoCheck(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "h":
+			// Will pull up the help text.
 			help.Help(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "q":
+			// Will save the game.
 			save.Save(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "c":
+			// Will open a chest if the player is in rooms 28 or 26.
 			if (room == 28) {
 			if (flags[3] == 0) {
 				newPrompt.PromptKey();
@@ -40,19 +47,23 @@ public class TxtAdventDungeon {
 				flags[3] += 1;
 				room = whereToGo[28][1];	
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 				else {
 				newPrompt.PromptAlreadyOpen();
 				room = whereToGo[28][1];	
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 				
 				}
 			}
 			else if (room == 26) {
 				if (flags[16] == 0) {
-					if(myStats[0] >= 80) {
+					// This chest will open is the player has less than half health left, otherwise it remains shut (also won't tell the player why)
+					if(myStats[0] >= 130) {
 						JOptionPane.showMessageDialog(null, newPrompt.PromptRoom26(0));	
 						DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+						break;
 						
 					}
 					else {	
@@ -63,25 +74,33 @@ public class TxtAdventDungeon {
 					flags[16] += 1;
 					room = whereToGo[26][0];	
 					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					break;
 					}
 				}
 					else {
 					newPrompt.PromptAlreadyOpen();
 					room = whereToGo[25][1];	
 					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-					
+					break;
 					}
 				}
 			else {
 				newPrompt.PromptNoChest();	
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
-			break;
+			
 		case "k":
+			// Opens any Doors or Trapdoors that require keys.
 			newPrompt.PromptCantUseKey();
 			DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "n":
+			/*
+			 *  Will move the player to the room to the north, assuming north is a viable option. 
+			 *  The Int below checks the 2-D array for the value [room ID][Value of North]. Example could be [16][0].
+			 *  If the check passes, the switch will automatically go to the room where the number matches, and the method is called again.
+			 */
 			int checkIfValid = whereToGo[room][0];
 			if(checkIfValid != -1) {
 				switch(room) {
@@ -136,12 +155,15 @@ public class TxtAdventDungeon {
 				}
 			}
 			else {
+				// Will prompt if the player can't move that direction.
 				newPrompt.PromptCantGoDirection(0);
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
 		case "s":
+			// refer to case "n" if unsure what this code does.
 			checkIfValid = whereToGo[room][1];
 			if (checkIfValid != -1) {
 				switch(room) {
@@ -187,13 +209,16 @@ public class TxtAdventDungeon {
 				}
 			}
 			else {
+				// refer to case "n" if unsure what this code does.
 				newPrompt.PromptCantGoDirection(1);
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
 
 		case "e":
+			// refer to case "n" if unsure what this code does.
 			checkIfValid = whereToGo[room][2];
 			if (checkIfValid != -1) {
 				switch(room) {
@@ -233,13 +258,16 @@ public class TxtAdventDungeon {
 				}
 			}
 			else {
+				// refer to case "n" if unsure what this code does.
 				newPrompt.PromptCantGoDirection(2);
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 		
 
 		case "w":
+			// refer to case "n" if unsure what this code does.
 			checkIfValid = whereToGo[room][3];
 			if (checkIfValid != -1) {
 				switch(room) {
@@ -278,12 +306,15 @@ public class TxtAdventDungeon {
 				}
 			}
 			else {
+				// refer to case "n" if unsure what this code does.
 				newPrompt.PromptCantGoDirection(3);
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 
 		case "u":
+			// refer to case "n" if unsure what this code does.
 			checkIfValid = whereToGo[room][4];
 			if (checkIfValid != -1) {
 				switch(room) {
@@ -297,12 +328,15 @@ public class TxtAdventDungeon {
 				}
 			}
 			else {
+				// refer to case "n" if unsure what this code does.
 				newPrompt.PromptCantGoDirection(4);
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				break;
 			}
 			break;
 
 		case "d":
+			// refer to case "n" if unsure what this code does.
 			newPrompt.PromptCantGoDirection(5);
 			DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
@@ -320,6 +354,12 @@ public class TxtAdventDungeon {
 	
 	}
 	public String Script(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
+		/*
+		 * This method is comprised of specific prompting as well as potential encounters. Some rooms are similar and have the same exact prompts,
+		 * which is why you'll see such code as if (room == 16 || room == 20). A prompt class was created to keep the code manageable and clean.
+		 * As far as encounters go, there is a 30% chance of an encounter happening, and depending on the flag value of flags[18], the player might
+		 * be temporarily spared from an encounter. This was done so that that player is not bombarded with encounters.
+		 */
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		TxtAdventEncounters newEnc = new TxtAdventEncounters();
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
@@ -612,10 +652,6 @@ public class TxtAdventDungeon {
 		}
 		 return retString;
 	}
-	public void enemyEnc(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
-
-		
-		
-	}
+	
 
 }

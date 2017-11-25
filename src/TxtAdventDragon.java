@@ -4,6 +4,13 @@ import javax.swing.JOptionPane;
 
 public class TxtAdventDragon {
 	
+	/*****************************************************************
+	 * The Dragon fight. The mechanics here are slightly different from the Encounter class; due to code management, I decided to 
+	 * give the Dragon fight its own class. This code also differs from the code in the other encounter class mostly because
+	 * the code seems to not be very efficient when moving about other rooms, but since the methods in this class are used only here
+	 * and called in just one other place, I figured it would be fine to leave it as is (I was also strained for time).
+	 *****************************************************************/
+	
 	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventRandNum newRand = new TxtAdventRandNum();
 	
@@ -16,11 +23,11 @@ public class TxtAdventDragon {
 	  public void DragonFight(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags) {
 		  
 		while (myStats[0] > 0 || enemyStats[0] > 0) {
-			
+		// Method continues so long as you or the Dragon have more the 0 health.
 		int battleChoice = 0;
 		
 		  if (myStats[0] <= 0 || enemyStats[0] <= 0) {
-			  
+			  // if either you or the Dragon end up with zero health, this text will appear.
 			  if (myStats[0] <= 0) {
 				  
 				  JOptionPane.showMessageDialog(null, "You lost..The Dragon got the best of you, this time. Good luck next time!");
@@ -39,7 +46,9 @@ public class TxtAdventDragon {
 			  enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice);
 			 
 			  while(battleChoice == 0) {
-				  
+				  /* Won't proceed until you've chosen to attack, use the inventory, or run 
+				   *(Running is pretty much impossible given the Dragon's speed, 
+				   *but if a player gets enough speed potions to outspeed the Dragon, I won't punish the player.)*/
 				  String battleInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Your Stats:\n HP: " + myStats[0] + "\n Attack: " + myStats[1] + "\n Defense: " + myStats[2] + "\n Speed: " + myStats[3] + "\n\n\n"
 						  + "The Dragons Stats:\n HP: " + enemyStats[0] + "\n Attack: " + enemyStats[1] + "\n Defense: " + enemyStats[2] + "\n Speed: " + enemyStats[3] + 
 						  "\n\n\n What do you want to do? \n\n\n1) Attack\n2) Inventory\n3) Run")); 
@@ -47,7 +56,7 @@ public class TxtAdventDragon {
 					      
 			  switch(battleInfo) {
 				 case "1":
-					 
+					 //Parses from a String to an Int
 					 battleChoice = Integer.parseInt(battleInfo);
 					 break;
 					 
@@ -65,11 +74,14 @@ public class TxtAdventDragon {
 					 break;
 				 }
 		  }
+			  //Given that your speed will be slower virtually everytime, your combat method executes second.
 		  myCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags, battleChoice); 
 		  
 		 
 	    }
 	  }
+	  
+	  // This method checks if the choice you made above is valid (I did find more efficient ways to do this, but it does work).
 	  public int combatVerify(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
 			final int RETRY = 0;
 			
@@ -109,7 +121,10 @@ public class TxtAdventDragon {
 			return battleChoice;
 
 		}
-	  
+	  /*Your combat method. Depending on random rolls, as well as your own inputs, you can attack (Success is dependent on a random roll
+	   * , though your odds of success are 90%), you can use potions in your inventory (Once you use one your turn is over, 
+	   * and if you don't have one the program will let you know so), or you can run (All depends on if your speed is higher or not).
+	   */
 	  public void myCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
 		 
 		  int hpChangeAttk = 0;
@@ -242,7 +257,11 @@ public class TxtAdventDragon {
 			  }
 	  }
 
-	  
+	  /*  The Dragons method is a little different than the normal combat method from the Encounter class:
+	   *  The Dragon will always raise its attack every turn by 10 until it's able to actually attack you.
+	   *  The Dragons success rate is 50%, and has a 20% chance on top of that to increase its attack by a further 10 points
+	   *  As with the Encounter class, if you lose all your health you lose the game; if you beat the Dragon you win!
+	   */
 	  public void enemyCombat(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] enemyStats, int[] invo, int[] flags, int battleChoice) {
 		  int hpChange = 0;
 		  int enAttkIncrease = 10;

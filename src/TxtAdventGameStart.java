@@ -4,6 +4,8 @@ public class TxtAdventGameStart {
 	
 	/****************************
 	 * Game begins here. 
+	 * If possible, please play the game before looking at the source code, as that will reveal certain features of the
+	 * game and potentially ruin the fun of it!
 	 ****************************/
 
 
@@ -11,8 +13,10 @@ public class TxtAdventGameStart {
 		
 		TxtAdventHelp start = new TxtAdventHelp();
 		TxtAdventBeginData startData = new TxtAdventBeginData();
+		
 		TxtAdventSave load = new TxtAdventSave();
 		TxtAdventRandNum newRand = new TxtAdventRandNum();
+		
 		TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 		
 		
@@ -42,12 +46,13 @@ public class TxtAdventGameStart {
 			switch(choiceInfo) {
 			
 			case "1":
-				
+					// Will execute loading the save file, assuming the file exists.
 					load.Load(room, roomName, whereToGo, directions, myStats, invo, flags);
 			
 				break;
 			
 			case "2":
+				// Will delete the current save file and start a new game.
 				file.delete();
 				start.StartTxt();
 				
@@ -75,7 +80,7 @@ public class TxtAdventGameStart {
 			
 		}
 		else {
-		// If no Save exists, a new game will begin
+		// If no Save exists, a new game will begin.
 		start.StartTxt();
 		newRand.randRoom(room, roomName, whereToGo, directions, myStats, invo, flags);
 		

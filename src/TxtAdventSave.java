@@ -5,6 +5,11 @@ import javax.swing.*;
 
 
 public class TxtAdventSave {
+	/****************************************************************************
+	 * This class handles saving and loading game data.
+	 ****************************************************************************/
+	
+	
 	TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();
 	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 	TxtAdventDungeon newDungeon = new TxtAdventDungeon();
@@ -15,12 +20,11 @@ public class TxtAdventSave {
 		
 		
 		java.io.File file = new java.io.File("save.txt");
-
+		//This is used to access information from a file called "save.txt"
 
 		
 		
 		if(file.exists()) {
-		
 			String choiceInfo = nullCheck.nullCheck(JOptionPane.showInputDialog(null, "Save detected. What you like to overwrite the current save?\n1) Yes \n2) No"));
 			if (choiceInfo.isEmpty()) {
 				
@@ -112,6 +116,7 @@ public class TxtAdventSave {
 			}
 		}
 		else {
+			//if no save exists, a new save file is generated and populated with the values below.
 			JOptionPane.showMessageDialog(null, "No save file detected. Saving the game now!");
 			java.io.PrintWriter output;
 			try {
