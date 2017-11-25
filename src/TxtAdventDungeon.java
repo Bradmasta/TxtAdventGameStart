@@ -106,46 +106,55 @@ public class TxtAdventDungeon {
 				switch(room) {
 				case 15:
 				room = whereToGo[15][0];	
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 16:
 				room = whereToGo[16][0];	
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 17:
 				room = whereToGo[17][0];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 20:
 				room = whereToGo[20][0];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 21:
 				room = whereToGo[21][0];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 22:
 				room = whereToGo[22][0];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 24:
 				room = whereToGo[24][0];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 26:
 				room = whereToGo[26][0];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 27:
 				room = whereToGo[27][0];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
@@ -157,6 +166,7 @@ public class TxtAdventDungeon {
 			else {
 				// Will prompt if the player can't move that direction.
 				newPrompt.PromptCantGoDirection(0);
+				flags[18] = 1;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -169,38 +179,47 @@ public class TxtAdventDungeon {
 				switch(room) {
 				case 14:
 				room = whereToGo[14][1];	
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 15:
 				room = whereToGo[15][1];	
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 18:
 				room = whereToGo[18][1];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 19:
 				room = whereToGo[19][1];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 21:
 				room = whereToGo[21][1];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 24:
 				room = whereToGo[24][1];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 25:
 				room = whereToGo[25][1];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 27:
 				room = whereToGo[27][1];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 28:
 				room = whereToGo[28][1];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
@@ -211,6 +230,7 @@ public class TxtAdventDungeon {
 			else {
 				// refer to case "n" if unsure what this code does.
 				newPrompt.PromptCantGoDirection(1);
+				flags[18] = 1;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -224,30 +244,36 @@ public class TxtAdventDungeon {
 				switch(room) {
 				case 4:
 				room = whereToGo[4][2];	
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 17:
 				room = whereToGo[17][2];	
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 18:
 				room = whereToGo[18][2];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 19:
 				room = whereToGo[19][2];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 22:
 				room = whereToGo[22][2];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 23:
 				room = whereToGo[23][2];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
@@ -259,6 +285,7 @@ public class TxtAdventDungeon {
 			}
 			else {
 				// refer to case "n" if unsure what this code does.
+				flags[18] = 1;
 				newPrompt.PromptCantGoDirection(2);
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
@@ -273,31 +300,37 @@ public class TxtAdventDungeon {
 				switch(room) {
 				case 4:
 				room = whereToGo[4][3];	
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 14:
 				room = whereToGo[14][3];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 18:
 				room = whereToGo[18][3];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 21:
 				room = whereToGo[21][3];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 23:
 				room = whereToGo[23][3];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
 				case 24:
 				room = whereToGo[24][3];
+				flags[18] = 0;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
@@ -308,6 +341,7 @@ public class TxtAdventDungeon {
 			else {
 				// refer to case "n" if unsure what this code does.
 				newPrompt.PromptCantGoDirection(3);
+				flags[18] = 1;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -320,6 +354,7 @@ public class TxtAdventDungeon {
 				switch(room) {
 				case 4:
 				room = whereToGo[4][4];
+				flags[18] = 0;
 				mainFlr.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
@@ -330,6 +365,7 @@ public class TxtAdventDungeon {
 			else {
 				// refer to case "n" if unsure what this code does.
 				newPrompt.PromptCantGoDirection(4);
+				flags[18] = 1;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -338,6 +374,7 @@ public class TxtAdventDungeon {
 		case "d":
 			// refer to case "n" if unsure what this code does.
 			newPrompt.PromptCantGoDirection(5);
+			flags[18] = 1;
 			DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 			default:
@@ -387,9 +424,19 @@ public class TxtAdventDungeon {
 			 }
 		}
 			 else {
-				 flags[18] = 0;
-				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0))); 
-			 }
+					flags[18] = 0;
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
+					if(retString.isEmpty()) {
+						
+						JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+						flags[18] = 1;
+						DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+					else {
+						
+						return retString;
+					}
+			 	}
 		 }
 		 else if (room == 26) {
 
@@ -515,10 +562,20 @@ public class TxtAdventDungeon {
 			}
 			 }
 			}
-			 else {
-				 flags[18] = 0;
-				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(13))); 
-			 }
+			else {
+				flags[18] = 0;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(13)));
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					flags[18] = 1;
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					
+					return retString;
+				}
+		 	}
 
 		}
 		else if(room == 23) {
@@ -580,9 +637,19 @@ public class TxtAdventDungeon {
 			 }
 			}
 			else {
-				 flags[18] = 0;
-				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(16))); 
-			 }
+				flags[18] = 0;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(16)));
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					flags[18] = 1;
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					
+					return retString;
+				}
+		 	}
 			
 		}
 		else if(room == 18) {
@@ -607,9 +674,19 @@ public class TxtAdventDungeon {
 			 }
 			}
 			else {
-				 flags[18] = 0;
-				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(7))); 
-			 }
+				flags[18] = 0;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(7)));
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					flags[18] = 1;
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					
+					return retString;
+				}
+		 	}
 			
 		}
 		else if(room == 17 || room == 22) {
@@ -646,9 +723,19 @@ public class TxtAdventDungeon {
 			 }
 			}
 			else {
-				 flags[18] = 0;
-				 retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(18))); 
-			 }
+				flags[18] = 0;
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(18)));
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					flags[18] = 1;
+					DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					
+					return retString;
+				}
+		 	}
 		}
 		 return retString;
 	}

@@ -53,7 +53,7 @@ public class TxtAdventBeginData {
 		}
 	public int[] BeginDataInvo() {
 		// Health Potion, Attack Potion, Defense Potion, Speed Potion, Downstairs Key, Upstairs Key, Final Key.
-		int invo[] = {10, 2, 2, 0, 0, 0, 0};
+		int invo[] = {8, 3, 3, 0, 0, 0, 0};
 		return invo;
 			
 		}

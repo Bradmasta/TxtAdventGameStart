@@ -44,12 +44,15 @@ public void Help(int room, String roomName[], int[][] whereToGo, String[] direct
 				+ "Once you're ready to proceed, just hit enter, or Click the OK button!");
 		JOptionPane.showMessageDialog(null, "And we continue!");
 		if (room >=0 && room < 13 && room != 4) {
+		flags[18] = 1;
 		newRoom.Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 		}
 		else if (room > 13 && room < 29 || room == 4) {
+		flags[18] = 1;
 		newDungeon.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
 		}
 		else if (room >= 29 || room == 13) {
+		flags[18] = 1;
 		newUpper.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			
 		}

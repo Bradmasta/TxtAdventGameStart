@@ -24,7 +24,7 @@ public class TxtAdventEncounters {
 		 */
 		if (room >=0 && room < 13 && room != 4) {
 
-			int enemyStats[] = {50, 45, 25, newRand.randEasyEnemySpd()};
+			int enemyStats[] = {50, 50, 25, newRand.randEasyEnemySpd()};
 			if (enemyStats[3] > myStats[3]) {
 				enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 				
@@ -35,7 +35,7 @@ public class TxtAdventEncounters {
 			}
 			}
 			else if (room > 13 && room < 29 || room == 4) {
-				 int enemyStats[] = {60, 55, 40, newRand.randMedEnemySpd()};
+				 int enemyStats[] = {70, 55, 40, newRand.randMedEnemySpd()};
 					if (enemyStats[3] > myStats[3]) {
 						enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 						
@@ -46,7 +46,7 @@ public class TxtAdventEncounters {
 					}
 			}
 			else if (room >= 29 || room == 13) {
-				int enemyStats[] = {100, 60, 55, newRand.randHardEnemySpd()};
+				int enemyStats[] = {100, 65, 50, newRand.randHardEnemySpd()};
 				if (enemyStats[3] > myStats[3]) {
 					enemyCombat(room, roomName, whereToGo, directions, myStats, enemyStats, invo, flags);
 					
@@ -485,7 +485,7 @@ public class TxtAdventEncounters {
 			else if (room > 13 && room < 29 || room == 4) {
 				 if (newRand.randEnemySuccess() >= 3) {
 
-						  if(newRand.randEnemyUsePotion() > 10) {
+						  if(newRand.randEnemyUsePotion() > 13) {
 							  int enAttkIncrease = 3;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);
@@ -523,7 +523,7 @@ public class TxtAdventEncounters {
 			else if (room >= 29 || room == 13) {
 				if (newRand.randEnemySuccess() >= 4) {
 					 
-						  if(newRand.randEnemyUsePotion() > 5) {
+						  if(newRand.randEnemyUsePotion() > 7) {
 							  int enAttkIncrease = 4;
 							  enemyStats[1] += enAttkIncrease;
 							  JOptionPane.showMessageDialog(null, "The enemy used an attack potion! Their attack was increased by " + enAttkIncrease);

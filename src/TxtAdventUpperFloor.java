@@ -223,7 +223,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 					if(choiceInfo.isEmpty()) {
 						
 						JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
-						UpperRooms(room, directions, whereToGo, directions, flags, flags, flags);
+						UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 						break;
 					}
 					else {
@@ -810,17 +810,17 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
   
     	
         
-        myWindow.setSize(500,300);
-        myWindow.setLocationRelativeTo(null);
+        setSize(500,300);
+        setLocationRelativeTo(null);
         myWindow.setContentPane(temp);
         
-        myWindow.setLayout(new FlowLayout());
-        myWindow.addWindowListener(this);
-        myWindow.setLayout(new GridBagLayout());
+        setLayout(new FlowLayout());
+        addWindowListener(this);
+        setLayout(new GridBagLayout());
         GridLayout layout = new GridLayout(0,1);
         layout.setHgap(10);
         layout.setVgap(10);
-        myWindow.setLayout(layout);
+        setLayout(layout);
         
         
 		JOptionPane.showMessageDialog(null, "What follows is a window with four possible options. Click an answer to proceed!\n"
@@ -834,19 +834,19 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("85 Million");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
-            myWindow.add(c, layout);
+            add(b, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
         
-            		 myWindow.dispose();
+            		 dispose();
                    	 newPrompt.PromptQRightWrong(1);
                		 myStats[0] =  myStats[0] / 2;
             		 flags[15] = 1;
@@ -860,7 +860,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		 myWindow.dispose();
+            		 dispose();
                    	 newPrompt.PromptQRightWrong(1);
             				myStats[0] =  myStats[0] / 2;
             			flags[15] = 1;
@@ -877,7 +877,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	 newPrompt.PromptQRightWrong(0);
           			 flags[15] = 2;
           	
@@ -891,7 +891,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		 myWindow.dispose();
+            		 dispose();
                    	 newPrompt.PromptQRightWrong(1);
             				myStats[0] =  myStats[0] / 2;
             			flags[15] = 1;
@@ -917,20 +917,20 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
     		d = new Button("Green");
  
         
-    		myWindow.add(label);
-    		myWindow.add(a, layout);
+    		add(label);
+    		add(a, layout);
 
-    		myWindow.add(b, layout);
+    		add(b, layout);
 
-    		myWindow.add(c, layout);
+    		add(c, layout);
 
-    		myWindow.add(d, layout);
-    		myWindow.setVisible(true);
+    		add(d, layout);
+    		setVisible(true);
     		a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
         
-            		 myWindow.dispose();
+            		 dispose();
                    	 newPrompt.PromptQRightWrong(1);
                		 myStats[0] =  myStats[0] / 2;
             		 flags[15] = 1;
@@ -946,7 +946,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
@@ -957,7 +957,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -972,7 +972,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		 myWindow.dispose();
+            		 dispose();
                    	 newPrompt.PromptQRightWrong(1);
             				myStats[0] =  myStats[0] / 2;
             			flags[15] = 1;
@@ -995,20 +995,20 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("Random Access Memory");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
         
-            		 myWindow.dispose();
+            		 dispose();
                    	 newPrompt.PromptQRightWrong(1);
                		 myStats[0] =  myStats[0] / 2;
             		 flags[15] = 1;
@@ -1024,7 +1024,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1037,7 +1037,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1051,7 +1051,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -1070,19 +1070,19 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("I-7");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);	
@@ -1093,7 +1093,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1106,7 +1106,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1120,7 +1120,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1141,19 +1141,19 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("All of them");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
             myWindow.add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1166,7 +1166,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1179,7 +1179,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1193,7 +1193,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -1212,19 +1212,19 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("42");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1237,7 +1237,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1250,7 +1250,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -1262,7 +1262,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1283,19 +1283,19 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("Low Level");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1308,7 +1308,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);		
@@ -1319,7 +1319,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1333,7 +1333,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1354,15 +1354,15 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("4");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
@@ -1379,7 +1379,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1392,7 +1392,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1406,7 +1406,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -1425,19 +1425,19 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("214");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1450,7 +1450,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1463,7 +1463,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -1475,7 +1475,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1496,19 +1496,19 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d = new Button("6");
      
             
-            myWindow.add(label);
-            myWindow.add(a, layout);
+            add(label);
+            add(a, layout);
 
-            myWindow.add(b, layout);
+            add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
-            myWindow.add(d, layout);
-            myWindow.setVisible(true);
+            add(d, layout);
+            setVisible(true);
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1521,7 +1521,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1534,7 +1534,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             c.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventUpperFloor upFlr = new TxtAdventUpperFloor();
-            		myWindow.dispose();
+            		dispose();
                  	newPrompt.PromptQRightWrong(0);
           		    flags[15] = 2;
           			upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
@@ -1546,7 +1546,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             d.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;
@@ -1574,7 +1574,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 	@Override
     public void windowClosing(WindowEvent e) {
     	
-    	myWindow.dispose();
+    		dispose();
             System.exit(0);
     }
 	@Override

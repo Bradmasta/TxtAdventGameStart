@@ -3,8 +3,6 @@ import javax.swing.*;
 public class TxtAdventMainFloor {
 /********************************
  * This class controls all movement between rooms on the middle floor, as well as moving to a room in the Dungeon and a room in the upstairs
- * 
- * 
  ********************************/
 	
 	
@@ -123,22 +121,27 @@ public class TxtAdventMainFloor {
 				switch(room) {
 				case 0:
 				room = whereToGo[0][0];	
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 3:
 				room = whereToGo[3][0];	
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 7:
 				room = whereToGo[7][0];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 10:
 				room = whereToGo[10][0];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 12:
 				room = whereToGo[12][0];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
@@ -149,6 +152,7 @@ public class TxtAdventMainFloor {
 			else {
 				// if the array data based on the room ID returns a -1, this shows.
 				newPrompt.PromptCantGoDirection(0);
+				flags[18] = 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -160,22 +164,27 @@ public class TxtAdventMainFloor {
 				switch(room) {
 					case 1:
 					room = whereToGo[1][1];	
+					flags[18] = 0;
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					case 3:
 					room = whereToGo[3][1];	
+					flags[18] = 0;
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					case 7:
 					room = whereToGo[7][1];
+					flags[18] = 0;
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					case 8:
 					room = whereToGo[8][1];
+					flags[18] = 0;
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					case 11:
 					room = whereToGo[11][1];
+					flags[18] = 0;
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					default:
@@ -186,6 +195,7 @@ public class TxtAdventMainFloor {
 			}
 			else {
 				newPrompt.PromptCantGoDirection(1);
+				flags[18] = 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -198,26 +208,32 @@ public class TxtAdventMainFloor {
 				switch(room) {
 				case 0:
 				room = whereToGo[0][2];	
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 1:
 				room = whereToGo[1][2];	
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 2:
 				room = whereToGo[2][2];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 3:
 				room = whereToGo[3][2];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 7:
 				room = whereToGo[7][2];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 9:
 				room = whereToGo[9][2];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
@@ -227,6 +243,7 @@ public class TxtAdventMainFloor {
 			}
 			else {
 				newPrompt.PromptCantGoDirection(2);
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -239,26 +256,32 @@ public class TxtAdventMainFloor {
 				switch(room) {
 				case 0:
 				room = whereToGo[0][3];	
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 1:
 				room = whereToGo[1][3];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 2:
 				room = whereToGo[2][3];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 5:
 				room = whereToGo[5][3];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 6:
 				room = whereToGo[6][3];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				case 7:
 				room = whereToGo[7][3];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
@@ -267,6 +290,7 @@ public class TxtAdventMainFloor {
 				}
 			}
 			else {
+				flags[18] = 1;
 				newPrompt.PromptCantGoDirection(3);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
@@ -279,11 +303,13 @@ public class TxtAdventMainFloor {
 					int flagCheck = flags[5];
 					if (flagCheck == 0) {
 					JOptionPane.showMessageDialog(null, "You can't go " + directions[4] + " yet! The Door needs unlocked!");
+					flags[18] = 1;
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					}
 					else {
 					room = whereToGo[3][4];
+					flags[18] = 0;
 					upFlr.UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					}
@@ -293,6 +319,7 @@ public class TxtAdventMainFloor {
 			}
 			else {
 				newPrompt.PromptCantGoDirection(4);
+				flags[18] = 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -306,15 +333,18 @@ public class TxtAdventMainFloor {
 				int flagCheck = flags[2];
 				if (flagCheck == 0) {
 				JOptionPane.showMessageDialog(null, "You can't go " + directions[5] + " yet! The trapdoor needs unlocked!");
+				flags[18] = 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 				else {
 				room = whereToGo[2][5];
+				flags[18] = 0;
 				dunRoom.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				}
 				break;
 				case 13:
 				room = whereToGo[13][4];
+				flags[18] = 0;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				default:
@@ -323,6 +353,7 @@ public class TxtAdventMainFloor {
 				}
 			}
 			else {
+				flags[18] = 1;
 				newPrompt.PromptCantGoDirection(5);
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
@@ -374,10 +405,21 @@ public class TxtAdventMainFloor {
 			}
 			}
 			 }
-			else {
-				flags[18] = 0;
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
-			}
+			 else {
+					flags[18] = 0;
+					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(0)));
+					if(retString.isEmpty()) {
+						
+						JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+						flags[18] = 1;
+						Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+					else {
+						
+						return retString;
+					}
+					
+				}
 		
 			
 		 }
@@ -404,8 +446,19 @@ public class TxtAdventMainFloor {
 		 }
 		}
 			 else {
-				 flags[18] = 0;
+					flags[18] = 0;
 					retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(1)));
+					if(retString.isEmpty()) {
+						
+						JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+						flags[18] = 1;
+						Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+					}
+					else {
+						
+						return retString;
+					}
+					
 				}
 		 }
 		
@@ -450,7 +503,7 @@ public class TxtAdventMainFloor {
 					
 					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-					return retString;
+					
 			}
 			}
 		}
@@ -469,6 +522,7 @@ public class TxtAdventMainFloor {
 			if(retString.isEmpty()) {
 				
 				JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+				flags[18] = 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			}
 			else {
@@ -479,6 +533,17 @@ public class TxtAdventMainFloor {
 			else {
 				flags[18] = 0;
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(3)));
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					flags[18] = 1;
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					
+					return retString;
+				}
+				
 			}
 		}
 		else if(room == 0) {
@@ -535,7 +600,7 @@ public class TxtAdventMainFloor {
 					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 		
-					return retString;
+					
 
 			
 			}
@@ -571,7 +636,7 @@ public class TxtAdventMainFloor {
 					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 	
-					return retString;
+					
 			
 			}
 			
@@ -596,16 +661,28 @@ public class TxtAdventMainFloor {
 				return retString;
 			}
 				 }
-			return retString;
+			
 		}
 				 
 			else {
 				flags[18] = 0;
 				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + newPrompt.PromptBasicScript(10)));
+				if(retString.isEmpty()) {
+					
+					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
+					flags[18] = 1;
+					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+				}
+				else {
+					
+					return retString;
+				}
+				
 			}
 	
 		}
-		 return retString;
+		return retString;
+		
 	}
 		
 	}
