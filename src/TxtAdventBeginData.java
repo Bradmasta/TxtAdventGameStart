@@ -1,8 +1,8 @@
-
-public class TxtAdventBeginData {
-	/************************
+    /************************
 	 * This class includes all the data necessary to start the game.
 	 ************************/
+public class TxtAdventBeginData {
+	
 	
 	public int BeginDataRoom() {
    /* Starts at 999 due to how save data works. During my testing of the save/load system, 
@@ -22,7 +22,6 @@ public class TxtAdventBeginData {
 				"Upper North-Western Tower", "Upper South-Western Tower", "Upper Eastern Towers Split Hall", "Upper North-Eastern Tower", "Upper South-Eastern Tower",
 				"Final Castle Room", "Dragon Room"};
 		return roomName;
-		
 			
 		}
 	public int[][] BeginDataWhereToGo() {
@@ -53,7 +52,7 @@ public class TxtAdventBeginData {
 		}
 	public int[] BeginDataInvo() {
 		// Health Potion, Attack Potion, Defense Potion, Speed Potion, Downstairs Key, Upstairs Key, Final Key.
-		int invo[] = {8, 3, 3, 0, 0, 0, 0};
+		int invo[] = {8, 4, 2, 0, 0, 0, 0};
 		return invo;
 			
 		}

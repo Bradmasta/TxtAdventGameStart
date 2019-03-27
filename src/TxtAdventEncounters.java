@@ -1,14 +1,12 @@
 import javax.swing.JOptionPane;
+/********************************************************************
+ * This class handles all Encounters except for the Dragon Fight, which is in its own class.
+ * The mechanics are very simple, but do work very well, at least in the eyes of this programmer.
+ * All normal encounter for both the Main floor, Dungeon, and Upper floor are handled here.
+ ********************************************************************/
 public class TxtAdventEncounters {
-	/********************************************************************
-	 * This class handles all Encounters except for the Dragon Fight, which is in its own class.
-	 * The mechanics are very simple, but do work very well, at least in the eyes of this programmer.
-	 * All normal encounter for both the Main floor, Dungeon, and Upper floor are handled here.
-	 ********************************************************************/
 	
-	
-	
-	
+
 	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventUpperFloor upperRoom = new TxtAdventUpperFloor();
 	TxtAdventMainFloor mainRoom = new TxtAdventMainFloor();

@@ -1,9 +1,10 @@
 
 import javax.swing.*;
-public class TxtAdventMainFloor {
 /********************************
  * This class controls all movement between rooms on the middle floor, as well as moving to a room in the Dungeon and a room in the upstairs
  ********************************/
+public class TxtAdventMainFloor {
+
 	
 	
 	public void Rooms(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags) {
@@ -55,6 +56,7 @@ public class TxtAdventMainFloor {
 			else {
 				
 				newPrompt.PromptNoChest();
+				flags[18] = 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
@@ -100,7 +102,7 @@ public class TxtAdventMainFloor {
 					
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "You've already unlocked the Upstairs door.");		
+					JOptionPane.showMessageDialog(null, "You've already unlocked the Upstairs door.");
 					Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 					break;
 					
@@ -108,8 +110,9 @@ public class TxtAdventMainFloor {
 				
 			}
 			else {
-				// Prompt class used to take care of prompts that are used in multiple classes. This one will say you can't use a key here.
-				newPrompt.PromptCantUseKey();			
+				// Prompt class is used to take care of prompts that are used in multiple classes. This one will say you can't use a key here.
+				JOptionPane.showMessageDialog(null, newPrompt.PromptUseKey(0));
+				flags[18] = 1;
 				Rooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
@@ -574,7 +577,7 @@ public class TxtAdventMainFloor {
 			int flagCheck = flags[2];
 			switch(flagCheck) {
 			case 0:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked trapdoor." + newPrompt.PromptBasicScript(8)));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked trapdoor." + newPrompt.PromptBasicScript(8) + newPrompt.PromptUseKey(1)));
 				if(retString.isEmpty()) {
 					
 					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());
@@ -610,7 +613,7 @@ public class TxtAdventMainFloor {
 			int flagCheck = flags[5];
 			switch(flagCheck) {
 			case 0:
-				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked Door."  + newPrompt.PromptBasicScript(9)));
+				retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn +  "\nYou see a locked Door."  + newPrompt.PromptBasicScript(9) + newPrompt.PromptUseKey(1)));
 				if(retString.isEmpty()) {
 					
 					JOptionPane.showMessageDialog(null, newPrompt.PromptNeedType());

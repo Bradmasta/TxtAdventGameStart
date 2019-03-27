@@ -1,17 +1,14 @@
 import javax.swing.JOptionPane;
-
+/****************************************************************
+ * This methods purpose is for the player to be able to check their inventory at any given time from any room.
+ * The Inventory will show the players stats, as well as how many Health, Attack, Defense, and Speed potions they have.
+ * The inventory will also show which keys a player currently has, and which type of key it is (Either downstairs, upstairs, or final) 
+ * It should be noted that Attack, Defense, and Speed never drop, only increase.
+ * This means that a player can use as many Attack, Defense, and Speed potions as they have, and whatever number they end up at will be where they stay
+ * until another potion is consumed. Health also has no cap, so players can go passed their starting health of 260 (This will probably be changed later)
+ ****************************************************************/
 public class TxtAdventInvoCheck {
-	/****************************************************************
-	 * This methods purpose is for the player to be able to check their inventory at any given time from any room.
-	 * The Inventory will show the players stats, as well as how many Health, Attack, Defense, and Speed potions they have.
-	 * The inventory will also show which keys a player currently has, and which type of key it is (Either downstair, upstairs, or final) 
-	 ****************************************************************/
-	
-	
-	
-	
-	
-	
+
 	TxtAdventMainFloor newRoom = new TxtAdventMainFloor();
 	TxtAdventDungeon newDungeon = new TxtAdventDungeon();
 	TxtAdventUpperFloor newUpper = new TxtAdventUpperFloor();

@@ -1,13 +1,13 @@
 
 import javax.swing.JOptionPane;
+/********************************
+ * This class controls all movement between rooms on the dungeon, as well as moving to a room on the main floor
+ * The code is very similar to that of both the main floor and the upstairs area. 
+ * While I could've put everything in one class, management was easier this way.
+ ********************************/
 
 public class TxtAdventDungeon {
-	/********************************
-	 * This class controls all movement between rooms on the dungeon, as well as moving to a room on the main floor
-	 * The code is very similar to that of both the main floor and the upstairs area. 
-	 * While I could've put everything in one class, management was easier this way.
-	 * 
-	 ********************************/
+
 
 
 	TxtAdventMainFloor mainFlr = new TxtAdventMainFloor();
@@ -86,13 +86,15 @@ public class TxtAdventDungeon {
 				}
 			else {
 				newPrompt.PromptNoChest();	
+				flags[18] = 1;
 				DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 			}
 			
 		case "k":
 			// Opens any Doors or Trapdoors that require keys.
-			newPrompt.PromptCantUseKey();
+			JOptionPane.showMessageDialog(null, newPrompt.PromptUseKey(0));
+			flags[18] = 1;
 			DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 		case "n":

@@ -3,18 +3,17 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-
+/********************************
+ * This class controls all movement between rooms in the upstairs, as well as moving to a room on the main floor and dungeon
+ * The code is very similar to that of both the main floor and the dungeon. 
+ * While I could've put everything in one class, management was easier this way.
+ * For everything but the Dragonkeep method, refer to either the Main Floor of Dungeon class for functionality.
+ ********************************/
 @SuppressWarnings("serial")
 public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 	JFrame myWindow = new JFrame("Question");
 	JPanel temp = new JPanel();
 	
-	/********************************
-	 * This class controls all movement between rooms in the upstairs, as well as moving to a room on the main floor and dungeon
-	 * The code is very similar to that of both the main floor and the dungeon. 
-	 * While I could've put everything in one class, management was easier this way.
-	 * For everything but the Dragonkeep method, refer to either the Main Floor of Dungeon class for functionality.
-	 ********************************/
 
 	TxtAdventNullCheck nullCheck = new TxtAdventNullCheck();
 	TxtAdventRandNum newRand = new TxtAdventRandNum();
@@ -127,6 +126,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 			
 				else {
 			newPrompt.PromptNoChest();
+			flags[18] = 1;
 			UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 			break;
 				}
@@ -163,7 +163,8 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 			}
 			else {
 				
-				newPrompt.PromptCantUseKey();
+				JOptionPane.showMessageDialog(null, newPrompt.PromptUseKey(0));
+				flags[18] = 1;
 				UpperRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
 				break;
 				
@@ -721,7 +722,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 					flagCheck = flags[14];
 					switch(flagCheck) {
 					case 0:
-						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a Door. " + newPrompt.PromptBasicScript(10)));
+						retString = nullCheck.nullCheck(JOptionPane.showInputDialog(null, roomIn + "\nYou see a Door. " + newPrompt.PromptBasicScript(10) + newPrompt.PromptUseKey(1)));
 						
 							if(retString.isEmpty()) {
 								
@@ -845,7 +846,6 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-        
             		 dispose();
                    	 newPrompt.PromptQRightWrong(1);
                		 myStats[0] =  myStats[0] / 2;
@@ -860,16 +860,13 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             b.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		 dispose();
-                   	 newPrompt.PromptQRightWrong(1);
-            				myStats[0] =  myStats[0] / 2;
-            			flags[15] = 1;
-            			int room = whereToGo[25][6];
-            		
-            				dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
-            		
-   
-            		
+            		dispose();
+                    newPrompt.PromptQRightWrong(1);
+            	    myStats[0] =  myStats[0] / 2;
+            	    flags[15] = 1;
+            	    int room = whereToGo[25][6];
+            	    dgFlr.DunRooms(room, roomName, whereToGo, directions, myStats, invo, flags);
+
             	}
             	
             	
@@ -1146,7 +1143,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
 
             add(b, layout);
 
-            myWindow.add(c, layout);
+            add(c, layout);
 
             add(d, layout);
             setVisible(true);
@@ -1279,7 +1276,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
         	label = new JLabel("What type of programming language is \"Java\"?", SwingConstants.CENTER);
         	a = new Button("Object Creating");
             b = new Button("Object Oriented");
-            c = new Button("Scripted");
+            c = new Button("Scripting");
             d = new Button("Low Level");
      
             
@@ -1366,7 +1363,7 @@ public class TxtAdventUpperFloor extends Frame implements WindowListener  {
             a.addActionListener(new ActionListener() {
             	public void actionPerformed (ActionEvent a) {
             		TxtAdventDungeon dgFlr = new TxtAdventDungeon();
-            		myWindow.dispose();
+            		dispose();
                   	newPrompt.PromptQRightWrong(1);
            			myStats[0] =  myStats[0] / 2;
            			flags[15] = 1;

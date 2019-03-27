@@ -1,13 +1,13 @@
 
 import javax.swing.JOptionPane;
-
+/*******************************************************************
+ * This class is pretty self explanatory: It contains probably 95% of all the prompts used throughout the game.
+ * Most classes are of return type void, but a few return a string depending on which prompt is needed.
+ * Feel free to scroll down to read the prompts, but the player should see most of these just by playing the game.
+ *******************************************************************/
 
 public class TxtAdventPrompts {
-	/*******************************************************************
-	 * This class is pretty self explanatory: It contains probably 95% of all the prompts used throughout the game.
-	 * Most classes are of return type void, but a few return a string depending on which prompt is needed.
-	 * Feel free to scroll down to read the prompts, but the player should see most of these just by playing the game.
-	 *******************************************************************/
+	
 	
 	
 	
@@ -56,11 +56,25 @@ public void PromptNoChest() {
 	
 	
 }
-public void PromptCantUseKey() {
+public String PromptUseKey(int key) {
+	String retString  = null;
+	switch(key) {
+	
+	case 0:
+		
+		retString = "You can't use a key here!";
+		return retString;
+
+	case 1:
+		
+		retString = " or would you like to unlock a door? (Type \"Key\" or \"k\" to do so!)";
+		return retString;
+		
+		default:
+		return retString;
 	
 	
-	JOptionPane.showMessageDialog(null, "You can't use a key here!");
-	
+	}
 }
 public void PromptSafely() {
 	
@@ -88,7 +102,7 @@ public String PromptChestTxt(int chestOption) {
 	return retString;
 	
 	case 2:
-	retString = " or would you like to open the chest? (Type 'Chest' or 'c' to do so!)";	
+	retString = " or would you like to open the chest? (Type \"Chest\" or \"c\" to do so!)";	
 	return retString;
 	
 	default:
@@ -288,7 +302,8 @@ public void PromptDragonKeepFirstSee() {
 	JOptionPane.showMessageDialog(null, "Ahh, so I see you've made it this far. \nI noticed you enter the Castle, and thought that you would have been destroyed by the many monsters that plague these halls.\n"
 			+ "You are no ordinary fighter, I see that now. But, in order to fight the Dragon, you must answer one question for me.\nThink you can do it? We shall see.\nIf you get this right, you will have the "
 			+ "privilege of fighting the almighty beast, but if you should fail..\nyou will be sent all the way down to the back of the dungeon and must work your way back up here.\nThat's not all though: You will "
-			+ "lose half of your health! \n Also, I don't give the correct answer, so if you happen to get this question again, you'll still have to know what the answer is, or guess!\n"
+			+ "lose half of your health!\n"
+			+ "Also, I don't give the correct answer, so if you happen to get this question again, you'll still have to know what the answer is, or guess!\n"
 			+ "So, I hope you're ready; you finishing this quest could very well depend on your answer to this question!");
 	
 	

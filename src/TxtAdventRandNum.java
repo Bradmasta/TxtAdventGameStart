@@ -1,11 +1,12 @@
 
 import java.util.Random;
+/****************************************************************
+ * Generates various random numbers in the game. While some of the methods have the same exact number generation, these numbers
+ * might change in the future, so i've simply left them alone.
+ ****************************************************************/
 public class TxtAdventRandNum {
 	
-	/****************************************************************
-	 * Generates various random numbers in the game. While some of the methods have the same exact number generation, these numbers
-	 * might change in the future, so i've simply left them alone.
-	 ****************************************************************/
+	
 
 	Random R = new Random();
 	public void randRoom(int room, String roomName[], int[][] whereToGo, String[] directions, int[] myStats, int[] invo, int[] flags)  {
